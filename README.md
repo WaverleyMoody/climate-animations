@@ -37,108 +37,60 @@ Each animation has its own script in the corresponding folder.
 **About**
 This animation shows the seasonally varying climatology of air temperature 2 metres above the surface, averaged over the period 1979–2000. Each frame represents a weekly mean, cycling through the 1st, 8th, 15th, and 22nd of each month. The animation reveals the dramatic seasonal contrast between the Northern and Southern Hemispheres, the persistent warmth of the tropics, and the extreme cold of the polar regions and high-altitude areas like the Tibetan Plateau and Antarctica.
 
-**Animation**
+## Animations
 
-<video src="https://github.com/WaverleyMoody/climate-animations/raw/main/2m_temperature/2m_temperature_climatology.mp4" controls width="100%"></video>
+<table>
+  <tr>
+    <td width="50%"><video width="100%" src="https://github.com/user-attachments/assets/210ac59f-f6a6-47b1-8614-f767630d222a"></video></td>
+  </tr>
+</table>
+<table width="100%">
+  <tr>
+    <td><a href="https://youtu.be/NoBMwxeQTJQ">YouTube</a></td>
+    <td><a href="2m_temperature/scripts/animate_2m_temp.py">Python Code</a></td>
+    <td><a href="2m_temperature/scripts/animate_2m_temp.R">R Code</a></td>
+    <td colspan="2"><b><i>About:</i></b><br>ERA5 Weekly Mean 2m Temperature 1979-2000. Shows the seasonally varying climatology of air temperature 2 metres above the surface. The animation reveals the dramatic seasonal contrast between the Northern and Southern Hemispheres, the persistent warmth of the tropics, and the extreme cold of the polar regions.</td>
+  </tr>
+</table>
 
-**Data**
-- Source: ERA5 Reanalysis, European Centre for Medium-Range Weather Forecasts (ECMWF)
-- Variable: 2 metre temperature (t2m)
-- Period: 1979–2000
-- Temporal resolution: Weekly means (days 1, 8, 15, 22 of each month)
-- Spatial resolution: 0.25° x 0.25°
-- Units: °C (converted from Kelvin)
-- Download: [Copernicus Climate Data Store](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels)
+<table>
+  <tr>
+    <td width="50%"><video width="100%" src="https://github.com/user-attachments/assets/b84ec4eb-7b53-4f7a-8e69-d69d2b2f5ca7"></video></td>
+  </tr>
+</table>
+<table width="100%">
+  <tr>
+    <td><a href="https://youtu.be/m6FXkEbiyRc">YouTube</a></td>
+    <td><a href="sea_level_pressure/scripts/animate_SLP.py">Python Code</a></td>
+    <td><a href="sea_level_pressure/scripts/animate_SLP.R">R Code</a></td>
+    <td colspan="2"><b><i>About:</i></b><br>ERA5 Weekly Mean Sea Level Pressure 1979-2000. Shows the seasonally varying climatology of atmospheric pressure adjusted to sea level. Reveals the dominant pressure systems that drive global weather patterns.</td>
+  </tr>
+</table>
 
-**Python Script**
-Located at: `2m_temperature/scripts/animate_2m_temp.py`
+<table>
+  <tr>
+    <td width="50%"><video width="100%" src="https://github.com/user-attachments/assets/882e939a-c7c4-4a3d-8cfb-c971e7744a0c"></video></td>
+  </tr>
+</table>
+<table width="100%">
+  <tr>
+    <td><a href="https://youtu.be/hfYU_kA1568">YouTube</a></td>
+    <td><a href="wind_speed/scripts/animate_wind.py">Python Code</a></td>
+    <td><a href="wind_speed/scripts/animate_wind.R">R Code</a></td>
+    <td colspan="2"><b><i>About:</i></b><br>ERA5 Weekly Mean Surface Wind Speed at 10m 1979-2000. Shows the seasonally varying climatology of wind speed with static arrows showing mean wind direction. Reveals the trade winds, westerlies, and monsoon systems.</td>
+  </tr>
+</table>
 
-Key libraries: xarray, matplotlib, cartopy, imageio, scipy
-
-**R Script**
-Located at: `2m_temperature/scripts/animate_2m_temp.R`
-
-Coming soon.
-
-### 2. Mean Sea Level Pressure
-
-**About**
-This animation shows the seasonally varying climatology of atmospheric pressure adjusted to sea level, averaged over the period 1979–2000. It reveals the dominant pressure systems that drive global weather patterns, including the subtropical high pressure belts, the Icelandic and Aleutian lows in winter, and the Asian monsoon low in summer.
-
-**Animation**
-
-[![SLP Animation](https://img.youtube.com/vi/m6FXkEbiyRc/0.jpg)](https://youtu.be/m6FXkEbiyRc)
-
-**Data**
-- Source: ERA5 Reanalysis, ECMWF
-- Variable: Mean sea level pressure (msl)
-- Period: 1979–2000
-- Temporal resolution: Weekly means (days 1, 8, 15, 22 of each month)
-- Spatial resolution: 0.25° x 0.25°
-- Units: mb (converted from Pa)
-- Download: [Copernicus Climate Data Store](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels)
-
-**Python Script**
-Located at: `sea_level_pressure/scripts/animate_SLP.py`
-
-**R Script**
-Located at: `sea_level_pressure/scripts/animate_SLP.R`
-
-Coming soon.
-
-### 3. Surface Wind Speed at 10 m
-
-**About**
-This animation shows the seasonally varying climatology of wind speed 10 metres above the surface, averaged over the period 1979–2000. Static arrows show the overall mean wind direction across the full period. The animation reveals the trade winds, the westerlies, the jet streams, and the seasonal reversal of winds associated with the monsoon systems.
-
-**Animation**
-
-[![Wind Speed Animation](https://img.youtube.com/vi/hfYU_kA1568/0.jpg)](https://youtu.be/hfYU_kA1568)
-
-**Data**
-- Source: ERA5 Reanalysis, ECMWF
-- Variables: 10m u-component of wind (u10), 10m v-component of wind (v10)
-- Period: 1979–2000
-- Temporal resolution: Weekly means (days 1, 8, 15, 22 of each month)
-- Spatial resolution: 0.25° x 0.25°
-- Units: m/s
-- Download: [Copernicus Climate Data Store](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels)
-
-**Python Script**
-Located at: `wind_speed/scripts/animate_wind.py`
-
-**R Script**
-Located at: `wind_speed/scripts/animate_wind.R`
-
-Coming soon.
-
-### 4. Precipitable Water
-
-**About**
-This animation shows the seasonally varying climatology of total column water vapour, averaged over the period 1979–2000. It reveals the concentration of atmospheric moisture in the tropics, the dry subtropical deserts, and the seasonal migration of the moist tropical belt associated with the Intertropical Convergence Zone (ITCZ).
-
-**Animation**
-
-[![Precipitable Water Animation](https://img.youtube.com/vi/YjMiDUWG2gc/0.jpg)](https://youtu.be/YjMiDUWG2gc)
-
-**Data**
-- Source: ERA5 Reanalysis, ECMWF
-- Variable: Total column water vapour (tcwv)
-- Period: 1979–2000
-- Temporal resolution: Weekly means (days 1, 8, 15, 22 of each month)
-- Spatial resolution: 0.25° x 0.25°
-- Units: kg/m²
-- Download: [Copernicus Climate Data Store](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels)
-
-**Python Script**
-Located at: `precipitable_water/scripts/animate_precipitable_water.py`
-
-**R Script**
-Located at: `precipitable_water/scripts/animate_precipitable_water.R`
-
-Coming soon.
-
----
-
-## References
-Wallace, J.M. et al. (2023). The Atmospheric General Circulation. Cambridge University Press.
+<table>
+  <tr>
+    <td width="50%"><video width="100%" src="https://github.com/user-attachments/assets/05ac134b-8d80-464c-8e4e-45f737b57afe"></video></td>
+  </tr>
+</table>
+<table width="100%">
+  <tr>
+    <td><a href="https://youtu.be/YjMiDUWG2gc">YouTube</a></td>
+    <td><a href="precipitable_water/scripts/animate_precipitable_water.py">Python Code</a></td>
+    <td><a href="precipitable_water/scripts/animate_precipitable_water.R">R Code</a></td>
+    <td colspan="2"><b><i>About:</i></b><br>ERA5 Weekly Mean Precipitable Water 1979-2000. Shows the seasonally varying climatology of total column water vapour. Reveals the concentration of moisture in the tropics and the seasonal migration of the ITCZ.</td>
+  </tr>
+</table>
