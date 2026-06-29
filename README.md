@@ -33,7 +33,32 @@ Each animation has its own script in the corresponding folder.
 ## Animations
 
 ### 1. Temperature at 2 m
-Shows the seasonally varying climatology of air temperature 2 metres above the surface. Range: -60C to 50C.
+
+**About**
+This animation shows the seasonally varying climatology of air temperature 2 metres above the surface, averaged over the period 1979–2000. Each frame represents a weekly mean, cycling through the 1st, 8th, 15th, and 22nd of each month. The animation reveals the dramatic seasonal contrast between the Northern and Southern Hemispheres, the persistent warmth of the tropics, and the extreme cold of the polar regions and high-altitude areas like the Tibetan Plateau and Antarctica.
+
+**Animation**
+
+![2m Temperature Animation](2m_temperature/2m_temperature_climatology.mp4)
+
+**Data**
+- Source: ERA5 Reanalysis, European Centre for Medium-Range Weather Forecasts (ECMWF)
+- Variable: 2 metre temperature (t2m)
+- Period: 1979–2000
+- Temporal resolution: Weekly means (days 1, 8, 15, 22 of each month)
+- Spatial resolution: 0.25° x 0.25°
+- Units: °C (converted from Kelvin)
+- Download: [Copernicus Climate Data Store](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels)
+
+**Python Script**
+Located at: `2m_temperature/scripts/animate_2m_temp.py`
+
+Key libraries: xarray, matplotlib, cartopy, imageio, scipy
+
+**R Script**
+Located at: `2m_temperature/scripts/animate_2m_temp.R`
+
+Coming soon.
 
 ### 2. Mean Sea Level Pressure
 Shows the seasonally varying climatology of atmospheric pressure adjusted to sea level. Range: 970-1040 mb.
