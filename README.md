@@ -39,7 +39,7 @@ This animation shows the seasonally varying climatology of air temperature 2 met
 
 **Animation**
 
-https://github.com/WaverleyMoody/climate-animations/raw/main/2m_temperature/2m_temperature_climatology.mp4
+<video src="https://github.com/WaverleyMoody/climate-animations/raw/main/2m_temperature/2m_temperature_climatology.mp4" controls width="100%"></video>
 
 **Data**
 - Source: ERA5 Reanalysis, European Centre for Medium-Range Weather Forecasts (ECMWF)
