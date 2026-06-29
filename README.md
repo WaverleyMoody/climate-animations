@@ -34,11 +34,6 @@ Each animation has its own script in the corresponding folder.
 
 ### 1. Temperature at 2 m
 
-**About**
-This animation shows the seasonally varying climatology of air temperature 2 metres above the surface, averaged over the period 1979–2000. Each frame represents a weekly mean, cycling through the 1st, 8th, 15th, and 22nd of each month. The animation reveals the dramatic seasonal contrast between the Northern and Southern Hemispheres, the persistent warmth of the tropics, and the extreme cold of the polar regions and high-altitude areas like the Tibetan Plateau and Antarctica.
-
-## Animations
-
 <table>
   <tr>
     <td width="50%"><video width="100%" src="https://github.com/user-attachments/assets/210ac59f-f6a6-47b1-8614-f767630d222a"></video></td>
@@ -52,6 +47,8 @@ This animation shows the seasonally varying climatology of air temperature 2 met
     <td colspan="2"><b><i>About:</i></b><br>ERA5 Weekly Mean 2m Temperature 1979-2000. Shows the seasonally varying climatology of air temperature 2 meters above the surface.</td>
   </tr>
 </table>
+
+## 2. Pressure at Mean Sea Level
 
 <table>
   <tr>
@@ -67,6 +64,8 @@ This animation shows the seasonally varying climatology of air temperature 2 met
   </tr>
 </table>
 
+## 3. Wind Speed at 10m
+
 <table>
   <tr>
     <td width="50%"><video width="100%" src="https://github.com/user-attachments/assets/882e939a-c7c4-4a3d-8cfb-c971e7744a0c"></video></td>
@@ -81,6 +80,7 @@ This animation shows the seasonally varying climatology of air temperature 2 met
   </tr>
 </table>
 
+## 4. Precipitable Water
 <table>
   <tr>
     <td width="50%"><video width="100%" src="https://github.com/user-attachments/assets/05ac134b-8d80-464c-8e4e-45f737b57afe"></video></td>
