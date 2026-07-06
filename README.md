@@ -60,7 +60,7 @@ Each animation has its own script in the corresponding folder.
     <td><a href="https://youtu.be/m6FXkEbiyRc">YouTube</a></td>
     <td><a href="sea_level_pressure/scripts/animate_SLP.py">Python Code</a></td>
     <td><a href="sea_level_pressure/scripts/animate_SLP.R">R Code</a></td>
-    <td colspan="2"><b><i>About:</i></b> ERA5 Weekly Mean Sea Level Pressure 1979-2000. Shows theclimatology of atmospheric pressure adjusted to sea level.</td>
+    <td colspan="2"><b><i>About:</i></b> ERA5 Weekly Mean Sea Level Pressure 1979-2000. Shows the climatology of atmospheric pressure adjusted to sea level.</td>
   </tr>
 </table>
 
