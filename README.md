@@ -60,7 +60,7 @@ Each animation has its own script in the corresponding folder.
     <td><a href="https://youtu.be/m6FXkEbiyRc">YouTube</a></td>
     <td><a href="sea_level_pressure/scripts/animate_SLP.py">Python Code</a></td>
     <td><a href="sea_level_pressure/scripts/animate_SLP.R">R Code</a></td>
-   <td colspan="2"><b><i>About:</i></b> <details><summary>ERA5 Weekly Mean Sea Level Pressure 1979-2000...</summary>Shows the climatology of atmospheric pressure adjusted to sea level. Each date marks the start of the week being averaged.</details></td>
+   <td colspan="2"><b><i>About:</i></b> <details><summary>ERA5 Weekly Mean Sea Level Pressure 1979-2000. Shows the climatology of atmospheric pressure adjusted to sea level.</summary>Each date marks the start of the week being averaged.</details></td>
   </tr>
 </table>
 
@@ -76,7 +76,7 @@ Each animation has its own script in the corresponding folder.
     <td><a href="https://youtu.be/hfYU_kA1568">YouTube</a></td>
     <td><a href="wind_speed/scripts/animate_wind.py">Python Code</a></td>
     <td><a href="wind_speed/scripts/animate_wind.R">R Code</a></td>
-    <td colspan="2"><b><i>About:</i></b> <details><summary>ERA5 Weekly Mean Surface Wind Speed at 10m 1979-2000...</summary>Shows the climatology of wind speed with static arrows showing mean wind direction. Each date marks the start of the week being averaged.</details></td>
+    <td colspan="2"><b><i>About:</i></b> <details><summary>ERA5 Weekly Mean Surface Wind Speed at 10m 1979-2000. Shows the climatology of wind speed with static arrows showing mean wind direction.</summary>Each date marks the start of the week being averaged.</details></td>
   </tr>
 </table>
 
@@ -91,6 +91,6 @@ Each animation has its own script in the corresponding folder.
     <td><a href="https://youtu.be/YjMiDUWG2gc">YouTube</a></td>
     <td><a href="precipitable_water/scripts/animate_precipitable_water.py">Python Code</a></td>
     <td><a href="precipitable_water/scripts/animate_precipitable_water.R">R Code</a></td>
-    <td colspan="2"><b><i>About:</i></b> <details><summary>ERA5 Weekly Mean Precipitable Water 1979-2000...</summary>Shows the climatology of total column water vapour. Each date marks the start of the week being averaged.</details></td>
+    <td colspan="2"><b><i>About:</i></b> <details><summary>ERA5 Weekly Mean Precipitable Water 1979-2000. Shows the climatology of total column water vapour.</summary>Each date marks the start of the week being averaged.</details></td>
   </tr>
 </table>
