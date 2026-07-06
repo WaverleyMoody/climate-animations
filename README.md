@@ -44,7 +44,7 @@ Each animation has its own script in the corresponding folder.
     <td><a href="https://youtu.be/NoBMwxeQTJQ">YouTube</a></td>
     <td><a href="2m_temperature/scripts/animate_2m_temp.py">Python Code</a></td>
     <td><a href="2m_temperature/scripts/animate_2m_temp.R">R Code</a></td>
-    <td colspan="2"><b><i>About:</i></b><br>ERA5 Weekly Mean 2m Temperature 1979-2000. Shows the seasonally varying climatology of air temperature 2 meters above the surface.</td>
+    <td colspan="2"><b><i>About:</i></b> ERA5 Weekly Mean 2m Temperature 1979-2000. Shows the climatology of air temperature 2 meters above the surface.</td>
   </tr>
 </table>
 
@@ -60,7 +60,7 @@ Each animation has its own script in the corresponding folder.
     <td><a href="https://youtu.be/m6FXkEbiyRc">YouTube</a></td>
     <td><a href="sea_level_pressure/scripts/animate_SLP.py">Python Code</a></td>
     <td><a href="sea_level_pressure/scripts/animate_SLP.R">R Code</a></td>
-    <td colspan="2"><b><i>About:</i></b><br>ERA5 Weekly Mean Sea Level Pressure 1979-2000. Shows the seasonally varying climatology of atmospheric pressure adjusted to sea level.</td>
+    <td colspan="2"><b><i>About:</i></b> ERA5 Weekly Mean Sea Level Pressure 1979-2000. Shows theclimatology of atmospheric pressure adjusted to sea level.</td>
   </tr>
 </table>
 
@@ -76,7 +76,7 @@ Each animation has its own script in the corresponding folder.
     <td><a href="https://youtu.be/hfYU_kA1568">YouTube</a></td>
     <td><a href="wind_speed/scripts/animate_wind.py">Python Code</a></td>
     <td><a href="wind_speed/scripts/animate_wind.R">R Code</a></td>
-    <td colspan="2"><b><i>About:</i></b><br>ERA5 Weekly Mean Surface Wind Speed at 10m 1979-2000. Shows the seasonally varying climatology of wind speed with static arrows showing mean wind direction.</td>
+    <td colspan="2"><b><i>About:</i></b> ERA5 Weekly Mean Surface Wind Speed at 10m 1979-2000. Shows the climatology of wind speed with static arrows showing mean wind direction.</td>
   </tr>
 </table>
 
@@ -91,6 +91,6 @@ Each animation has its own script in the corresponding folder.
     <td><a href="https://youtu.be/YjMiDUWG2gc">YouTube</a></td>
     <td><a href="precipitable_water/scripts/animate_precipitable_water.py">Python Code</a></td>
     <td><a href="precipitable_water/scripts/animate_precipitable_water.R">R Code</a></td>
-    <td colspan="2"><b><i>About:</i></b><br>ERA5 Weekly Mean Precipitable Water 1979-2000. Shows the seasonally varying climatology of total column water vapour. </td>
+    <td colspan="2"><b><i>About:</i></b> ERA5 Weekly Mean Precipitable Water 1979-2000. Shows the climatology of total column water vapour. </td>
   </tr>
 </table>
