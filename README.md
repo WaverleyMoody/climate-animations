@@ -91,6 +91,6 @@ Each animation has its own script in the corresponding folder.
     <td><a href="https://youtu.be/YjMiDUWG2gc">YouTube</a></td>
     <td><a href="precipitable_water/scripts/animate_precipitable_water.py">Python Code</a></td>
     <td><a href="precipitable_water/scripts/animate_precipitable_water.R">R Code</a></td>
-    <td colspan="2"><details><summary><b><i>About:</i></b> ERA5 Weekly Mean Precipitable Water 1979-2000. Shows the climatology of total column water vapour. Each date marks the start</summary>of the week being averaged.</details></td>
+    <td colspan="2"><details><summary><b><i>About:</i></b> ERA5 Weekly Mean Precipitable Water 1979-2000. Shows the climatology of total column water vapour. Each date marks the start of</summary>the week being averaged.</details></td>
   </tr>
 </table>
