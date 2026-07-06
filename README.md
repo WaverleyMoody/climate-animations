@@ -1,6 +1,6 @@
-# Climate Animations
-
-Reproductions of the seasonally varying climatology animations from the [University of Washington General Circulation Animations Library](https://animations.atmos.uw.edu/), originally created by Mike Wallace and David Battisti.
+# SDSU Animation Library
+#### Version 1.0 (2026)
+Our library is a reproduction of the climatology animations from the [University of Washington General Circulation Animations Library](https://animations.atmos.uw.edu/), originally created by Mike Wallace and David Battisti.
 
 ## Data Source
 All animations are based on **ERA5 reanalysis data** from the [Copernicus Climate Data Store (CDS)](https://cds.climate.copernicus.eu/), covering the period **1979–2000**. Each frame represents a **weekly mean** (weeks starting on the 1st, 8th, 15th, and 22nd of each month).
