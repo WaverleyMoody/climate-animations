@@ -44,7 +44,7 @@ Each animation has its own script in the corresponding folder.
     <td><a href="https://youtu.be/NoBMwxeQTJQ">YouTube</a></td>
     <td><a href="2m_temperature/scripts/animate_2m_temp.py">Python Code</a></td>
     <td><a href="2m_temperature/scripts/animate_2m_temp.R">R Code</a></td>
-    <td colspan="2"><details><summary><b><i>About:</i></b> ERA5 Weekly Mean 2m Temperature 1979-2000. Shows the climatology of air temperature 2 meters above the surface.<summary>Each date marks the start of the week being averaged.</details></td>
+    <td colspan="2"><details><summary><b><i>About:</i></b> ERA5 Weekly Mean 2m Temperature 1979-2000. Shows the climatology of air temperature 2 meters above the surface.</summary>Each date marks the start of the week being averaged.</details></td>
   <tr>
 </table>
 
