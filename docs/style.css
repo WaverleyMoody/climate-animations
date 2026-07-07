@@ -266,7 +266,7 @@ main {
   gap: 0.9rem;
   margin-bottom: 0.9rem;
   font-family: var(--font-mono);
-  font-size: 0.82rem;
+  font-size: 1rem;
 }
 
 .meta-links a,
@@ -305,7 +305,7 @@ main {
 
 .meta-about {
   color: var(--text-muted);
-  font-size: 0.92rem;
+  font-size: 1.05rem;
   line-height: 1.6;
   margin: 0;
   max-width: 68ch;
