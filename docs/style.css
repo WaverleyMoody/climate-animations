@@ -96,6 +96,11 @@ main {
   padding: 0 1.5rem 4rem;
 }
 
+.variable-section {
+  border-top: 1px solid var(--line);
+  padding: 3.5rem 0;
+}
+
 .variable-section:first-of-type { border-top: 1px solid var(--line); }
 
 .section-heading h2 {
@@ -252,7 +257,6 @@ main {
   margin-top: 1.25rem;
   padding-top: 1.25rem;
   border-top: 1px solid var(--line);
-  margin-bottom: 3rem;
 }
 
 .meta-links {
