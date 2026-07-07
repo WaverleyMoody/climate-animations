@@ -98,7 +98,18 @@ main {
 
 .variable-section {
   border-top: 1px solid var(--line);
-  padding: 3rem 0;
+  padding: 3.5rem 0;
+  position: relative;
+}
+
+.variable-section::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 48px;
+  height: 2px;
+  background: var(--teal);
 }
 
 .variable-section:first-of-type { border-top: 1px solid var(--line); }
@@ -262,10 +273,29 @@ main {
 .meta-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
+  align-items: center;
+  gap: 0.9rem;
   margin-bottom: 0.9rem;
   font-family: var(--font-mono);
   font-size: 0.82rem;
+}
+
+.meta-links a,
+.meta-links .meta-pending {
+  position: relative;
+  padding-right: 0.9rem;
+}
+
+.meta-links a:not(:last-child)::after,
+.meta-links .meta-pending:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 0.9em;
+  background: var(--line);
 }
 
 .meta-links a {
