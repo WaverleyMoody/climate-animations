@@ -7,13 +7,11 @@ import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 import imageio
 from pathlib import Path
-import re
-import pandas as pd
 
 matplotlib.rcParams['font.family'] = 'Arial'
 
 # ── Paths ────────────────────────────────────────────────────────────────────
-DATA_DIR = Path('/Users/waverleymoody/Downloads/climate_daily_means')
+DATA_FILE = Path('/Users/waverleymoody/Downloads/climate_data_by_variable/wind_data.nc')
 OUTPUT_DIR = Path('/Users/waverleymoody/Downloads/wind_animation')
 FRAMES_DIR = OUTPUT_DIR / 'frames'
 OUTPUT_DIR.mkdir(exist_ok=True)
@@ -36,46 +34,38 @@ colors = [
 ]
 CMAP = mcolors.LinearSegmentedColormap.from_list('custom_wind', colors, N=35)
 
-# Load all pipeline files 
+# ── Extract the 1st, 8th, 15th, 22nd of each month and average across years ──
 target_days = [1, 8, 15, 22]
-YEARS = list(range(1979, 2001))
 MONTHS = list(range(1, 13))
 MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun',
                'Jul','Aug','Sep','Oct','Nov','Dec']
 
-all_files = sorted(DATA_DIR.glob('daily_mean_*.nc'))
-ds_all = xr.open_mfdataset(all_files, combine='nested', concat_dim='time',
-                            drop_variables=['tp', 'step', 'surface', 'number'],
-                            coords='minimal',
-                            compat='override')
+# Load the single consolidated file — it already has a proper time coordinate
+# and a precomputed wind_speed variable, so there's no need to glob 1,056 raw
+# files, reparse dates from filenames, or recompute speed from u10/v10.
+# chunks= keeps this dask-backed/lazy so we don't pull the whole 22-year global
+# grid into memory at once.
+ds_all = xr.open_dataset(DATA_FILE, chunks={'time': 50})
 
 lats = ds_all['latitude'].values
 lons = ds_all['longitude'].values
 
-# Parse dates from filenames
-dates = []
-for f in all_files:
-    match = re.search(r'daily_mean_(\d{4})_(\d{2})_(\d{2})', f.name)
-    year, month, day = int(match.group(1)), int(match.group(2)), int(match.group(3))
-    dates.append((year, month, day))
-
-time_index = pd.DatetimeIndex([pd.Timestamp(y, m, d) for y, m, d in dates])
-ds_all = ds_all.assign_coords(time=time_index)
-
 u10_all = ds_all['u10']
 v10_all = ds_all['v10']
-speed_all = np.sqrt(u10_all**2 + v10_all**2)
+speed_all = ds_all['wind_speed']
 
-static_u = u10_all.mean(dim='time').values
-static_v = v10_all.mean(dim='time').values
+# Static quiver field: mean u/v across the full record (unlike the color field,
+# this isn't split by month/day — same as your original script).
+static_u = u10_all.mean(dim='time').compute().values
+static_v = v10_all.mean(dim='time').compute().values
 
 frames_data = []
 
 for month in MONTHS:
     for day in target_days:
-        mask = ((speed_all['time'].dt.month == month) &
-                (speed_all['time'].dt.day == day))
-        mean_speed = speed_all.sel(time=mask).mean(dim='time').values
+        subset = speed_all.sel(time=((speed_all['time'].dt.month == month) &
+                                     (speed_all['time'].dt.day == day)))
+        mean_speed = subset.mean(dim='time').compute().values
         label = f'{MONTH_NAMES[month - 1]} {day}'
         frames_data.append((label, mean_speed))
         print(f'Processed: {label}')
@@ -89,7 +79,6 @@ for i, (label, mean_speed) in enumerate(frames_data):
         subplot_kw={'projection': ccrs.PlateCarree()}
     )
 
-    
     im = ax.pcolormesh(
         lons, lats, mean_speed,
         vmin=VMIN, vmax=VMAX,
@@ -106,8 +95,6 @@ for i, (label, mean_speed) in enumerate(frames_data):
     u_sub = static_u[::step, ::step]
     v_sub = static_v[::step, ::step]
 
-    u_sub = static_u[::step, ::step]
-    v_sub = static_v[::step, ::step]
     lons_sub_180 = np.where(lons_sub > 180, lons_sub - 360, lons_sub)
     sort_idx = np.argsort(lons_sub_180)
     lons_sub_180 = lons_sub_180[sort_idx]
@@ -154,7 +141,6 @@ for i, (label, mean_speed) in enumerate(frames_data):
     cbar.ax.tick_params(labelsize=9)
     cbar.set_ticks(np.arange(0, 17, 2))
     cbar.set_ticklabels([str(t) for t in np.arange(0, 17, 2)])
-
 
     ax.text(0.0, 1.02, 'ERA-5 | Climate Reanalyzer',
             transform=ax.transAxes, fontsize=10,
