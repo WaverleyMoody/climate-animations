@@ -62,7 +62,31 @@ a { color: var(--teal); }
   color: var(--text-muted);
   font-size: 1.02rem;
   max-width: 58ch;
+  margin: 0 0 2.25rem;
+}
+
+.data-source {
+  max-width: 58ch;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.data-source h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.25rem;
+  margin: 0 0 0.75rem;
+}
+
+.data-source p {
+  color: var(--text-muted);
+  font-size: 0.96rem;
   margin: 0;
+}
+
+.data-source strong {
+  color: var(--text);
+  font-weight: 600;
 }
 
 /* ─────────────────────────  Layout  ───────────────────────── */
