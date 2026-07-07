@@ -252,6 +252,52 @@ main {
   margin: 0;
 }
 
+/* ─────────────────────────  Animation meta (links + About)  ───────────────────────── */
+.animation-meta {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.meta-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+
+.meta-links a {
+  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(79, 209, 197, 0.4);
+}
+
+.meta-links a:hover {
+  text-decoration-color: var(--teal);
+}
+
+.meta-pending {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.meta-about {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 68ch;
+}
+
+.meta-about strong {
+  color: var(--text);
+  font-style: italic;
+  font-weight: 600;
+}
+
 /* ─────────────────────────  Footer  ───────────────────────── */
 .site-footer {
   max-width: 960px;
