@@ -11,7 +11,7 @@ from pathlib import Path
 matplotlib.rcParams['font.family'] = 'Arial'
 
 # ── Paths ────────────────────────────────────────────────────────────────────
-DATA_FILE = Path('/Users/waverleymoody/Downloads/climate_data_by_variable/wind_data.nc')
+DATA_FILE = Path('/Users/waverleymoody/Downloads/climate_data_by_variable/wind_climatology.nc')
 OUTPUT_DIR = Path('/Users/waverleymoody/Downloads/wind_animation')
 FRAMES_DIR = OUTPUT_DIR / 'frames'
 OUTPUT_DIR.mkdir(exist_ok=True)
@@ -34,46 +34,27 @@ colors = [
 ]
 CMAP = mcolors.LinearSegmentedColormap.from_list('custom_wind', colors, N=35)
 
-# ── Extract the 1st, 8th, 15th, 22nd of each month and average across years ──
-target_days = [1, 8, 15, 22]
-MONTHS = list(range(1, 13))
-MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun',
-               'Jul','Aug','Sep','Oct','Nov','Dec']
-
-# Load the single consolidated file — it already has a proper time coordinate
-# and a precomputed wind_speed variable, so there's no need to glob 1,056 raw
-# files, reparse dates from filenames, or recompute speed from u10/v10.
-# chunks= keeps this dask-backed/lazy so we don't pull the whole 22-year global
-# grid into memory at once.
-ds_all = xr.open_dataset(DATA_FILE, chunks={'time': 50})
-
-lats = ds_all['latitude'].values
-lons = ds_all['longitude'].values
-
-u10_all = ds_all['u10']
-v10_all = ds_all['v10']
-speed_all = ds_all['wind_speed']
-
-# Static quiver field: mean u/v across the full record (unlike the color field,
-# this isn't split by month/day — same as your original script).
-static_u = u10_all.mean(dim='time').compute().values
-static_v = v10_all.mean(dim='time').compute().values
+# ── Load pre-computed climatology ──────────
+# Each frame now carries its own u/v, so the arrows move month-to-month
+# instead of showing one static full-record average.
+ds_clim = xr.open_dataset(DATA_FILE)
+lats = ds_clim['latitude'].values
+lons = ds_clim['longitude'].values
+labels = ds_clim['frame_label'].values
 
 frames_data = []
-
-for month in MONTHS:
-    for day in target_days:
-        subset = speed_all.sel(time=((speed_all['time'].dt.month == month) &
-                                     (speed_all['time'].dt.day == day)))
-        mean_speed = subset.mean(dim='time').compute().values
-        label = f'{MONTH_NAMES[month - 1]} {day}'
-        frames_data.append((label, mean_speed))
-        print(f'Processed: {label}')
+for i in range(ds_clim.sizes['frame']):
+    mean_speed = ds_clim['wind_speed'].isel(frame=i).values
+    frame_u = ds_clim['u10'].isel(frame=i).values
+    frame_v = ds_clim['v10'].isel(frame=i).values
+    label = str(labels[i])
+    frames_data.append((label, mean_speed, frame_u, frame_v))
+    print(f'Loaded: {label}')
 
 frame_paths = []
 
 # ── Generate one frame per date ───────────────────────────────────────────────
-for i, (label, mean_speed) in enumerate(frames_data):
+for i, (label, mean_speed, frame_u, frame_v) in enumerate(frames_data):
     fig, ax = plt.subplots(
         figsize=(12, 6),
         subplot_kw={'projection': ccrs.PlateCarree()}
@@ -92,8 +73,8 @@ for i, (label, mean_speed) in enumerate(frames_data):
     step = 30
     lons_sub = lons[::step]
     lats_sub = lats[::step]
-    u_sub = static_u[::step, ::step]
-    v_sub = static_v[::step, ::step]
+    u_sub = frame_u[::step, ::step]
+    v_sub = frame_v[::step, ::step]
 
     lons_sub_180 = np.where(lons_sub > 180, lons_sub - 360, lons_sub)
     sort_idx = np.argsort(lons_sub_180)
