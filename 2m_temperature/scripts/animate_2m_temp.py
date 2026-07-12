@@ -11,7 +11,7 @@ import matplotlib.colors as mcolors
 matplotlib.rcParams['font.family'] = 'Arial'
 
 # ── Paths ────────────────────────────────────────────────────────────────────
-DATA_FILE = Path('/Users/waverleymoody/Downloads/climate_data_by_variable/2m_temp_data.nc')
+DATA_FILE = Path('/Users/waverleymoody/Downloads/climate_data_by_variable/2m_temp_climatology.nc')
 OUTPUT_DIR = Path('/Users/waverleymoody/Downloads/2m_temp_animation')
 FRAMES_DIR = OUTPUT_DIR / 'frames'
 OUTPUT_DIR.mkdir(exist_ok=True)
@@ -43,31 +43,18 @@ colors = [
 ]
 CMAP = mcolors.LinearSegmentedColormap.from_list('custom_temp', colors, N=60)
 
-# ── Extract the 1st, 8th, 15th, 22nd of each month and average across years ──
-target_days = [1, 8, 15, 22]
-MONTHS = list(range(1, 13))
-MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun',
-               'Jul','Aug','Sep','Oct','Nov','Dec']
+# ── Load pre-computed climatology ──────────
+ds_clim = xr.open_dataset(DATA_FILE)
+lats = ds_clim['latitude'].values
+lons = ds_clim['longitude'].values
+labels = ds_clim['frame_label'].values
 
 frames_data = []
-
-# Load the single consolidated file — it already has a proper time coordinate.
-# chunks= keeps this dask-backed/lazy so we don't pull the whole 22-year global
-# grid into memory at once (without it, open_dataset loads eagerly and can crash).
-ds_all = xr.open_dataset(DATA_FILE, chunks={'time': 50})
-t2m_all = ds_all['t2m'] - 273.15
-
-lats = ds_all['latitude'].values
-lons = ds_all['longitude'].values
-
-for month in MONTHS:
-    for day in target_days:
-        subset = t2m_all.sel(time=((t2m_all['time'].dt.month == month) &
-                                   (t2m_all['time'].dt.day == day)))
-        mean_field = subset.mean(dim='time').compute().values
-        label = f'{MONTH_NAMES[month - 1]} {day}'
-        frames_data.append((label, mean_field, lats, lons))
-        print(f'Processed: {label}')
+for i in range(ds_clim.sizes['frame']):
+    field = (ds_clim['t2m'].isel(frame=i) - 273.15).values
+    label = str(labels[i])
+    frames_data.append((label, field, lats, lons))
+    print(f'Loaded: {label}')
 
 frame_paths = []
 
