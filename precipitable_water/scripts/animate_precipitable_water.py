@@ -11,7 +11,7 @@ from pathlib import Path
 matplotlib.rcParams['font.family'] = 'Arial'
 
 # ── Paths ────────────────────────────────────────────────────────────────────
-DATA_FILE = Path('/Users/waverleymoody/Downloads/climate_data_by_variable/precip_water_data.nc')
+DATA_FILE = Path('/Users/waverleymoody/Downloads/climate_data_by_variable/precip_water_climatology.nc')
 OUTPUT_DIR = Path('/Users/waverleymoody/Downloads/precipitable_water_animation')
 FRAMES_DIR = OUTPUT_DIR / 'frames'
 OUTPUT_DIR.mkdir(exist_ok=True)
@@ -40,32 +40,18 @@ colors = [
 ]
 CMAP = mcolors.LinearSegmentedColormap.from_list('custom_pw', colors, N=40)
 
-# ── Extract the 1st, 8th, 15th, 22nd of each month and average across years ──
-target_days = [1, 8, 15, 22]
-MONTHS = list(range(1, 13))
-MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun',
-               'Jul','Aug','Sep','Oct','Nov','Dec']
-
-# Load the single consolidated file — it already has a proper time coordinate,
-# so there's no need to glob 1,056 raw files or reparse dates from filenames.
-# chunks= keeps this dask-backed/lazy so we don't pull the whole 22-year global
-# grid into memory at once.
-ds_all = xr.open_dataset(DATA_FILE, chunks={'time': 50})
-tcwv_all = ds_all['tcwv']
-
-lats = ds_all['latitude'].values
-lons = ds_all['longitude'].values
+# ── Load pre-computed climatology ──────────
+ds_clim = xr.open_dataset(DATA_FILE)
+lats = ds_clim['latitude'].values
+lons = ds_clim['longitude'].values
+labels = ds_clim['frame_label'].values
 
 frames_data = []
-
-for month in MONTHS:
-    for day in target_days:
-        subset = tcwv_all.sel(time=((tcwv_all['time'].dt.month == month) &
-                                    (tcwv_all['time'].dt.day == day)))
-        mean_field = subset.mean(dim='time').compute().values
-        label = f'{MONTH_NAMES[month - 1]} {day}'
-        frames_data.append((label, mean_field))
-        print(f'Processed: {label}')
+for i in range(ds_clim.sizes['frame']):
+    field = ds_clim['tcwv'].isel(frame=i).values
+    label = str(labels[i])
+    frames_data.append((label, field))
+    print(f'Loaded: {label}')
 
 frame_paths = []
 
