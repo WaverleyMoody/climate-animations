@@ -11,7 +11,7 @@ from pathlib import Path
 matplotlib.rcParams['font.family'] = 'Arial'
 
 # ── Paths ────────────────────────────────────────────────────────────────────
-DATA_FILE = Path('/Users/waverleymoody/Downloads/climate_data_by_variable/slp_data.nc')
+DATA_FILE = Path('/Users/waverleymoody/Downloads/climate_data_by_variable/slp_climatology.nc')
 OUTPUT_DIR = Path('/Users/waverleymoody/Downloads/slp_animation')
 FRAMES_DIR = OUTPUT_DIR / 'frames'
 OUTPUT_DIR.mkdir(exist_ok=True)
@@ -34,31 +34,18 @@ colors = [
 ]
 CMAP = mcolors.LinearSegmentedColormap.from_list('custom_slp', colors, N=60)
 
-# ── Extract the 1st, 8th, 15th, 22nd of each month and average across years ──
-target_days = [1, 8, 15, 22]
-MONTHS = list(range(1, 13))
-MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun',
-               'Jul','Aug','Sep','Oct','Nov','Dec']
-
-# Load the single consolidated file — it already has a proper time coordinate.
-# chunks= keeps this dask-backed/lazy so we don't pull the whole 22-year global
-# grid into memory at once (without it, open_dataset loads eagerly and can crash).
-ds_all = xr.open_dataset(DATA_FILE, chunks={'time': 50})
-msl_all = ds_all['msl'] / 100  # Convert Pa → hPa/mb
-
-lats = ds_all['latitude'].values
-lons = ds_all['longitude'].values
+# ── Load pre-computed climatology ──────────
+ds_clim = xr.open_dataset(DATA_FILE)
+lats = ds_clim['latitude'].values
+lons = ds_clim['longitude'].values
+labels = ds_clim['frame_label'].values
 
 frames_data = []
-
-for month in MONTHS:
-    for day in target_days:
-        subset = msl_all.sel(time=((msl_all['time'].dt.month == month) &
-                                   (msl_all['time'].dt.day == day)))
-        mean_field = subset.mean(dim='time').compute().values
-        label = f'{MONTH_NAMES[month - 1]} {day}'
-        frames_data.append((label, mean_field))
-        print(f'Processed: {label}')
+for i in range(ds_clim.sizes['frame']):
+    field = (ds_clim['msl'].isel(frame=i) / 100).values  # Pa → hPa/mb
+    label = str(labels[i])
+    frames_data.append((label, field))
+    print(f'Loaded: {label}')
 
 frame_paths = []
 
@@ -105,7 +92,7 @@ for i, (label, field) in enumerate(frames_data):
     cbar.set_ticks(np.arange(970, 1041, 10))
     cbar.set_ticklabels([str(t) for t in np.arange(970, 1041, 10)])
 
-    for x in np.linspace(0, 1, 61):
+    for x in np.linspace(0, 1, 61)[1:-1]:
         cbar.ax.axvline(x, color='black', linewidth=0.5)
 
     ax.text(0.0, 1.02, 'ERA-5 | Climate Reanalyzer',
