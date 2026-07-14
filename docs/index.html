@@ -8,6 +8,33 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+  .speed-controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .speed-btn {
+    padding: 4px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+  }
+
+  .speed-btn.is-active {
+    background: #333;
+    color: #fff;
+    border-color: #333;
+  }
+
+  .speed-btn:hover {
+    opacity: 0.85;
+  }
+</style>
 </head>
 <body>
 
@@ -65,12 +92,22 @@
           <source src="videos/2m_temperature_climatology.mp4" type="video/mp4">
           Your browser doesn't support embedded video. You can download the file directly instead.
         </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.5">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+        </div>
       </div>
      <div class="panel" data-projection="robinson">
         <video controls muted playsinline poster="">
           <source src="videos/2m_temperature_climatology_robinson.mp4" type="video/mp4">
           Your browser doesn't support embedded video. You can download the file directly instead.
         </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.5">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+        </div>
       </div>
       <div class="panel" data-projection="mercator">
         <div class="coming-soon">
@@ -129,12 +166,22 @@
           <source src="videos/slp_climatology.mp4" type="video/mp4">
           Your browser doesn't support embedded video. You can download the file directly instead.
         </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.5">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+        </div>
       </div>
       <div class="panel" data-projection="robinson">
         <video controls muted playsinline poster="">
           <source src="videos/slp_climatology_robinson.mp4" type="video/mp4">
           Your browser doesn't support embedded video. You can download the file directly instead.
         </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.5">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+        </div>
       </div>
       <div class="panel" data-projection="mercator">
         <div class="coming-soon">
@@ -193,12 +240,22 @@
           <source src="videos/wind_climatology.mp4" type="video/mp4">
           Your browser doesn't support embedded video. You can download the file directly instead.
         </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.5">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+        </div>
       </div>
       <div class="panel" data-projection="robinson">
         <video controls muted playsinline poster="">
           <source src="videos/wind_climatology_robinson.mp4" type="video/mp4">
           Your browser doesn't support embedded video. You can download the file directly instead.
         </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.5">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+        </div>
       </div>
       <div class="panel" data-projection="mercator">
         <div class="coming-soon">
@@ -257,12 +314,22 @@
           <source src="videos/precipitable_water_climatology.mp4" type="video/mp4">
           Your browser doesn't support embedded video. You can download the file directly instead.
         </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.5">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+        </div>
       </div>
       <div class="panel" data-projection="robinson">
         <video controls muted playsinline poster="">
           <source src="videos/precipitable_water_climatology_robinson.mp4" type="video/mp4">
           Your browser doesn't support embedded video. You can download the file directly instead.
         </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.5">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+        </div>
       </div>
       <div class="panel" data-projection="mercator">
         <div class="coming-soon">
@@ -297,5 +364,22 @@
 </footer>
 
 <script src="script.js"></script>
+<script>
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.speed-btn');
+  if (!btn) return;
+
+  const panel = btn.closest('.panel');
+  const video = panel.querySelector('video');
+  if (!video) return;
+
+  const speed = parseFloat(btn.dataset.speed);
+  video.playbackRate = speed;
+
+  btn.parentElement.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('is-active'));
+  btn.classList.add('is-active');
+});
+</script>
 </body>
+</html>
 </html>
