@@ -5,7 +5,7 @@ import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
-import imageio
+import imageio.v2 as imageio
 from pathlib import Path
 
 matplotlib.rcParams['font.family'] = 'Arial'
@@ -116,15 +116,21 @@ for proj_name, proj_crs in PROJECTIONS.items():
         # point at lat=-95 is invalid and Robinson silently drops it, even
         # though PlateCarree's simple linear scaling tolerated it)
         for lon, lon_label in [(-180, '180°'), (-90, '90°W'), (0, '0°'), (90, '90°E'), (180, '180°')]:
-            x_frac = (lon + 180) / 360
-            ax.text(x_frac, -0.02, lon_label, transform=ax.transAxes,
-                    ha='center', va='top', fontsize=9)
+            x, y = proj_crs.transform_point(lon, -90, ccrs.PlateCarree())
+            ax.annotate(lon_label, xy=(x, y), xycoords='data',
+                        xytext=(0, -6), textcoords='offset points',
+                        ha='center', va='top', fontsize=9, annotation_clip=False)
 
         # Add latitude labels on left
         for lat, lat_label in [(-90, '90°S'), (-45, '45°S'), (0, '0°'), (45, '45°N'), (90, '90°N')]:
-            ax.text(-0.01, (lat + 90) / 180, lat_label,
-                    transform=ax.transAxes,
-                    ha='right', va='center', fontsize=9)
+            x, y = proj_crs.transform_point(-180, lat, ccrs.PlateCarree())
+            if abs(lat) == 90 and proj_name == 'robinson':
+                x_offset = -18
+            else:
+                x_offset = -8
+            ax.annotate(lat_label, xy=(x, y), xycoords='data',
+                        xytext=(x_offset, 0), textcoords='offset points',
+                        ha='right', va='center', fontsize=9, annotation_clip=False)
 
         cbar = plt.colorbar(im, ax=ax, orientation='horizontal',
                             pad=0.06, fraction=0.12, shrink=0.5,
