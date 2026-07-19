@@ -99,7 +99,7 @@ for proj_name, proj_crs in PROJECTIONS.items():
                         ha='center', va='top', fontsize=9, annotation_clip=False)
         
         # Add latitude labels along the left edge of the map (projection-aware)
-# Add latitude labels along the left edge of the map (projection-aware)
+        # Add latitude labels along the left edge of the map (projection-aware)
         # Add latitude labels along the left edge of the map (projection-aware)
         for lat, lat_label in [(-90, '90°S'), (-45, '45°S'), (0, '0°'), (45, '45°N'), (90, '90°N')]:
             x, y = proj_crs.transform_point(-180, lat, ccrs.PlateCarree())

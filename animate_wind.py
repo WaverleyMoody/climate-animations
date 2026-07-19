@@ -5,7 +5,7 @@ import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
-import imageio
+import imageio.v2 as imageio
 from pathlib import Path
 
 matplotlib.rcParams['font.family'] = 'Arial'
