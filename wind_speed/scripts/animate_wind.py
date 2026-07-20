@@ -11,6 +11,7 @@ Script: animate_wind.py
 Description: Generates the 10m surface wind speed climatology animation
 from ERA5 reanalysis data (1979-2000), with mean wind vectors overlaid,
 rendered across multiple map projections.
+
 """
 
 import xarray as xr

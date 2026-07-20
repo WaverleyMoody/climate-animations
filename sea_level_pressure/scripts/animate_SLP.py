@@ -10,6 +10,7 @@ Animations Library, originally created by Professor John Michael Wallace.
 Script: animate_SLP.py
 Description: Generates the sea level pressure climatology animation from
 ERA5 reanalysis data (1979-2000), rendered across multiple map projections.
+
 """
 
 import xarray as xr
