@@ -309,12 +309,49 @@ main {
   line-height: 1.6;
   margin: 0;
   max-width: 68ch;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .meta-about strong {
   color: var(--text);
   font-style: italic;
   font-weight: 600;
+}
+
+.meta-about-wrap {
+  position: relative;
+}
+
+.meta-about.is-expanded {
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+.meta-about-toggle {
+  display: inline-block;
+  margin-top: 0.5rem;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--teal);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(79, 209, 197, 0.4);
+}
+
+.meta-about-toggle:hover {
+  text-decoration-color: var(--teal);
+}
+
+.meta-about-toggle:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
 }
 
 /* ─────────────────────────  Footer  ───────────────────────── */
