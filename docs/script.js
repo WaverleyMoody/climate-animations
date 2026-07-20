@@ -36,14 +36,32 @@ document.addEventListener('DOMContentLoaded', function () {
       const panel = btn.closest('.panel');
       const video = panel ? panel.querySelector('video') : null;
       if (!video) return;
-
       video.playbackRate = parseFloat(btn.getAttribute('data-speed'));
-
       // Only toggle active state among this panel's own speed buttons.
       const siblingButtons = panel.querySelectorAll('.speed-btn');
       siblingButtons.forEach(function (b) {
         b.classList.toggle('is-active', b === btn);
       });
+    });
+  });
+
+  // "About" text collapses to 2 lines with a Read more / Show less toggle,
+  // scoped per-section so each variable's description is independent.
+  const aboutWraps = document.querySelectorAll('.meta-about-wrap');
+  aboutWraps.forEach(function (wrap) {
+    const text = wrap.querySelector('.meta-about');
+    const toggle = wrap.querySelector('.meta-about-toggle');
+    if (!text || !toggle) return;
+
+    const isOverflowing = text.scrollHeight > text.clientHeight + 1;
+    if (!isOverflowing) {
+      toggle.style.display = 'none';
+      return;
+    }
+
+    toggle.addEventListener('click', function () {
+      const expanded = text.classList.toggle('is-expanded');
+      toggle.textContent = expanded ? 'Show less' : 'Read more';
     });
   });
 });
