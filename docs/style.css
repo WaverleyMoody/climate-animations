@@ -179,15 +179,15 @@ main {
 }
 
 .proj-icon-mercator {
-  width: 12px;
+  width: 14px;
   height: 14px;
-  border-radius: 2px 2px 3px 3px / 2px 2px 5px 5px;
-  clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
+  border-radius: 0;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
 }
 
 .proj-icon-doublehemisphere {
   position: relative;
-  width: 19px;
+  width: 24px;
   height: 12px;
   border: none;
 }
@@ -196,7 +196,7 @@ main {
   content: '';
   position: absolute;
   top: 0;
-  width: 11px;
+  width: 10px;
   height: 12px;
   border: 1.4px solid var(--text-muted);
   border-radius: 50%;
@@ -209,13 +209,17 @@ main {
   height: 36px;
   border-width: 2px;
 }
+.proj-icon-doublehemisphere.big {
+  width: 68px;
+  height: 36px;
+}
 .proj-icon-doublehemisphere.big::before,
 .proj-icon-doublehemisphere.big::after {
-  width: 32px;
+  width: 30px;
   height: 36px;
   border-width: 2px;
 }
-.proj-icon-mercator.big { width: 36px; height: 42px; }
+.proj-icon-mercator.big { width: 42px; height: 42px; }
 
 /* ─────────────────────────  Panels  ───────────────────────── */
 .panels { position: relative; }
