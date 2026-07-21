@@ -179,10 +179,10 @@ main {
 }
 
 .proj-icon-mercator {
-  width: 14px;
-  height: 14px;
-  border-radius: 0;
-  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 1px;
+  transform: rotate(45deg);
 }
 
 .proj-icon-doublehemisphere {
@@ -219,7 +219,7 @@ main {
   height: 36px;
   border-width: 2px;
 }
-.proj-icon-mercator.big { width: 42px; height: 42px; }
+.proj-icon-mercator.big { width: 26px; height: 26px; }
 
 /* ─────────────────────────  Panels  ───────────────────────── */
 .panels { position: relative; }
