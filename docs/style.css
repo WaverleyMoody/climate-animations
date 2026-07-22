@@ -221,6 +221,51 @@ main {
 }
 .proj-icon-mercator.big { width: 26px; height: 26px; }
 
+/* ─────────────────────────  Speed & loop controls  ───────────────────────── */
+.speed-controls,
+.loop-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+
+.speed-btn,
+.loop-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.speed-btn:hover,
+.loop-btn:hover {
+  color: var(--text);
+  border-color: var(--teal);
+}
+
+.speed-btn:focus-visible,
+.loop-btn:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+.speed-btn.is-active,
+.loop-btn.is-active {
+  color: var(--bg);
+  background: var(--teal);
+  border-color: var(--teal);
+  font-weight: 500;
+}
+
 /* ─────────────────────────  Panels  ───────────────────────── */
 .panels { position: relative; }
 
