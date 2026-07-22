@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
-
   // Playback speed controls — each panel with a video gets its own
   // Slow/Normal/Fast buttons, scoped so clicking one only affects
   // the video in that same panel.
@@ -44,7 +43,19 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
-
+  // Loop toggle — each panel with a video gets its own Loop button,
+  // scoped so toggling one only affects the video in that same panel.
+  const loopButtons = document.querySelectorAll('[data-loop-toggle]');
+  loopButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const panel = btn.closest('.panel');
+      const video = panel ? panel.querySelector('video') : null;
+      if (!video) return;
+      video.loop = !video.loop;
+      btn.classList.toggle('is-active', video.loop);
+      btn.setAttribute('aria-pressed', video.loop ? 'true' : 'false');
+    });
+  });
   // "About" text collapses to 2 lines with a Read more / Show less toggle,
   // scoped per-section so each variable's description is independent.
   const aboutWraps = document.querySelectorAll('.meta-about-wrap');
@@ -52,13 +63,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const text = wrap.querySelector('.meta-about');
     const toggle = wrap.querySelector('.meta-about-toggle');
     if (!text || !toggle) return;
-
     const isOverflowing = text.scrollHeight > text.clientHeight + 1;
     if (!isOverflowing) {
       toggle.style.display = 'none';
       return;
     }
-
     toggle.addEventListener('click', function () {
       const expanded = text.classList.toggle('is-expanded');
       toggle.textContent = expanded ? 'Show less' : 'Read more';
