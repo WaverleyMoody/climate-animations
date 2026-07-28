@@ -7,10 +7,14 @@ San Diego State University
 A reproduction of the University of Washington General Circulation
 Animations Library, originally created by Professor John Michael Wallace.
 
-Script: animate_wind.py
+Script: wind_speed_PlateCarree_Robinson.py
 Description: Generates the 10m surface wind speed climatology animation
 from ERA5 reanalysis data (1979-2000), with mean wind vectors overlaid,
 rendered across multiple map projections.
+
+Note: This script reproduces the Plate Carreé and Robinson projections.
+For the Python scripts corresponding to Foucault and Nicolosi, visit
+the wind_speed scripts folder.
 
 """
 
