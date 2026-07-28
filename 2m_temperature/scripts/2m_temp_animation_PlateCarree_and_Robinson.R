@@ -2,10 +2,15 @@
 # by Waverley Moody
 # Supervised by Distinguished Professor Samuel Shen
 # San Diego State University
-#
-# R translation of animate_2m_temp.py
-# Generates the 2m temperature climatology animation from ERA5 reanalysis
-# data (1979-2000), rendered across multiple map projections.
+
+# A reproduction of the University of Washington General Circulation
+# Animations Library, originally created by Professor John Michael Wallace.
+
+# Script: 2m_temp_animation_PlateCarree_and_Robinson.R
+# Description: Generates the 2m temperature climatology animation from
+# ERA5 reanalysis data (1979-2000), rendered across multiple map projections.
+
+# Note: This script reproduces the Plate Carreé and Robinson projections.
 
 library(terra)
 library(ncdf4)
