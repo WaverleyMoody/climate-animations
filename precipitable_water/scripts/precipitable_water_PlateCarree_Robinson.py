@@ -7,10 +7,14 @@ San Diego State University
 A reproduction of the University of Washington General Circulation
 Animations Library, originally created by Professor John Michael Wallace.
 
-Script: animate_precipitable_water.py
+Script: precipitable_water_PlateCarree_Robinson.py
 Description: Generates the precipitable water (total column water vapour)
 climatology animation from ERA5 reanalysis data (1979-2000), rendered
 across multiple map projections.
+
+Note: This script reproduces the Plate Carreé and Robinson projections.
+For the Python scripts corresponding to Foucault and Nicolosi, visit
+the precipitable_water scripts folder.
 
 """
 
