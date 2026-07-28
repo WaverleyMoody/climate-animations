@@ -9,9 +9,8 @@
 #
 # Built directly on the finalized 2m_temp_foucaut.R template (diamond
 # boundary masking, custom-drawn colorbar, US-only states, font sizing all
-# carry over unchanged) -- swaps in SLP's variable, unit conversion, color
-# scale, and the between-band divider lines that animate_SLP.py has but
-# animate_2m_temp.py doesn't.
+# carry over unchanged) -- swaps in SLP's variable, unit conversion, and color
+# scale.
 
 library(terra)
 library(ncdf4)
