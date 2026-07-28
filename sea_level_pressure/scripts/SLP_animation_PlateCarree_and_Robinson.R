@@ -7,7 +7,7 @@
 # Animations Library, originally created by Professor John Michael Wallace.
 
 # Script: SLP_animation_PlateCarree_and_Robinson.R
-# Description: Generates the 2m temperature climatology animation from
+# Description: Generates the sea level pressure climatology animation from
 # ERA5 reanalysis data (1979-2000), rendered across multiple map projections.
 
 # Note: This script reproduces the Plate Carreé and Robinson projections.
