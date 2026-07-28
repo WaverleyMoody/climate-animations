@@ -11,9 +11,6 @@
 # manual clip-then-reproject pipeline like Nicolosi did -- `fouc` has a
 # working inverse, so sf::st_transform() / terra::project() handle it
 # directly, same as Robinson's `+proj=robin` string.
-#
-# NOTE: this script has not been execution-tested end to end. Test a single
-# frame first (see instructions at the bottom) before running the full loop.
 
 library(terra)
 library(ncdf4)
