@@ -1,22 +1,15 @@
 """
-animate_foucaut_pw.py
+SDSU Climate Informatics
+by Waverley Moody
+Supervised by Distinguished Professor Samuel Shen
+San Diego State University
 
-Precipitable water (total column water vapour) climatology animation in
-the Foucaut projection.
+A reproduction of the University of Washington General Circulation
+Animations Library, originally created by Professor John Michael Wallace.
 
-Same Foucaut projection class and longitude-normalization fix as
-animate_foucaut_2m_temp.py / animate_foucaut_SLP.py / animate_foucaut_wind.py.
-Uses contourf with discrete levels, matching animate_precipitable_water.py
-exactly -- since this goes through Cartopy's normal GeoAxes/transform
-machinery (not the manual curvilinear-grid pipeline the Nicolosi PW script
-needed), there's no equivalent concern about contourf producing gaps near
-the poles here; Cartopy handles the reprojection itself.
-
-NOTE: still not execution-tested end to end (ongoing tool access issue).
-The Foucaut class and longitude fix carry over from the temp/SLP/wind
-versions, which the user confirmed working; PW-specific changes (variable,
-colormap, contourf levels, colorbar) mirror
-animate_precipitable_water.py but haven't been run.
+Script: precipitable_water_foucaut.py
+Description: Generates the precipitable water (total column water vapour) climatology animation from ERA5 reanalysis data (1979-2000), rendered in the Foucaut projection.
+Note: For the Plate Carrée, Robinson, and Nicolosi projections, see the other scripts in the precipitable_water scripts folder.
 """
 
 import xarray as xr

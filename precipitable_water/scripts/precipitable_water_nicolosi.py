@@ -1,20 +1,15 @@
 """
-animate_nicolosi_pw.py
+SDSU Climate Informatics
+by Waverley Moody
+Supervised by Distinguished Professor Samuel Shen
+San Diego State University
 
-Full 48-frame double-hemisphere Nicolosi Globular animation for
-precipitable water (total column water vapour).
+A reproduction of the University of Washington General Circulation
+Animations Library, originally created by Professor John Michael Wallace.
 
-Same base pipeline as animate_nicolosi_2m_temp.py / animate_nicolosi_SLP.py
-(hemisphere masking with the wraparound-ordering fix, Shapely clip-then-
-reproject coastlines, imageio_ffmpeg direct-write export, pinned-title-y
-header). One real difference: animate_precipitable_water.py uses contourf
-with 61 discrete levels rather than pcolormesh. contourf was stress-tested
-against this hemisphere's non-convex mesh shape (particularly near the
-poles, where many longitude columns collapse toward a point) for the kind
-of interior gap artifacts that curvilinear grids can sometimes produce --
-none appeared once the boundary circle is drawn (matching production
-rendering), so contourf is used here unmodified rather than substituting
-pcolormesh.
+Script: precipitable_water_nicolosi.py
+Description: Generates the precipitable water (total column water vapour) climatology animation from ERA5 reanalysis data (1979-2000), rendered as a double-hemisphere Nicolosi Globular projection.
+Note: For the Plate Carrée, Robinson, and Foucaut projections, see the other scripts in the precipitable_water scripts folder.
 """
 
 import numpy as np

@@ -8,10 +8,8 @@ A reproduction of the University of Washington General Circulation
 Animations Library, originally created by Professor John Michael Wallace.
 
 Script: precipitable_water_platecarree.py
-Description: Generates the precipitable water (total column water vapour)
-climatology animation from ERA5 reanalysis data (1979-2000), rendered
-in the Plate Carrée projection.
-
+Description: Generates the precipitable water (total column water vapour) climatology animation from ERA5 reanalysis data (1979-2000), rendered in the Plate Carrée projection.
+Note: For the Robinson, Foucaut, and Nicolosi projections, see the other scripts in the precipitable_water scripts folder.
 """
 
 import xarray as xr

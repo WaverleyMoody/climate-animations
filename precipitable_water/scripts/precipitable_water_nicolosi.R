@@ -3,9 +3,13 @@
 # Supervised by Distinguished Professor Samuel Shen
 # San Diego State University
 #
-# R translation of animate_nicolosi_pw.py
-# Full 48-frame double-hemisphere Nicolosi Globular animation for
-# precipitable water (total column water vapour).
+# A reproduction of the University of Washington General Circulation
+# Animations Library, originally created by Professor John Michael Wallace.
+#
+# Script: precipitable_water_nicolosi.R
+# Description: Generates the precipitable water (total column water vapour) climatology animation from ERA5 reanalysis data (1979-2000), rendered as a double-hemisphere Nicolosi Globular projection.
+#
+# Note: For the Plate Carrée, Robinson, and Foucaut projections, see the other scripts in the precipitable_water scripts folder.
 
 
 library(terra)

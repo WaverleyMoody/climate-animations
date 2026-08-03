@@ -2,14 +2,14 @@
 # by Waverley Moody
 # Supervised by Distinguished Professor Samuel Shen
 # San Diego State University
-
+#
 # A reproduction of the University of Washington General Circulation
 # Animations Library, originally created by Professor John Michael Wallace.
-
+#
 # Script: precipitable_water_robinson.R
-# Description: Generates the precipitable water (total column water vapour)
-# climatology animation from ERA5 reanalysis data (1979-2000), rendered
-# in the Robinson projection.
+# Description: Generates the precipitable water (total column water vapour) climatology animation from ERA5 reanalysis data (1979-2000), rendered in the Robinson projection.
+#
+# Note: For the Plate Carrée, Foucaut, and Nicolosi projections, see the other scripts in the precipitable_water scripts folder.
 
 library(terra)
 library(ncdf4)

@@ -3,20 +3,13 @@
 # Supervised by Distinguished Professor Samuel Shen
 # San Diego State University
 #
-# R translation of animate_foucaut_pw.py
-# Precipitable water (total column water vapour) climatology animation in
-# the Foucaut projection.
+# A reproduction of the University of Washington General Circulation
+# Animations Library, originally created by Professor John Michael Wallace.
 #
-# Built on the finalized 2m_temp_foucaut.R / SLP_foucaut.R template (diamond
-# boundary masking, custom-drawn colorbar with the breaks-as-edges fix,
-# US-only states, font sizing all carry over unchanged). No arrows (unlike
-# wind) and no divider lines (unlike SLP) -- animate_foucaut_pw.py has
-# neither. The Python version uses contourf with 61 discrete levels;
-# terra::plot(..., breaks=...) already produces the same stepped/banded
-# coloring from a raster, so no separate contour-line logic is needed here.
-# Color stops are evenly spaced this time (plain color list, no (position,
-# color) tuples like wind used), so colorRampPalette() works directly --
-# no need for the make_custom_palette() helper.
+# Script: precipitable_water_foucaut.R
+# Description: Generates the precipitable water (total column water vapour) climatology animation from ERA5 reanalysis data (1979-2000), rendered in the Foucaut projection.
+#
+# Note: For the Plate Carrée, Robinson, and Nicolosi projections, see the other scripts in the precipitable_water scripts folder.
 
 library(terra)
 library(ncdf4)
