@@ -3,14 +3,13 @@
 # Supervised by Distinguished Professor Samuel Shen
 # San Diego State University
 #
-# R translation of animate_foucaut_SLP.py
-# Sea level pressure climatology animation in the Foucaut projection
-# (PROJ's `fouc` -- plain Foucaut, NOT `fouc_s`/Foucaut Sinusoidal).
+# A reproduction of the University of Washington General Circulation
+# Animations Library, originally created by Professor John Michael Wallace.
 #
-# Built directly on the finalized 2m_temp_foucaut.R template (diamond
-# boundary masking, custom-drawn colorbar, US-only states, font sizing all
-# carry over unchanged) -- swaps in SLP's variable, unit conversion, and color
-# scale.
+# Script: SLP_foucaut.R
+# Description: Generates the sea level pressure climatology animation from ERA5 reanalysis data (1979-2000), rendered in the Foucaut projection.
+#
+# Note: For the Plate Carrée, Robinson, and Nicolosi projections, see the other scripts in the sea_level_pressure scripts folder.
 
 library(terra)
 library(ncdf4)

@@ -1,22 +1,15 @@
 """
-animate_foucaut_SLP.py
+SDSU Climate Informatics
+by Waverley Moody
+Supervised by Distinguished Professor Samuel Shen
+San Diego State University
 
-Sea level pressure climatology animation in the Foucaut projection.
+A reproduction of the University of Washington General Circulation
+Animations Library, originally created by Professor John Michael Wallace.
 
-Same Foucaut projection class and fixes validated in
-animate_foucaut_2m_temp.py: PROJ's plain `fouc` operation (not `fouc_s`),
-longitude normalized to [-180, 180) and sorted before plotting (fixes the
-antimeridian/reprojection distortion seen on the temp version's eastern
-hemisphere), single pole labels instead of the original bottom-edge
-longitude labels (which overlap into unreadable text on a pointed-pole
-projection), and no longitude labels at all per later preference.
-
-NOTE: still not execution-tested end to end in this environment (ongoing
-tool access issue). The Foucaut class and longitude-normalization fix
-carry over from the temp version, which the user confirmed the shape/
-antimeridian fix worked correctly for -- SLP-specific changes below
-(variable, unit conversion, colormap, colorbar) mirror animate_SLP.py
-exactly but haven't been run.
+Script: SLP_foucaut.py
+Description: Generates the sea level pressure climatology animation from ERA5 reanalysis data (1979-2000), rendered in the Foucaut projection.
+Note: For the Plate Carrée, Robinson, and Nicolosi projections, see the other scripts in the sea_level_pressure scripts folder.
 """
 
 import xarray as xr

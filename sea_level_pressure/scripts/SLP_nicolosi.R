@@ -3,9 +3,13 @@
 # Supervised by Distinguished Professor Samuel Shen
 # San Diego State University
 #
-# R translation of animate_nicolosi_SLP.py
-# Full 48-frame double-hemisphere Nicolosi Globular animation for sea
-# level pressure.
+# A reproduction of the University of Washington General Circulation
+# Animations Library, originally created by Professor John Michael Wallace.
+#
+# Script: SLP_nicolosi.R
+# Description: Generates the sea level pressure climatology animation from ERA5 reanalysis data (1979-2000), rendered as a double-hemisphere Nicolosi Globular projection.
+#
+# Note: For the Plate Carrée, Robinson, and Foucaut projections, see the other scripts in the sea_level_pressure scripts folder.
 
 library(terra)
 library(ncdf4)

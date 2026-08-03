@@ -1,18 +1,15 @@
 """
-animate_nicolosi_SLP.py
+SDSU Climate Informatics
+by Waverley Moody
+Supervised by Distinguished Professor Samuel Shen
+San Diego State University
 
-Full 48-frame double-hemisphere Nicolosi Globular animation for sea level
-pressure.
+A reproduction of the University of Washington General Circulation
+Animations Library, originally created by Professor John Michael Wallace.
 
-Same pipeline as animate_nicolosi_2m_temp.py (see that file's docstring
-for the validation history: pyproj forward-projection + hemisphere-masking,
-Shapely clip-then-reproject coastlines, the wraparound-ordering fix, the
-imageio_ffmpeg direct-write export, and the pinned-title-y header fix).
-This file swaps in SLP's own colormap, value range, unit conversion, and
-colorbar styling to match animate_SLP.py.
-
-Layout: Western Hemisphere (lon_0=-90) and Eastern Hemisphere (lon_0=90)
-side by side.
+Script: SLP_nicolosi.py
+Description: Generates the sea level pressure climatology animation from ERA5 reanalysis data (1979-2000), rendered as a double-hemisphere Nicolosi Globular projection.
+Note: For the Plate Carrée, Robinson, and Foucaut projections, see the other scripts in the sea_level_pressure scripts folder.
 """
 
 import numpy as np
