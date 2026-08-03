@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', function () {
   sections.forEach(function (section) {
     const tabs = section.querySelectorAll('.tab');
     const panels = section.querySelectorAll('.panel');
+    // Python Code / R Code links for this section only -- each one carries
+    // a data-<projection> attribute holding the URL for that projection,
+    // set on the tags themselves in index.html.
+    const codeLinks = section.querySelectorAll('.code-link');
     tabs.forEach(function (tab) {
       tab.addEventListener('click', function () {
         const target = tab.getAttribute('data-projection');
@@ -22,6 +26,14 @@ document.addEventListener('DOMContentLoaded', function () {
             const video = panel.querySelector('video');
             if (video && !video.paused) video.pause();
           }
+        });
+        // Point the Python Code / R Code links at the script for whichever
+        // projection is now active. If a link is missing a data-<target>
+        // attribute (e.g. a projection with no script yet), leave its
+        // href untouched rather than pointing it at nothing.
+        codeLinks.forEach(function (link) {
+          const url = link.getAttribute('data-' + target);
+          if (url) link.href = url;
         });
       });
     });
