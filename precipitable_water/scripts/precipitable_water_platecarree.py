@@ -12,10 +12,6 @@ Description: Generates the precipitable water (total column water vapour)
 climatology animation from ERA5 reanalysis data (1979-2000), rendered
 in the Plate Carrée projection.
 
-Note: For the Robinson projection, see precipitable_water_robinson.py.
-For the Foucaut and Nicolosi projections, visit the precipitable_water
-scripts folder.
-
 """
 
 import xarray as xr
