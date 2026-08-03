@@ -8,10 +8,8 @@ A reproduction of the University of Washington General Circulation
 Animations Library, originally created by Professor John Michael Wallace.
 
 Script: wind_speed_robinson.py
-Description: Generates the 10m surface wind speed climatology animation
-from ERA5 reanalysis data (1979-2000), with mean wind vectors overlaid,
-rendered in the Robinson projection.
-
+Description: Generates the 10m surface wind speed climatology animation from ERA5 reanalysis data (1979-2000), with mean wind vectors overlaid, rendered in the Robinson projection.
+Note: For the Plate Carrée, Foucaut, and Nicolosi projections, see the other scripts in the wind_speed scripts folder.
 """
 
 import xarray as xr

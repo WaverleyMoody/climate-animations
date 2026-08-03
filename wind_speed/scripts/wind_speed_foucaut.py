@@ -1,25 +1,15 @@
 """
-animate_foucaut_wind.py
+SDSU Climate Informatics
+by Waverley Moody
+Supervised by Distinguished Professor Samuel Shen
+San Diego State University
 
-10m wind speed climatology animation in the Foucaut projection, with mean
-wind vectors overlaid.
+A reproduction of the University of Washington General Circulation
+Animations Library, originally created by Professor John Michael Wallace.
 
-Same Foucaut projection class as animate_foucaut_2m_temp.py / 
-animate_foucaut_SLP.py. Longitude is normalized to [-180, 180) and sorted
-for the WHOLE dataset up front (fixes the pcolormesh antimeridian
-distortion seen on the temp version) -- this makes the original script's
-quiver-only local longitude re-sort redundant, so that's been removed
-rather than left in as dead logic.
-
-Since Foucaut has a working inverse transform (unlike Nicolosi), Cartopy's
-ax.quiver(transform=ccrs.PlateCarree()) handles wind vector rotation
-automatically -- no manual Jacobian rotation needed here, unlike the
-Nicolosi wind script.
-
-NOTE: still not execution-tested end to end (ongoing tool access issue).
-The Foucaut class and longitude fix carry over from the temp/SLP versions,
-which the user confirmed working; wind-specific changes (variables,
-colormap, quiver call) mirror animate_wind.py but haven't been run.
+Script: wind_speed_foucaut.py
+Description: Generates the 10m surface wind speed climatology animation from ERA5 reanalysis data (1979-2000), with mean wind vectors overlaid, rendered in the Foucaut projection.
+Note: For the Plate Carrée, Robinson, and Nicolosi projections, see the other scripts in the wind_speed scripts folder.
 """
 
 import xarray as xr

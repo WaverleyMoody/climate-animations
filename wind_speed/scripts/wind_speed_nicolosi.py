@@ -1,18 +1,15 @@
 """
-animate_nicolosi_wind.py
+SDSU Climate Informatics
+by Waverley Moody
+Supervised by Distinguished Professor Samuel Shen
+San Diego State University
 
-Full 48-frame double-hemisphere Nicolosi Globular animation for 10m wind
-speed, with mean wind vectors overlaid.
+A reproduction of the University of Washington General Circulation
+Animations Library, originally created by Professor John Michael Wallace.
 
-Same base pipeline as animate_nicolosi_2m_temp.py / animate_nicolosi_SLP.py
-(hemisphere masking with the wraparound-ordering fix, Shapely clip-then-
-reproject coastlines, imageio_ffmpeg direct-write export, pinned-title-y
-header). This file adds one new piece: cartopy's ax.quiver(transform=...)
-normally rotates wind vectors automatically when the display projection
-differs from the data's native lon/lat grid. Since Nicolosi is rendered by
-hand (no GeoAxes), that rotation has to be replicated manually here via a
-local finite-difference Jacobian of the forward projection at each arrow
-location -- see transform_vectors() below.
+Script: wind_speed_nicolosi.py
+Description: Generates the 10m surface wind speed climatology animation from ERA5 reanalysis data (1979-2000), with mean wind vectors overlaid, rendered as a double-hemisphere Nicolosi Globular projection.
+Note: For the Plate Carrée, Robinson, and Foucaut projections, see the other scripts in the wind_speed scripts folder.
 """
 
 import numpy as np

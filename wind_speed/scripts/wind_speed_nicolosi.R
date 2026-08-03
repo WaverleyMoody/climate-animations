@@ -3,9 +3,13 @@
 # Supervised by Distinguished Professor Samuel Shen
 # San Diego State University
 #
-# R translation of animate_nicolosi_wind.py
-# Full 48-frame double-hemisphere Nicolosi Globular animation for 10m
-# wind speed, with mean wind vectors overlaid.
+# A reproduction of the University of Washington General Circulation
+# Animations Library, originally created by Professor John Michael Wallace.
+#
+# Script: wind_speed_nicolosi.R
+# Description: Generates the 10m surface wind speed climatology animation from ERA5 reanalysis data (1979-2000), with mean wind vectors overlaid, rendered as a double-hemisphere Nicolosi Globular projection.
+#
+# Note: For the Plate Carrée, Robinson, and Foucaut projections, see the other scripts in the wind_speed scripts folder.
 
 library(terra)
 library(ncdf4)

@@ -2,14 +2,14 @@
 # by Waverley Moody
 # Supervised by Distinguished Professor Samuel Shen
 # San Diego State University
-
+#
 # A reproduction of the University of Washington General Circulation
 # Animations Library, originally created by Professor John Michael Wallace.
-
+#
 # Script: wind_speed_platecarree.R
-# Description: Generates the 10m surface wind speed climatology animation
-# from ERA5 reanalysis data (1979-2000), with mean wind vectors overlaid,
-# rendered in the Plate Carrée projection.
+# Description: Generates the 10m surface wind speed climatology animation from ERA5 reanalysis data (1979-2000), with mean wind vectors overlaid, rendered in the Plate Carrée projection.
+#
+# Note: For the Robinson, Foucaut, and Nicolosi projections, see the other scripts in the wind_speed scripts folder.
 
 library(terra)
 library(ncdf4)

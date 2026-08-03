@@ -3,21 +3,13 @@
 # Supervised by Distinguished Professor Samuel Shen
 # San Diego State University
 #
-# R translation of animate_foucaut_wind.py
-# 10m wind speed climatology animation in the Foucaut projection, with
-# mean wind vectors overlaid.
+# A reproduction of the University of Washington General Circulation
+# Animations Library, originally created by Professor John Michael Wallace.
 #
-# Built on the finalized 2m_temp_foucaut.R / SLP_foucaut.R template (diamond
-# boundary masking, custom-drawn colorbar, US-only states, font sizing all
-# carry over unchanged), plus the arrow-drawing approach worked out for
-# wind_animation_PlateCarree_and_Robinson.R:
-#   - R has no direct quiver() equivalent, so each subsampled grid point's
-#     (u, v) in m/s is converted to a lon/lat displacement, both endpoints
-#     are projected into the target CRS, and arrows() draws the segment.
-#   - arrow_scale_deg / arrow_step are the values we landed on after visual
-#     tuning on Robinson (0.7 deg/(m/s), every 35th grid cell) -- carried
-#     over as a starting point, but Foucaut's very different pole geometry
-#     means they may need re-tuning here.
+# Script: wind_speed_foucaut.R
+# Description: Generates the 10m surface wind speed climatology animation from ERA5 reanalysis data (1979-2000), with mean wind vectors overlaid, rendered in the Foucaut projection.
+#
+# Note: For the Plate Carrée, Robinson, and Nicolosi projections, see the other scripts in the wind_speed scripts folder.
 #   - The outlier filter (max_arrow_len) is what actually fixed the stray
 #     horizontal-line artifacts on Robinson, not the scale/step values
 #     themselves -- so it's kept regardless of what those get tuned to.
