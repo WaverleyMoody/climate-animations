@@ -1,33 +1,15 @@
 """
-animate_foucaut_2m_temp.py
+SDSU Climate Informatics
+by Waverley Moody
+Supervised by Distinguished Professor Samuel Shen
+San Diego State University
 
-2m temperature climatology animation in the Foucaut projection.
+A reproduction of the University of Washington General Circulation
+Animations Library, originally created by Professor John Michael Wallace.
 
-Uses PROJ's `fouc` operation (plain Foucaut, not `fouc_s`/Foucaut
-Sinusoidal -- an earlier draft mistakenly tried tuning that different,
-parameterized projection's blend factor). The Foucaut class below was
-confirmed working independently and produces the correct pointed-pole
-shape with no tuning needed.
-
-Longitude is normalized to [-180, 180) and sorted before plotting, since
-the real ERA5 file likely stores it as 0-360, and Cartopy's automatic
-antimeridian handling during reprojection can't reliably resolve the
-wraparound for a custom, non-built-in projection like this one -- this is
-the same class of bug that broke Nicolosi's Western Hemisphere earlier,
-here showing up as one hemisphere rendering correctly and the other
-distorted in a single global plot.
-
-Longitude labels have been removed entirely (only pole labels + left-edge
-latitude labels remain), since Foucaut's pointed poles made the original
-Robinson-style bottom-edge longitude labels overlap into unreadable text,
-and the equator-based replacement wasn't wanted either.
-
-NOTE: this script has not been execution-tested end to end in this
-environment (an ongoing tool access issue has prevented that for the
-Foucaut work specifically). The Foucaut class matches a version confirmed
-working independently by the user; the longitude-normalization fix is a
-strong hypothesis based on the identical Nicolosi bug, not a confirmed
-diagnosis. Treat this as the next draft to run and report back on.
+Script: 2m_temp_foucaut.py
+Description: Generates the 2m temperature climatology animation from ERA5 reanalysis data (1979-2000), rendered in the Foucaut projection.
+Note: For the Plate Carrée, Robinson, and Nicolosi projections, see the other scripts in the 2m_temperature scripts folder.
 """
 
 import xarray as xr

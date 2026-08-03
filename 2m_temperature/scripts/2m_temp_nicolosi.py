@@ -1,21 +1,15 @@
 """
-animate_nicolosi_2m_temp.py
+SDSU Climate Informatics
+by Waverley Moody
+Supervised by Distinguished Professor Samuel Shen
+San Diego State University
 
-Full 48-frame double-hemisphere Nicolosi Globular animation for 2m temperature.
+A reproduction of the University of Washington General Circulation
+Animations Library, originally created by Professor John Michael Wallace.
 
-Builds on test_nicolosi_2m_temp.py, which validated:
-  - the pyproj forward-projection + hemisphere-masking approach
-  - the Shapely clip-then-reproject coastline pipeline
-  - that the central-meridian seam is authentic to the projection
-    (kept as-is per project decision -- not something to fix)
-
-Layout: Western Hemisphere (lon_0=-90) and Eastern Hemisphere (lon_0=90)
-side by side, matching the classic published "double hemispheric"
-presentation of this projection.
-
-PERFORMANCE NOTE: the projected grid geometry (X, Y) and the projected
-coastlines DON'T change frame to frame -- only the data values do. Both
-are computed once, outside the frame loop, and reused for all 48 frames.
+Script: 2m_temp_nicolosi.py
+Description: Generates the 2m temperature climatology animation from ERA5 reanalysis data (1979-2000), rendered as a double-hemisphere Nicolosi Globular projection.
+Note: For the Plate Carrée, Robinson, and Foucaut projections, see the other scripts in the 2m_temperature scripts folder.
 """
 
 import numpy as np

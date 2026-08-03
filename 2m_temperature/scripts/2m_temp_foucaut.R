@@ -3,14 +3,13 @@
 # Supervised by Distinguished Professor Samuel Shen
 # San Diego State University
 #
-# R translation of animate_foucaut_2m_temp.py
-# 2m temperature climatology animation in the Foucaut projection
-# (PROJ's `fouc` -- plain Foucaut, NOT `fouc_s`/Foucaut Sinusoidal).
+# A reproduction of the University of Washington General Circulation
+# Animations Library, originally created by Professor John Michael Wallace.
 #
-# Adapted from 2m_temp_animation.R (PlateCarree/Robinson). Foucaut needs no
-# manual clip-then-reproject pipeline like Nicolosi did -- `fouc` has a
-# working inverse, so sf::st_transform() / terra::project() handle it
-# directly, same as Robinson's `+proj=robin` string.
+# Script: 2m_temp_foucaut.R
+# Description: Generates the 2m temperature climatology animation from ERA5 reanalysis data (1979-2000), rendered in the Foucaut projection.
+#
+# Note: For the Plate Carrée, Robinson, and Nicolosi projections, see the other scripts in the 2m_temperature scripts folder.
 
 library(terra)
 library(ncdf4)
