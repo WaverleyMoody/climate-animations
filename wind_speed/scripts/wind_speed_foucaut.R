@@ -10,12 +10,6 @@
 # Description: Generates the 10m surface wind speed climatology animation from ERA5 reanalysis data (1979-2000), with mean wind vectors overlaid, rendered in the Foucaut projection.
 #
 # Note: For the Plate Carrée, Robinson, and Nicolosi projections, see the other scripts in the wind_speed scripts folder.
-#   - The outlier filter (max_arrow_len) is what actually fixed the stray
-#     horizontal-line artifacts on Robinson, not the scale/step values
-#     themselves -- so it's kept regardless of what those get tuned to.
-# Unlike the Nicolosi wind script, no manual Jacobian rotation is needed:
-# `fouc` has a working inverse, so proj_point() on the raw lon/lat
-# endpoints handles the rotation correctly, same as it does for Robinson.
 
 library(terra)
 library(ncdf4)
