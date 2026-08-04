@@ -72,7 +72,7 @@
           <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
         </div>
       </div>
-     <div class="panel" data-projection="robinson">
+      <div class="panel" data-projection="robinson">
         <video controls muted playsinline poster="">
           <source src="videos/2m_temperature_climatology_robinson.mp4" type="video/mp4">
           Your browser doesn't support embedded video. You can download the file directly instead.
@@ -133,7 +133,6 @@
         <button class="meta-about-toggle" type="button">Read more</button>
       </div>
     </div>
-
   </section>
 
   <!-- ══════════════════════ SEA LEVEL PRESSURE ══════════════════════ -->
@@ -236,10 +235,9 @@
         <button class="meta-about-toggle" type="button">Read more</button>
       </div>
     </div>
-
   </section>
 
-  <!-- ══════════════════════ WIND SPEED ══════════════════════ -->
+  <!-- ══════════════════════ WIND SPEED 10M ══════════════════════ -->
   <section class="variable-section" id="wind" data-section="wind">
     <div class="section-heading">
       <h2>Surface Wind at 10&#8202;m</h2>
@@ -339,7 +337,108 @@
         <button class="meta-about-toggle" type="button">Read more</button>
       </div>
     </div>
+  </section>
 
+  <!-- ══════════════════════ WIND SPEED 700MB ══════════════════════ -->
+  <section class="variable-section" id="wind700" data-section="wind700">
+    <div class="section-heading">
+      <h2>Wind Speed at 700&#8202;mb</h2>
+      <p class="section-note">700&#8202;mb wind speed, with mean wind vectors overlaid.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="700mb wind speed projection">
+      <button class="tab is-active" data-projection="platecarree" role="tab" aria-selected="true">
+        <span class="tab-icon proj-icon-platecarree" aria-hidden="true"></span>
+        Plate Carr&eacute;e
+      </button>
+      <button class="tab" data-projection="robinson" role="tab" aria-selected="false">
+        <span class="tab-icon proj-icon-robinson" aria-hidden="true"></span>
+        Robinson
+      </button>
+      <button class="tab" data-projection="foucaut" role="tab" aria-selected="false">
+        <span class="tab-icon proj-icon-mercator" aria-hidden="true"></span>
+        Foucaut
+      </button>
+      <button class="tab" data-projection="nicolosi" role="tab" aria-selected="false">
+        <span class="tab-icon proj-icon-doublehemisphere" aria-hidden="true"></span>
+        Nicolosi
+      </button>
+    </div>
+
+    <div class="panels">
+      <div class="panel is-active" data-projection="platecarree">
+        <video controls muted playsinline poster="">
+          <source src="videos/wind700_climatology.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+      <div class="panel" data-projection="robinson">
+        <video controls muted playsinline poster="">
+          <source src="videos/wind700_climatology_robinson.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+      <div class="panel" data-projection="foucaut">
+        <video controls muted playsinline poster="">
+          <source src="videos/wind700_climatology_foucaut.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+      <div class="panel" data-projection="nicolosi">
+        <video controls muted playsinline poster="">
+          <source src="videos/wind700_climatology_nicolosi.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+    </div>
+    <div class="animation-meta">
+      <div class="meta-links">
+        <a href="https://github.com/WaverleyMoody/climate-animations/releases/download/climatology_v1.1_data/climatology_wind700_48frame.nc">Data Download</a>
+        <a class="code-link"
+           href="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_700mb/wind700_PlateCarree.py"
+           data-platecarree="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_700mb/wind700_PlateCarree.py"
+           data-robinson="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_700mb/wind700_Robinson.py"
+           data-foucaut="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_700mb/wind700_Foucaut.py"
+           data-nicolosi="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_700mb/wind700_Nicolosi.py"
+           target="_blank" rel="noopener">Python Code</a>
+        <a class="code-link"
+           href="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_700mb/wind700_PlateCarree.R"
+           data-platecarree="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_700mb/wind700_PlateCarree.R"
+           data-robinson="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_700mb/wind700_Robinson.R"
+           data-foucaut="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_700mb/wind700_Foucaut.R"
+           data-nicolosi="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_700mb/wind700_Nicolosi.R"
+           target="_blank" rel="noopener">R Code</a>
+        <a href="#" target="_blank" rel="noopener">YouTube</a>
+      </div>
+      <div class="meta-about-wrap">
+        <p class="meta-about"><strong>About:</strong> ERA5 Weekly Mean Wind Speed at 700mb 1979&ndash;2000. Shows the climatology of upper tropospheric wind speed with static arrows showing mean wind direction. Each date marks the start of the week being averaged.</p>
+        <button class="meta-about-toggle" type="button">Read more</button>
+      </div>
+    </div>
   </section>
 
   <!-- ══════════════════════ PRECIPITABLE WATER ══════════════════════ -->
@@ -442,7 +541,6 @@
         <button class="meta-about-toggle" type="button">Read more</button>
       </div>
     </div>
-
   </section>
 
 </main>
