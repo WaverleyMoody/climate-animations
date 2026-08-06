@@ -72,7 +72,7 @@
           <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
         </div>
       </div>
-     <div class="panel" data-projection="robinson">
+      <div class="panel" data-projection="robinson">
         <video controls muted playsinline poster="">
           <source src="videos/2m_temperature_climatology_robinson.mp4" type="video/mp4">
           Your browser doesn't support embedded video. You can download the file directly instead.
@@ -126,14 +126,25 @@
            data-foucaut="https://github.com/WaverleyMoody/climate-animations/blob/main/2m_temperature/scripts/2m_temp_foucaut.R"
            data-nicolosi="https://github.com/WaverleyMoody/climate-animations/blob/main/2m_temperature/scripts/2m_temp_nicolosi.R"
            target="_blank" rel="noopener">R Code</a>
-        <a href="https://youtu.be/NoBMwxeQTJQ" target="_blank" rel="noopener">YouTube</a>
+        <a class="youtube-link"
+
+           href="https://youtu.be/NoBMwxeQTJQ"
+
+           data-platecarree="https://youtu.be/NoBMwxeQTJQ"
+
+           data-robinson="https://youtu.be/evDdZc1wGQI"
+
+           data-foucaut="https://youtu.be/-rI5KmTg_6U"
+
+           data-nicolosi="https://youtu.be/1IB6tclKVDo"
+
+           target="_blank" rel="noopener">YouTube</a>
       </div>
       <div class="meta-about-wrap">
         <p class="meta-about"><strong>About:</strong> ERA5 Weekly Mean 2m Temperature 1979&ndash;2000. Shows the climatology of air temperature 2 meters above the surface. Each date marks the start of the week being averaged.</p>
         <button class="meta-about-toggle" type="button">Read more</button>
       </div>
     </div>
-
   </section>
 
   <!-- ══════════════════════ SEA LEVEL PRESSURE ══════════════════════ -->
@@ -229,17 +240,28 @@
            data-foucaut="https://github.com/WaverleyMoody/climate-animations/blob/main/sea_level_pressure/scripts/SLP_foucaut.R"
            data-nicolosi="https://github.com/WaverleyMoody/climate-animations/blob/main/sea_level_pressure/scripts/SLP_nicolosi.R"
            target="_blank" rel="noopener">R Code</a>
-        <a href="https://youtu.be/m6FXkEbiyRc" target="_blank" rel="noopener">YouTube</a>
+        <a class="youtube-link"
+
+           href="https://youtu.be/m6FXkEbiyRc"
+
+           data-platecarree="https://youtu.be/m6FXkEbiyRc"
+
+           data-robinson="https://youtu.be/jMLINSgjQE4"
+
+           data-foucaut="https://youtu.be/fTAJdSpdcss"
+
+           data-nicolosi="https://youtu.be/Gu5OY8Go9ZM"
+
+           target="_blank" rel="noopener">YouTube</a>
       </div>
       <div class="meta-about-wrap">
         <p class="meta-about"><strong>About:</strong> ERA5 Weekly Mean Sea Level Pressure 1979&ndash;2000. Shows the climatology of atmospheric pressure adjusted to sea level. Each date marks the start of the week being averaged.</p>
         <button class="meta-about-toggle" type="button">Read more</button>
       </div>
     </div>
-
   </section>
 
-  <!-- ══════════════════════ WIND SPEED ══════════════════════ -->
+  <!-- ══════════════════════ WIND SPEED 10M ══════════════════════ -->
   <section class="variable-section" id="wind" data-section="wind">
     <div class="section-heading">
       <h2>Surface Wind at 10&#8202;m</h2>
@@ -332,14 +354,139 @@
            data-foucaut="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_speed/scripts/wind_speed_foucaut.R"
            data-nicolosi="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_speed/scripts/wind_speed_nicolosi.R"
            target="_blank" rel="noopener">R Code</a>
-        <a href="https://youtu.be/hfYU_kA1568" target="_blank" rel="noopener">YouTube</a>
+        <a class="youtube-link"
+
+           href="https://youtu.be/hfYU_kA1568"
+
+           data-platecarree="https://youtu.be/hfYU_kA1568"
+
+           data-robinson="https://youtu.be/XlGfMbrKJSQ"
+
+           data-foucaut="https://youtu.be/Pm8mcGsu1OY"
+
+           data-nicolosi="https://youtu.be/-qt4ihmiH2Q"
+
+           target="_blank" rel="noopener">YouTube</a>
       </div>
       <div class="meta-about-wrap">
         <p class="meta-about"><strong>About:</strong> ERA5 Weekly Mean Surface Wind Speed at 10m 1979&ndash;2000. Shows the climatology of wind speed with static arrows showing mean wind direction. Each date marks the start of the week being averaged.</p>
         <button class="meta-about-toggle" type="button">Read more</button>
       </div>
     </div>
+  </section>
 
+  <!-- ══════════════════════ WIND SPEED 700MB ══════════════════════ -->
+  <section class="variable-section" id="wind700" data-section="wind700">
+    <div class="section-heading">
+      <h2>Wind Speed at 700&#8202;mb</h2>
+      <p class="section-note">700&#8202;mb wind speed, with mean wind vectors overlaid.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="700mb wind speed projection">
+      <button class="tab is-active" data-projection="platecarree" role="tab" aria-selected="true">
+        <span class="tab-icon proj-icon-platecarree" aria-hidden="true"></span>
+        Plate Carr&eacute;e
+      </button>
+      <button class="tab" data-projection="robinson" role="tab" aria-selected="false">
+        <span class="tab-icon proj-icon-robinson" aria-hidden="true"></span>
+        Robinson
+      </button>
+      <button class="tab" data-projection="foucaut" role="tab" aria-selected="false">
+        <span class="tab-icon proj-icon-mercator" aria-hidden="true"></span>
+        Foucaut
+      </button>
+      <button class="tab" data-projection="nicolosi" role="tab" aria-selected="false">
+        <span class="tab-icon proj-icon-doublehemisphere" aria-hidden="true"></span>
+        Nicolosi
+      </button>
+    </div>
+
+    <div class="panels">
+      <div class="panel is-active" data-projection="platecarree">
+        <video controls muted playsinline poster="">
+          <source src="videos/wind700_climatology.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+      <div class="panel" data-projection="robinson">
+        <video controls muted playsinline poster="">
+          <source src="videos/wind700_climatology_robinson.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+      <div class="panel" data-projection="foucaut">
+        <video controls muted playsinline poster="">
+          <source src="videos/wind700_climatology_foucaut.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+      <div class="panel" data-projection="nicolosi">
+        <video controls muted playsinline poster="">
+          <source src="videos/wind700_climatology_nicolosi.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+    </div>
+    <div class="animation-meta">
+      <div class="meta-links">
+        <a href="https://github.com/WaverleyMoody/climate-animations/releases/download/climatology_v1.1_data/climatology_wind700_48frame.nc">Data Download</a>
+        <a class="code-link"
+           href="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_700mb/wind700_PlateCarree.py"
+           data-platecarree="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_700mb/wind700_PlateCarree.py"
+           data-robinson="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_700mb/wind700_Robinson.py"
+           data-foucaut="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_700mb/wind700_Foucaut.py"
+           data-nicolosi="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_700mb/wind700_Nicolosi.py"
+           target="_blank" rel="noopener">Python Code</a>
+        <a class="code-link"
+           href="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_700mb/wind700_PlateCarree.R"
+           data-platecarree="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_700mb/wind700_PlateCarree.R"
+           data-robinson="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_700mb/wind700_Robinson.R"
+           data-foucaut="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_700mb/wind700_Foucaut.R"
+           data-nicolosi="https://github.com/WaverleyMoody/climate-animations/blob/main/wind_700mb/wind700_Nicolosi.R"
+           target="_blank" rel="noopener">R Code</a>
+        <a class="youtube-link"
+
+           href="https://youtu.be/i0axbAZM7Hk"
+
+           data-platecarree="https://youtu.be/i0axbAZM7Hk"
+
+           data-robinson="https://youtu.be/YXEbIIoDwgw"
+
+           data-foucaut="https://youtu.be/0vIlHm6shuc"
+
+           data-nicolosi="https://youtu.be/065BYMnqEvs"
+
+           target="_blank" rel="noopener">YouTube</a>
+      </div>
+      <div class="meta-about-wrap">
+        <p class="meta-about"><strong>About:</strong> ERA5 Weekly Mean Wind Speed at 700mb 1979&ndash;2000. Shows the climatology of wind speed at 700 millibars pressure, with static arrows indicating mean wind direction. Each date marks the start of the week being averaged.</p>
+        <button class="meta-about-toggle" type="button">Read more</button>
+      </div>
+    </div>
   </section>
 
   <!-- ══════════════════════ PRECIPITABLE WATER ══════════════════════ -->
@@ -435,14 +582,25 @@
            data-foucaut="https://github.com/WaverleyMoody/climate-animations/blob/main/precipitable_water/scripts/precipitable_water_foucaut.R"
            data-nicolosi="https://github.com/WaverleyMoody/climate-animations/blob/main/precipitable_water/scripts/precipitable_water_nicolosi.R"
            target="_blank" rel="noopener">R Code</a>
-        <a href="https://youtu.be/YjMiDUWG2gc" target="_blank" rel="noopener">YouTube</a>
+        <a class="youtube-link"
+
+           href="https://youtu.be/YjMiDUWG2gc"
+
+           data-platecarree="https://youtu.be/YjMiDUWG2gc"
+
+           data-robinson="https://youtu.be/8qHEjM1zYK8"
+
+           data-foucaut="https://youtu.be/YjMiDUWG2gc"
+
+           data-nicolosi="https://youtu.be/YjMiDUWG2gc"
+
+           target="_blank" rel="noopener">YouTube</a>
       </div>
       <div class="meta-about-wrap">
         <p class="meta-about"><strong>About:</strong> ERA5 Weekly Mean Precipitable Water 1979&ndash;2000. Shows the climatology of total column water vapour. Each date marks the start of the week being averaged.</p>
         <button class="meta-about-toggle" type="button">Read more</button>
       </div>
     </div>
-
   </section>
 
 </main>
