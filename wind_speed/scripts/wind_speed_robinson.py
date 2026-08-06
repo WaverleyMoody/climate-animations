@@ -1,11 +1,12 @@
 """
-SDSU Climate Informatics
+SDSU Climate Informatics Lab
+San Diego State University
 by Waverley Moody
 Supervised by Distinguished Professor Samuel Shen
-San Diego State University
+Python Code Version 1.0.0
 
 A reproduction of the University of Washington General Circulation
-Animations Library, originally created by Professor John Michael Wallace.
+Animations Library by Professor John Michael Wallace.
 
 Script: wind_speed_robinson.py
 Description: Generates the 10m surface wind speed climatology animation from ERA5 reanalysis data (1979-2000), with mean wind vectors overlaid, rendered in the Robinson projection.

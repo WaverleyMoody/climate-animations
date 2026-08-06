@@ -1,10 +1,11 @@
-# SDSU Climate Informatics
+# SDSU Climate Informatics Lab
+# San Diego State University
 # by Waverley Moody
 # Supervised by Distinguished Professor Samuel Shen
-# San Diego State University
+# R Code Version 1.0.0
 #
 # A reproduction of the University of Washington General Circulation
-# Animations Library, originally created by Professor John Michael Wallace.
+# Animations Library by Professor John Michael Wallace.
 #
 # Script: wind700_Foucaut.R
 # Description: Generates the 700mb wind speed climatology animation from
