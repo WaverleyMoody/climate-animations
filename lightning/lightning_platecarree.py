@@ -6,7 +6,7 @@ Supervised by Distinguished Professor Samuel Shen
 Python Code Version 1.0.0
 
 A reproduction of the University of Washington General Circulation
-Animations Library by Professor John Michael Wallace.
+Animations Library by Professor John Michael Wallace
 
 Script: lightning_platecarree.py
 Description: Generates the lightning climatology animation from WWLLN/WGLC
