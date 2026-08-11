@@ -717,6 +717,132 @@
     </div>
   </section>
 
+  <!-- ══════════════════════ LIGHTNING ══════════════════════ -->
+  <section class="variable-section" id="lightning" data-section="lightning">
+    <div class="section-heading">
+      <h2>Lightning</h2>
+      <p class="section-note">Annual lightning stroke density.</p>
+    </div>
+
+    <div class="data-source">
+      <h2>Data Source</h2>
+      <p>
+        This animation is based on the <strong>WWLLN Global Lightning Climatology (WGLC)</strong>,
+        derived from the
+        <a href="https://wwlln.net/" target="_blank" rel="noopener">World Wide Lightning Location Network (WWLLN)</a>,
+        covering <strong>2010&ndash;2025</strong>. Each frame represents a <strong>calendar-day climatological
+        mean</strong> (Feb&#8202;29 excluded), annualized to strokes&#8202;km<sup>-2</sup>&#8202;yr<sup>-1</sup>
+        to match the reference product's units.
+      </p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="lightning projection">
+      <button class="tab is-active" data-projection="platecarree" role="tab" aria-selected="true">
+        <span class="tab-icon proj-icon-platecarree" aria-hidden="true"></span>
+        Plate Carr&eacute;e
+      </button>
+      <button class="tab" data-projection="robinson" role="tab" aria-selected="false">
+        <span class="tab-icon proj-icon-robinson" aria-hidden="true"></span>
+        Robinson
+      </button>
+      <button class="tab" data-projection="foucaut" role="tab" aria-selected="false">
+        <span class="tab-icon proj-icon-mercator" aria-hidden="true"></span>
+        Foucaut
+      </button>
+      <button class="tab" data-projection="nicolosi" role="tab" aria-selected="false">
+        <span class="tab-icon proj-icon-doublehemisphere" aria-hidden="true"></span>
+        Nicolosi
+      </button>
+    </div>
+
+    <div class="panels">
+      <div class="panel is-active" data-projection="platecarree">
+        <video controls muted playsinline poster="">
+          <source src="videos/lightning_climatology.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+      <div class="panel" data-projection="robinson">
+        <video controls muted playsinline poster="">
+          <source src="videos/lightning_climatology_robinson.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+      <div class="panel" data-projection="foucaut">
+        <video controls muted playsinline poster="">
+          <source src="videos/lightning_climatology_foucaut.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+      <div class="panel" data-projection="nicolosi">
+        <video controls muted playsinline poster="">
+          <source src="videos/lightning_climatology_nicolosi.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+    </div>
+    <div class="animation-meta">
+      <div class="meta-links">
+        <a href="https://github.com/WaverleyMoody/climate-animations/releases/download/climatology_v1.1_data/climatology_lightning_365frame.nc">Data Download</a>
+        <a class="code-link"
+           href="https://github.com/WaverleyMoody/climate-animations/blob/main/lightning/lightning_platecarree.py"
+           data-platecarree="https://github.com/WaverleyMoody/climate-animations/blob/main/lightning/lightning_platecarree.py"
+           data-robinson="https://github.com/WaverleyMoody/climate-animations/blob/main/lightning/lightning_robinson.py"
+           data-foucaut="https://github.com/WaverleyMoody/climate-animations/blob/main/lightning/lightning_foucaut.py"
+           data-nicolosi="https://github.com/WaverleyMoody/climate-animations/blob/main/lightning/lightning_nicolosi.py"
+           target="_blank" rel="noopener">Python Code</a>
+        <a class="code-link"
+           href="https://github.com/WaverleyMoody/climate-animations/blob/main/lightning/lightning_platecarree.R"
+           data-platecarree="https://github.com/WaverleyMoody/climate-animations/blob/main/lightning/lightning_platecarree.R"
+           data-robinson="https://github.com/WaverleyMoody/climate-animations/blob/main/lightning/lightning_robinson.R"
+           data-foucaut="https://github.com/WaverleyMoody/climate-animations/blob/main/lightning/lightning_foucaut.R"
+           data-nicolosi="https://github.com/WaverleyMoody/climate-animations/blob/main/lightning/lightning_nicolosi.R"
+           target="_blank" rel="noopener">R Code</a>
+        <a class="youtube-link"
+
+           href="https://youtu.be/POSKs6HINqc"
+
+           data-platecarree="https://youtu.be/POSKs6HINqc"
+
+           data-robinson="https://youtu.be/b2oqAI782Fs"
+
+           data-foucaut="https://youtu.be/L2w_63bcWGw"
+
+           data-nicolosi="https://youtu.be/xZ1ownTZzG4"
+
+           target="_blank" rel="noopener">YouTube</a>
+      </div>
+      <div class="meta-about-wrap">
+        <p class="meta-about"><strong>About:</strong> WWLLN/WGLC Annual Lightning Stroke Density 2010&ndash;2025. Shows the climatology of lightning stroke density, annualized to strokes per km&sup2; per year. Each date marks a calendar-day climatological mean (Feb&#8202;29 excluded).</p>
+        <button class="meta-about-toggle" type="button">Read more</button>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer class="site-footer">
