@@ -8,9 +8,13 @@
 # Animations Library by Professor John Michael Wallace.
 #
 # Script: lightning_platecarree.R
-# Description: Generates the lightning climatology animation from WWLLN/WGLC data (2010-2025), rendered in the Plate Carrée projection. 365 calendar-day frames (Feb 29 excluded), each the multi-year daily-climatological mean, annualized (x365) to match the reference product's strokes km-2 yr-1 units.
+# Description: Generates the lightning climatology animation from WWLLN/WGLC 
+# data (2010-2025), rendered in the Plate Carrée projection. 365 calendar-day
+# frames (Feb 29 excluded), each the multi-year daily-climatological mean, annualized 
+# (x365) to match the reference product's strokes km-2 yr-1 units.
 #
-# Note: For the Robinson, Foucaut, and Nicolosi projections, see the other scripts in the lightning scripts folder.
+# Note: For the Robinson, Foucaut, and Nicolosi projections, see the other scripts in 
+# the lightning scripts folder.
 
 
 library(terra)

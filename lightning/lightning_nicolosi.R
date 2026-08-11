@@ -8,27 +8,13 @@
 # Animations Library by Professor John Michael Wallace.
 #
 # Script: lightning_nicolosi.R
-# Description: Generates the lightning climatology animation from WWLLN/WGLC data (2010-2025), rendered as a double-hemisphere Nicolosi Globular projection. 365 calendar-day frames (Feb 29 excluded), each the multi-year daily-climatological mean, annualized (x365) to match the reference product's strokes km-2 yr-1 units.
+# Description: Generates the lightning climatology animation from WWLLN/WGLC 
+# data (2010-2025), rendered as a double-hemisphere Nicolosi Globular projection. 
+# 365 calendar-day frames (Feb 29 excluded), each the multi-year daily-climatological 
+# mean, annualized (x365) to match the reference product's strokes km-2 yr-1 units.
 #
-# Note: For the Plate Carrée, Robinson, and Foucaut projections, see the other scripts in the lightning scripts folder.
-#
-# --- Implementation notes ---
-# Because annual lightning stroke density spans several orders of magnitude
-# globally, this uses a LOG-scale color scale (see log_pos() below) rather
-# than the linear scale used for the temperature Nicolosi script, matching
-# lightning_PlateCarree.R / lightning_Robinson.R / lightning_foucaut.R
-# exactly.
-#
-# The colorbar's image() call uses x = the uniform swatch INDEX (0:n_colors),
-# not raw log-spaced values -- same reasoning as lightning_foucaut.R: using
-# raw log-spaced breaks as x on image()'s linear-by-default axis would make
-# each color cell's pixel width balloon toward vmax instead of giving the
-# equal-width-per-decade look used everywhere else in these scripts.
-#
-# Unlike the Python version (which needed a hand-rolled GeometryCollection
-# recursion in plot_coastlines() to avoid silently dropping clipped state
-# lines), sf's own plot() method for an sfc object handles mixed geometry
-# types natively, so no equivalent workaround is needed here.
+# Note: For the Plate Carrée, Robinson, and Foucaut projections, see the other scripts 
+# in the lightning scripts folder.
 
 library(terra)
 library(ncdf4)

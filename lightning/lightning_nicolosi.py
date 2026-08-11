@@ -9,26 +9,13 @@ A reproduction of the University of Washington General Circulation
 Animations Library by Professor John Michael Wallace.
 
 Script: lightning_nicolosi.py
-Description: Generates the lightning climatology animation from WWLLN/WGLC data (2010-2025), rendered as a double-hemisphere Nicolosi Globular projection. 365 calendar-day frames (Feb 29 excluded), each the multi-year daily-climatological mean, annualized (x365) to match the reference product's strokes km-2 yr-1 units.
-Note: For the Plate Carrée, Robinson, and Foucaut projections, see the other scripts in the lightning scripts folder.
+Description: Generates the lightning climatology animation from WWLLN/WGLC 
+data (2010-2025), rendered as a double-hemisphere Nicolosi Globular projection. 
+365 calendar-day frames (Feb 29 excluded), each the multi-year daily-climatological 
+mean, annualized (x365) to match the reference product's strokes km-2 yr-1 units.
 
---- Implementation notes ---
-PROJ's `nicol` operation has no inverse transform, so unlike Robinson and
-Foucaut this cannot use a Cartopy GeoAxes at all. Instead: pyproj forward-
-projects the data grid and Natural Earth coastline/border geometries by
-hand for each hemisphere (Western: lon_0=-90, Eastern: lon_0=90), rendered
-on plain Matplotlib axes with imageio_ffmpeg handling video export
-directly (bypassing imageio.get_writer()'s plugin auto-resolution, which
-can silently pick the wrong backend for .mp4 output).
-
-Because annual lightning stroke density spans several orders of magnitude
-globally (near-zero over oceans/poles vs. 100+ over the most active
-tropical land regions), this uses a LOG-scale colormap (LogNorm passed to
-pcolormesh) rather than the linear vmin/vmax used for the other variables'
-Nicolosi scripts — a linear scale would make almost the entire globe look
-blank except for a few saturated hotspots. Color gradient: white -> Tiffany
-blue -> yellow -> orange -> red, matching the Plate Carrée/Robinson/Foucaut
-lightning scripts exactly.
+Note: For the Plate Carrée, Robinson, and Foucaut projections, see the other scripts in 
+the lightning scripts folder.
 """
 
 import numpy as np
