@@ -229,7 +229,7 @@ def main():
         TITLE_FONTSIZE = 16
         axes[0].set_title('ERA-5 | Climate Reanalyzer', loc='left', y=TITLE_Y,
                             fontsize=TITLE_FONTSIZE, fontweight='bold')
-        axes[1].set_title(f'{label}; 1979\u20132000 Weekly Mean', loc='right', y=TITLE_Y,
+        axes[1].set_title(f'{label}; 1979\u20132000 Mean Weekly Total', loc='right', y=TITLE_Y,
                             fontsize=TITLE_FONTSIZE, fontweight='bold')
 
         cbar = fig.colorbar(mesh, ax=axes, orientation='horizontal',

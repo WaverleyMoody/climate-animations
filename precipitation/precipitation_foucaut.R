@@ -186,7 +186,7 @@ for (i in seq_len(n_frames)) {
   
   mtext("ERA-5 | Climate Reanalyzer", side = 3, line = 6, adj = 0,
         cex = 1.0, font = 2)
-  mtext(sprintf("%s; 1979\u20132000 Weekly Mean", label), side = 3, line = 6,
+  mtext(sprintf("%s; 1979\u20132000 Weekly Total Mean", label), side = 3, line = 6,
         adj = 1, cex = 1.0, font = 2)
   
   # ── Colorbar panel ──
@@ -197,7 +197,7 @@ for (i in seq_len(n_frames)) {
   # panel.
   par(mar = c(4.5, 6, 1.2, 6), bty = "n")
   cbar_mat <- matrix(seq(vmin, vmax, length.out = n_colors), ncol = 1)
-  # xlim wider than the actual vmin/vmax data range leaves blank space on
+  # xlim wider than the actual vmin/vmax data range lSeaves blank space on
   # both sides within the panel, so the bar reads as shorter/narrower
   # instead of stretching edge-to-edge across the full frame width.
   #

@@ -10,9 +10,10 @@ Animations Library by Professor John Michael Wallace.
 
 Script: precipitation_robinson.py
 Description: Generates the precipitation climatology animation from ERA5 
-reanalysis data (1979-2000), rendered in the Robinson projection. Weekly totals 
-(cm water equivalent) computed server-side by the derived-era5-single-levels-daily-statistics
-CDS dataset, averaged into a 22-year climatological mean per 48-frame weekly cycle.
+reanalysis data (1979-2000), rendered in the Robinson projection, recentered
+on the Pacific. Weekly totals (cm water equivalent) computed server-side by
+the derived-era5-single-levels-daily-statistics CDS dataset, averaged into a
+22-year climatological mean per 48-frame weekly cycle.
 Note: For the Plate Carrée, Foucaut, and Nicolosi projections, see the other scripts 
 in the precipitation scripts folder.
 """
@@ -24,6 +25,7 @@ import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
+from cartopy.util import add_cyclic_point
 import imageio
 from pathlib import Path
 
@@ -36,7 +38,8 @@ OUTPUT_DIR.mkdir(exist_ok=True, parents=True)
 
 # ── Projection to render ──────────────────────────────────────────────────────
 PROJ_NAME = 'robinson'
-PROJ_CRS = ccrs.Robinson()
+CENTRAL_LON = 180  # centers the Pacific instead of the Atlantic (default is 0)
+PROJ_CRS = ccrs.Robinson(central_longitude=CENTRAL_LON)
 
 # ── Plot settings ─────────────────────────────────────────────────────────────
 VMIN, VMAX = 0, 21
@@ -86,23 +89,30 @@ for i in range(ds_clim.sizes['frame']):
     print(f'Loaded: {label}')
 
 # ── Generate frames + MP4 ───────────────────────────────────────────────────────
-print(f'=== Rendering projection: {PROJ_NAME} ===')
+print(f'=== Rendering projection: {PROJ_NAME} (centered on {CENTRAL_LON}) ===')
 frames_dir = OUTPUT_DIR / PROJ_NAME / 'frames'
 frames_dir.mkdir(parents=True, exist_ok=True)
 frame_paths = []
 
 for i, (label, field) in enumerate(frames_data):
+    # The data's antimeridian seam (where lon wraps from -180 back to 180)
+    # used to sit harmlessly at the map's left/right edge when centered on
+    # the Atlantic. Recentered on the Pacific, that seam now falls at the
+    # middle of the view -- add_cyclic_point closes the loop so there's no
+    # visible gap/artifact right where the Pacific is supposed to be clean.
+    field_cyclic, lons_cyclic = add_cyclic_point(field, coord=lons)
+
     fig, ax = plt.subplots(
         figsize=(12, 6),
         subplot_kw={'projection': PROJ_CRS}
     )
 
     im = ax.contourf(
-        lons, lats, field,
+        lons_cyclic, lats, field_cyclic,
         levels=np.linspace(VMIN, VMAX, 61),
         cmap=CMAP,
         extend='neither',
-        transform=ccrs.PlateCarree()
+        transform=ccrs.PlateCarree()  # data stays in standard (unrotated) lon/lat
     )
 
     ax.add_feature(cfeature.COASTLINE, linewidth=1.0, edgecolor='black')
@@ -116,6 +126,12 @@ for i, (label, field) in enumerate(frames_data):
     # with the map the way it does for Plate Carrée's rectangle. Instead,
     # project each lon/lat through the actual PROJ_CRS and anchor the label
     # there in data coordinates with a small pixel offset outward.
+    #
+    # Label text still describes the TRUE longitude/latitude at each
+    # reference meridian/parallel (e.g. -90 is always "90°W"), unchanged by
+    # recentering -- PROJ_CRS.transform_point() already accounts for
+    # central_longitude internally, so each label lands at the correct
+    # screen position automatically with no manual position math needed.
     for lon, lon_label in [(-180, '180°'), (-90, '90°W'), (0, '0°'), (90, '90°E'), (180, '180°')]:
         x, y = PROJ_CRS.transform_point(lon, -90, ccrs.PlateCarree())
         ax.annotate(lon_label, xy=(x, y), xycoords='data',
@@ -123,7 +139,15 @@ for i, (label, field) in enumerate(frames_data):
                     ha='center', va='top', fontsize=9, annotation_clip=False)
 
     for lat, lat_label in [(-90, '90°S'), (-45, '45°S'), (0, '0°'), (45, '45°N'), (90, '90°N')]:
-        x, y = PROJ_CRS.transform_point(-180, lat, ccrs.PlateCarree())
+        # -180 was the correct left-edge anchor when centered on the
+        # Atlantic (central_longitude=0), but it's now the map's CENTER
+        # instead of its edge. The left edge is always 180° away from
+        # whatever the center is; nudged 0.1° in from the exact boundary
+        # to avoid the seam's inherent ambiguity (both edges are the same
+        # true longitude, so the exact boundary value doesn't reliably
+        # resolve to "left" vs. "right").
+        left_edge_lon = CENTRAL_LON - 179.9
+        x, y = PROJ_CRS.transform_point(left_edge_lon, lat, ccrs.PlateCarree())
         # Pole labels (90°N/90°S) need a bigger outward push than the
         # mid-latitude labels since the Robinson boundary curves inward
         # sharply near the poles — otherwise they overlap the map edge.
@@ -146,7 +170,7 @@ for i, (label, field) in enumerate(frames_data):
     ax.text(0.0, 1.02, 'ERA-5 | Climate Reanalyzer',
              transform=ax.transAxes, fontsize=10,
              fontweight='bold', ha='left', va='bottom')
-    ax.text(1.0, 1.02, f'{label}; 1979–2000 Weekly Mean',
+    ax.text(1.0, 1.02, f'{label}; 1979–2000 Mean Weekly Total',
              transform=ax.transAxes, fontsize=10,
              fontweight='bold', ha='right', va='bottom')
 

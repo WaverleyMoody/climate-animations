@@ -210,7 +210,7 @@ for i, (label, field) in enumerate(frames_data):
     ax.text(0.0, 1.02, 'ERA-5 | Climate Reanalyzer',
              transform=ax.transAxes, fontsize=10,
              fontweight='bold', ha='left', va='bottom')
-    ax.text(1.0, 1.02, f'{label}; 1979–2000 Weekly Mean',
+    ax.text(1.0, 1.02, f'{label}; 1979–2000 Mean Weekly Total',
              transform=ax.transAxes, fontsize=10,
              fontweight='bold', ha='right', va='bottom')
 

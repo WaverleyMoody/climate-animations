@@ -167,7 +167,7 @@ for (i in seq_len(n_frames)) {
   # Title text (top-left / top-right), placed well above the 90N corner label
   mtext("ERA-5 | Climate Reanalyzer", side = 3, line = 6, adj = 0,
         cex = 0.9, font = 2)
-  mtext(sprintf("%s; 1979\u20132000 Weekly Mean", label), side = 3, line = 6,
+  mtext(sprintf("%s; 1979\u20132000 Weekly Total Mean", label), side = 3, line = 6,
         adj = 1, cex = 0.9, font = 2)
   
   # ── Panel 2: custom horizontal colorbar ──────────────────────────────

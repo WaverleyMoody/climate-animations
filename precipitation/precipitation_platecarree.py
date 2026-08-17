@@ -9,7 +9,7 @@ A reproduction of the University of Washington General Circulation
 Animations Library by Professor John Michael Wallace.
 
 Script: precipitation_platecarree.py
-Description: Generates the precipitation climatology animation from ERA5 reanalysis data (1979-2000), rendered in the Plate Carrée projection. Weekly totals (cm water equivalent) computed server-side by the derived-era5-single-levels-daily-statistics CDS dataset, averaged into a 22-year climatological mean per 48-frame weekly cycle.
+Description: Generates the precipitation climatology animation from ERA5 reanalysis data (1979-2000), rendered in the Plate Carrée projection, recentered on the Pacific. Weekly totals (cm water equivalent) computed server-side by the derived-era5-single-levels-daily-statistics CDS dataset, averaged into a 22-year climatological mean per 48-frame weekly cycle.
 Note: For the Robinson, Foucaut, and Nicolosi projections, see the other scripts in the precipitation scripts folder.
 """
 
@@ -22,6 +22,7 @@ import matplotlib.ticker as mticker
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
+from cartopy.util import add_cyclic_point
 import imageio
 from pathlib import Path
 
@@ -34,7 +35,8 @@ OUTPUT_DIR.mkdir(exist_ok=True, parents=True)
 
 # ── Projection to render ──────────────────────────────────────────────────────
 PROJ_NAME = 'platecarree'
-PROJ_CRS = ccrs.PlateCarree()
+CENTRAL_LON = 180  # centers the Pacific instead of the Atlantic (default is 0)
+PROJ_CRS = ccrs.PlateCarree(central_longitude=CENTRAL_LON)
 
 # ── Plot settings ─────────────────────────────────────────────────────────────
 VMIN, VMAX = 0, 21
@@ -84,23 +86,30 @@ for i in range(ds_clim.sizes['frame']):
     print(f'Loaded: {label}')
 
 # ── Generate frames + MP4 ───────────────────────────────────────────────────────
-print(f'=== Rendering projection: {PROJ_NAME} ===')
+print(f'=== Rendering projection: {PROJ_NAME} (centered on {CENTRAL_LON}) ===')
 frames_dir = OUTPUT_DIR / PROJ_NAME / 'frames'
 frames_dir.mkdir(parents=True, exist_ok=True)
 frame_paths = []
 
 for i, (label, field) in enumerate(frames_data):
+    # The data's antimeridian seam (where lon wraps from -180 back to 180)
+    # used to sit harmlessly at the map's left/right edge when centered on
+    # the Atlantic. Recentered on the Pacific, that seam now falls at the
+    # middle of the view -- add_cyclic_point closes the loop so there's no
+    # visible gap/artifact right where the Pacific is supposed to be clean.
+    field_cyclic, lons_cyclic = add_cyclic_point(field, coord=lons)
+
     fig, ax = plt.subplots(
         figsize=(12, 6),
         subplot_kw={'projection': PROJ_CRS}
     )
 
     im = ax.contourf(
-        lons, lats, field,
+        lons_cyclic, lats, field_cyclic,
         levels=np.linspace(VMIN, VMAX, 61),
         cmap=CMAP,
         extend='neither',
-        transform=ccrs.PlateCarree()
+        transform=ccrs.PlateCarree()  # data stays in standard (unrotated) lon/lat
     )
 
     ax.add_feature(cfeature.COASTLINE, linewidth=1.0, edgecolor='black')
@@ -132,7 +141,7 @@ for i, (label, field) in enumerate(frames_data):
     ax.text(0.0, 1.02, 'ERA-5 | Climate Reanalyzer',
              transform=ax.transAxes, fontsize=10,
              fontweight='bold', ha='left', va='bottom')
-    ax.text(1.0, 1.02, f'{label}; 1979–2000 Weekly Mean',
+    ax.text(1.0, 1.02, f'{label}; 1979–2000 Mean Weekly Total',
              transform=ax.transAxes, fontsize=10,
              fontweight='bold', ha='right', va='bottom')
 

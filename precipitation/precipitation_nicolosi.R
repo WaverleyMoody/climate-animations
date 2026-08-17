@@ -512,7 +512,7 @@ for (i in seq_len(n_frames)) {
   # Right-side title.
   mtext(
     sprintf(
-      "%s; 1979\u20132000 Weekly Mean",
+      "%s; 1979\u20132000 Weekly Total Mean",
       label
     ),
     side = 3,
