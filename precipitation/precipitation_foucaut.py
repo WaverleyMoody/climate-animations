@@ -11,18 +11,6 @@ Animations Library by Professor John Michael Wallace.
 Script: precipitation_foucaut.py
 Description: Generates the precipitation climatology animation from ERA5 reanalysis data (1979-2000), rendered in the Foucaut projection. Weekly totals (cm water equivalent) computed server-side by the derived-era5-single-levels-daily-statistics CDS dataset, averaged into a 22-year climatological mean per 48-frame weekly cycle.
 Note: For the Plate Carrée, Robinson, and Nicolosi projections, see the other scripts in the precipitation scripts folder.
-
---- Implementation notes ---
-Uses PROJ's `fouc` operation (plain Foucaut, NOT `fouc_s`/Foucaut
-Sinusoidal — a different, parameterized blend family). `fouc` has a
-working inverse transform, so unlike Nicolosi this can use a normal
-Cartopy Projection subclass and standard GeoAxes rendering rather than a
-manual reprojection pipeline.
-
-Foucaut has pointed poles: every longitude at lat=90/-90 collapses to a
-single point, so there's no clean row to place longitude labels along
-without overlap — longitude labels are omitted, and each pole gets one
-label instead of five overlapping ones.
 """
 
 import xarray as xr
