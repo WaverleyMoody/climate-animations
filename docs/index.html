@@ -843,6 +843,94 @@
     </div>
   </section>
 
+  <!-- ══════════════════════ SEA ICE: POLAR STEREOGRAPHIC ══════════════════════ -->
+  <section class="variable-section" id="ice_cover" data-section="ice_cover">
+    <div class="section-heading">
+      <h2>Sea Ice &mdash; Polar Stereographic Seasonal Cycle</h2>
+      <p class="section-note">NASA Blue Marble base imagery with an ERA5 sea ice concentration overlay.</p>
+    </div>
+
+    <div class="data-source" style="margin: 1.75rem 0 2rem;">
+      <h2>Data Source</h2>
+      <p>
+        This animation combines two independent sources. The base imagery is
+        <strong>NASA Blue Marble Next Generation</strong> monthly composite imagery from
+        <strong>2004</strong>, blended between adjacent months to approximate the
+        <strong>biweekly</strong> frame cadence (1st and 15th of each month). The sea ice
+        overlay is <strong>ERA5 <code>sea_ice_cover</code></strong> reanalysis data from the
+        <a href="https://cds.climate.copernicus.eu/" target="_blank" rel="noopener">Copernicus Climate Data Store (CDS)</a>,
+        for the same 24 dates in 2004.
+      </p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="sea ice hemisphere">
+      <button class="tab is-active" data-projection="north" role="tab" aria-selected="true">
+        <span class="tab-icon proj-icon-northpole" aria-hidden="true"></span>
+        Northern Hemisphere
+      </button>
+      <button class="tab" data-projection="south" role="tab" aria-selected="false">
+        <span class="tab-icon proj-icon-southpole" aria-hidden="true"></span>
+        Southern Hemisphere
+      </button>
+    </div>
+
+    <div class="panels">
+      <div class="panel is-active" data-projection="north">
+        <video controls muted playsinline poster="">
+          <source src="videos/north_seasonal_cycle.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+      <div class="panel" data-projection="south">
+        <video controls muted playsinline poster="">
+          <source src="videos/south_seasonal_cycle.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+    </div>
+    <div class="animation-meta">
+      <div class="meta-links">
+        <a href="https://github.com/WaverleyMoody/climate-animations/releases/download/climatology_v1.1_data/era5_sea_ice_cover_2004_biweekly.nc">ERA5 Data</a>
+        <a href="https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/base-map/" target="_blank" rel="noopener">Blue Marble Source</a>
+        <a class="code-link"
+           href="https://github.com/WaverleyMoody/climate-animations/blob/main/ice_cover/north_stereo.py"
+           data-north="https://github.com/WaverleyMoody/climate-animations/blob/main/ice_cover/north_stereo.py"
+           data-south="https://github.com/WaverleyMoody/climate-animations/blob/main/ice_cover/south_stereo.py"
+           target="_blank" rel="noopener">Python Code</a>
+        <a class="code-link"
+           href="https://github.com/WaverleyMoody/climate-animations/blob/main/ice_cover/north_stereo.R"
+           data-north="https://github.com/WaverleyMoody/climate-animations/blob/main/ice_cover/north_stereo.R"
+           data-south="https://github.com/WaverleyMoody/climate-animations/blob/main/ice_cover/south_stereo.R"
+           target="_blank" rel="noopener">R Code</a>
+        <a class="youtube-link"
+
+           href="https://youtube.com/shorts/djF_35FFOmo"
+
+           data-north="https://youtube.com/shorts/djF_35FFOmo"
+
+           data-south="https://youtube.com/shorts/vJO_-imJCwQ"
+
+           target="_blank" rel="noopener">YouTube</a>
+      </div>
+      <div class="meta-about-wrap">
+        <p class="meta-about"><strong>About:</strong> NASA Blue Marble (2004) monthly base imagery blended to a biweekly cadence, with an ERA5 sea_ice_cover overlay for the same 24 dates. Rendered in the North/South Polar Stereographic projection. Each date marks the 1st or 15th of the month.</p>
+        <button class="meta-about-toggle" type="button">Read more</button>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer class="site-footer">

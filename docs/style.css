@@ -221,6 +221,33 @@ main {
 }
 .proj-icon-mercator.big { width: 26px; height: 26px; }
 
+/* North/South pole icons: a circular "globe" (matching the round shape a
+   polar stereographic render actually produces) with a small pole marker --
+   top for north, bottom for south. */
+.proj-icon-northpole,
+.proj-icon-southpole {
+  border-radius: 50%;
+  position: relative;
+}
+.proj-icon-northpole::after,
+.proj-icon-southpole::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transform: translateX(-50%);
+}
+.proj-icon-northpole::after { top: 0; }
+.proj-icon-southpole::after { bottom: 0; }
+
+.tab.is-active .tab-icon.proj-icon-northpole::after,
+.tab.is-active .tab-icon.proj-icon-southpole::after {
+  background: var(--bg);
+}
+
 /* ─────────────────────────  Speed & loop controls  ───────────────────────── */
 .speed-controls {
   display: flex;
@@ -360,6 +387,7 @@ main {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
 }
 
@@ -375,6 +403,7 @@ main {
 
 .meta-about.is-expanded {
   -webkit-line-clamp: unset;
+  line-clamp: unset;
   overflow: visible;
 }
 
