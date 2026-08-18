@@ -311,7 +311,7 @@ main {
    so they don't dominate the page. */
 #ice_cover .panel video {
   width: 75%;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .coming-soon {
