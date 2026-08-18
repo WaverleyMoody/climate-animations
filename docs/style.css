@@ -306,6 +306,14 @@ main {
   background: #000;
 }
 
+/* Ice cover (north/south stereographic) videos run larger relative to
+   their content than the other sections' -- scaled down 25% and centered
+   so they don't dominate the page. */
+#ice_cover .panel video {
+  width: 75%;
+  margin: 0 auto;
+}
+
 .coming-soon {
   display: flex;
   flex-direction: column;
