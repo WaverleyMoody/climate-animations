@@ -1,17 +1,23 @@
 """
-SDSU Climate Informatics Lab / San Diego State University / by Waverley Moody / Supervised by Distinguished Professor Samuel Shen / Python Code Version 1.0.0
+SDSU Climate Informatics Lab 
+San Diego State University 
+by Waverley Moody 
+Supervised by Distinguished Professor Samuel Shen 
+Python Code Version 1.0.0
 
-A reproduction of the University of Washington General Circulation Animations Library by Professor John Michael Wallace.
+A reproduction of the University of Washington General Circulation
+Animations Library by Professor John Michael Wallace.
 
 Script: animate_lst_mollweide.py
+
 Description: Generates the Land Surface Temperature (Day) animation from NASA Terra/MODIS
-             MOD11C3 v6.1 (Feb 2000-Dec 2013, native 0.05 deg CMG grid), rendered in the
-             Mollweide projection. Unlike the other ERA5-based variables in this library,
-             this is a 167-frame real monthly time series, not a 48-frame climatological
-             composite.
+MOD11C3 v6.1 (Feb 2000-Dec 2013, native 0.05 deg CMG grid), rendered in the
+Mollweide projection. Unlike the other ERA5-based variables in this library,
+this is a 167-frame real monthly time series, not a 48-frame climatological composite.
+
 Note: Mollweide has a working inverse transform via PROJ/Cartopy, so this follows the
-      standard Cartopy GeoAxes rendering path (like Foucaut), not the manual forward-projection
-      pipeline required for Nicolosi.
+standard Cartopy GeoAxes rendering path (like Foucaut), not the manual forward-projection
+pipeline required for Nicolosi.
 """
 
 import os
