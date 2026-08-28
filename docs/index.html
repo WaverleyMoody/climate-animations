@@ -932,6 +932,56 @@
     </div>
   </section>
 
+    <!-- ══════════════════════ LAND SURFACE TEMPERATURE ══════════════════════ -->
+  <section class="variable-section" id="lst" data-section="lst">
+    <div class="section-heading">
+      <h2>Land Surface Temperature (Day)</h2>
+      <p class="section-note">MODIS daytime land surface temperature, Mollweide projection.</p>
+    </div>
+
+    <div class="data-source" style="margin: 1.75rem 0 2rem;">
+      <h2>Data Source</h2>
+      <p>
+        This animation is based on <strong>NASA Terra/MODIS <a href="https://lpdaac.usgs.gov/products/mod11c3v061/" target="_blank" rel="noopener">MOD11C3 v6.1</a></strong>
+        monthly Land Surface Temperature data, covering <strong>February 2000&ndash;December 2013</strong>
+        (167 months). Unlike the ERA5-based animations above, this is a <strong>real monthly time
+        series</strong>, not a climatological composite, rendered at native <strong>0.05&deg;</strong>
+        resolution.
+      </p>
+    </div>
+
+    <div class="panels">
+      <div class="panel is-active" data-projection="mollweide">
+        <video controls muted playsinline poster="">
+          <source src="videos/lst_day_mollweide_2000_2013.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+    </div>
+    <div class="animation-meta">
+      <div class="meta-links">
+        <a href="https://github.com/WaverleyMoody/climate-animations/releases/download/climatology_v1.1_data/lst_day_timeseries_2000_2013_025deg_celsius_public.nc">Data Download</a>
+        <a class="code-link"
+           href="https://github.com/WaverleyMoody/climate-animations/blob/main/land_surface_temperature/scripts/animate_lst_mollweide.py"
+           target="_blank" rel="noopener">Python Code</a>
+        <span class="code-link is-pending" aria-disabled="true">R Code (coming soon)</span>
+        <a class="youtube-link"
+           href="https://youtu.be/FZ6IL0upMkI"
+           target="_blank" rel="noopener">YouTube</a>
+      </div>
+      <div class="meta-about-wrap">
+        <p class="meta-about"><strong>About:</strong> MODIS MOD11C3 v6.1 Daytime Land Surface Temperature, February 2000&ndash;December 2013. Shows the real monthly time series at native 0.05&deg; resolution, rendered in the Mollweide projection. The publicly downloadable dataset above is a 0.25&deg; block-mean downsampled copy for file-size reasons; the animation itself uses the full native-resolution data.</p>
+        <button class="meta-about-toggle" type="button">Read more</button>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer class="site-footer">
