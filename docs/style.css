@@ -92,7 +92,7 @@ a { color: var(--teal); }
 .category-heading h2 {
   font-family: var(--font-mono);
   font-weight: 500;
-  font-size: 0.85rem;
+  font-size: 1.15rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--teal);
