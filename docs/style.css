@@ -89,6 +89,16 @@ a { color: var(--teal); }
   font-weight: 600;
 }
 
+.category-heading h2 {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--teal);
+  margin: 0 0 2rem;
+}
+
 /* ─────────────────────────  Table of contents  ───────────────────────── */
 .toc-nav {
   max-width: 960px;
