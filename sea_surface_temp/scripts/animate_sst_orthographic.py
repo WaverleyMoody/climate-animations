@@ -1,16 +1,20 @@
 """
-SDSU Climate Informatics Lab / San Diego State University / by Waverley Moody
+SDSU Climate Informatics Lab 
+San Diego State University 
+by Waverley Moody
 Supervised by Distinguished Professor Samuel Shen
 Python Code Version 1.0.0
 
-A reproduction of the University of Washington General Circulation Animations Library by Professor John Michael Wallace.
+A reproduction of the University of Washington General Circulation Animations Library 
+by Professor John Michael Wallace.
 
 Script: animate_sst_orthographic.py
 Description: Generates the sea surface temperature (SST) daily time-series animation from JPL MUR25 (2016-2020),
-             rendered in the orthographic projection as a spinning globe that gradually tilts to reveal the
-             South Pole over the course of the animation.
+rendered in the orthographic projection as a spinning globe that gradually tilts to reveal the
+South Pole over the course of the animation.
+
 Note: This is currently the only projection implemented for SST; other projections may be added later
-      following the pattern used for climatology variables.
+following the pattern used for climatology variables.
 """
 
 import os
