@@ -8,18 +8,12 @@
 # by Professor John Michael Wallace.
 #
 # Script: animate_sst_orthographic.R
+
 # Description: Generates the sea surface temperature (SST) daily time-series animation from
 #   JPL MUR25 (2016-2020), rendered in the orthographic projection as a spinning globe that
 #   gradually tilts to reveal the South Pole over the course of the animation.
-# Note: Translated from animate_sst_orthographic.py. R has no direct equivalent of
-#   cartopy's Orthographic projection object -- instead, each frame's raster is reprojected
-#   into a PROJ orthographic CRS string (with that frame's own central lon/lat baked in) via
-#   terra::project(), and land/coastlines are reprojected into the same CRS via sf::st_transform().
-#   This mirrors what cartopy does internally, but the reprojection is done explicitly, per
-#   frame, rather than handled by a persistent GeoAxes object -- UNTESTED, and reprojecting a
-#   full-resolution global raster into a new CRS on every one of ~n_frames iterations is
-#   likely much slower per-frame than the Python version; if runtime is a problem, downsampling
-#   the raster before reprojection (terra::aggregate()) is the first thing to try.
+
+# Note: Translated from animate_sst_orthographic.py. 
 
 library(terra)
 library(sf)
