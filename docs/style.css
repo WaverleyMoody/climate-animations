@@ -521,3 +521,8 @@ main {
   .tabs { gap: 0.3rem; }
   .tab { padding: 0.5rem 0.7rem; font-size: 0.76rem; }
 }
+
+#biosphere .panel video {
+  width: 75%;
+  margin: 0;
+}
