@@ -29,6 +29,10 @@
     <span class="toc-link-label">Evolving Fields of Surface Temperature</span>
     <span class="toc-link-count">2 animations</span>
   </a>
+  <a href="#cat-biosphere" class="toc-link">
+    <span class="toc-link-label">The Biosphere</span>
+    <span class="toc-link-count">2 animations</span>
+  </a>
 </nav>
 
   <div class="category-heading" id="cat-climatologies">
@@ -1050,6 +1054,78 @@
       </div>
       <div class="meta-about-wrap">
         <p class="meta-about"><strong>About:</strong> JPL MUR25 Sea Surface Temperature, 2016&ndash;2020. Shows the real daily time series at 0.25&deg; resolution, rendered in the Orthographic projection as a spinning globe that gradually tilts to reveal the South Pole over the course of the animation.</p>
+        <button class="meta-about-toggle" type="button">Read more</button>
+      </div>
+    </div>
+  </section>
+
+    <!-- ══════════════════════ THE BIOSPHERE ══════════════════════ -->
+  <div class="category-heading" id="cat-biosphere">
+    <h2>The Biosphere</h2>
+  </div>
+
+  <section class="variable-section" id="biosphere" data-section="biosphere">
+    <div class="section-heading">
+      <h2>Global Biosphere</h2>
+      <p class="section-note">Land NDVI and ocean chlorophyll, regional views.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="biosphere region">
+      <button class="tab is-active" data-projection="australia" role="tab" aria-selected="true">
+        Australia
+      </button>
+      <button class="tab" data-projection="north_pacific" role="tab" aria-selected="false">
+        North Pacific
+      </button>
+    </div>
+
+    <div class="panels">
+      <div class="panel is-active" data-projection="australia">
+        <video controls muted playsinline poster="">
+          <source src="videos/animate_biosphere_australia.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+      <div class="panel" data-projection="north_pacific">
+        <video controls muted playsinline poster="">
+          <source src="videos/animate_biosphere_north_pacific.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+    </div>
+    <div class="animation-meta">
+      <div class="meta-links">
+        <!-- TODO: Data Download link (GitHub Release asset) -->
+        <a class="code-link"
+           href="https://github.com/WaverleyMoody/climate-animations/blob/main/biosphere/animate_biosphere_australia.py"
+           data-australia="https://github.com/WaverleyMoody/climate-animations/blob/main/biosphere/animate_biosphere_australia.py"
+           data-north_pacific="https://github.com/WaverleyMoody/climate-animations/blob/main/biosphere/animate_biosphere_north_pacific.py"
+           target="_blank" rel="noopener">Python Code</a>
+        <!-- TODO: R Code link -->
+        <a class="youtube-link"
+
+           href="https://youtu.be/RDGBXqDDYTE"
+
+           data-australia="https://youtu.be/RDGBXqDDYTE"
+
+           data-north_pacific="https://youtu.be/U0SNDaMdOk0"
+
+           target="_blank" rel="noopener">YouTube</a>
+      </div>
+      <div class="meta-about-wrap">
+        <p class="meta-about"><strong>About:</strong> [placeholder — description of the biosphere merge methodology, date range, and data sources]</p>
         <button class="meta-about-toggle" type="button">Read more</button>
       </div>
     </div>
