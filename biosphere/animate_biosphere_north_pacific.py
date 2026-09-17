@@ -36,6 +36,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
+from matplotlib.ticker import LogLocator, FuncFormatter
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 import dask
@@ -95,6 +96,14 @@ CHL_VMIN, CHL_VMAX = 0.01, 20.0
 OCEAN_BASE_COLOR = "#0a1a2f"   # neutral dark navy for ocean pixels with no CHL data
 LAND_BASE_COLOR = "#3a3a3a"    # neutral gray for land pixels with no NDVI data (rare)
 
+# CHL colorbar placement/style. Figure-fraction [left, bottom, width, height],
+# tucked into the bottom-left so it clears the title (top-left) and date
+# label (top-right) at all camera positions.
+COLORBAR_RECT = [0.06, 0.06, 0.30, 0.02]
+COLORBAR_LABEL = "Chlorophyll-a (mg/m$^3$)"
+COLORBAR_TICKS = [0.01, 0.1, 1, 10]
+COLORBAR_TEXT_COLOR = "white"
+
 dask.config.set(scheduler="synchronous")
 
 
@@ -119,6 +128,33 @@ def _format_date(np_datetime64) -> str:
     month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     return f"{month_names[dt.month - 1]} {dt.year}"
+
+
+def _format_chl_tick(value, _pos) -> str:
+    """Renders CHL colorbar ticks without trailing zeros (0.01, 0.1, 1, 10)."""
+    if value >= 1:
+        return f"{value:g}"
+    return f"{value:g}"
+
+
+def _add_chl_colorbar(fig, mappable) -> None:
+    """
+    Draws the CHL colorbar into a fixed figure-fraction axes. Rebuilt every
+    frame (see module docstring) directly from CHL_CMAP/CHL_VMIN/CHL_VMAX via
+    the frame's own pcolormesh mappable, so it can't drift out of sync with
+    the ocean coloring.
+    """
+    cax = fig.add_axes(COLORBAR_RECT)
+    cbar = fig.colorbar(mappable, cax=cax, orientation="horizontal")
+
+    cbar.set_ticks(COLORBAR_TICKS)
+    cbar.ax.xaxis.set_minor_locator(LogLocator(subs="auto"))
+    cbar.ax.xaxis.set_major_formatter(FuncFormatter(_format_chl_tick))
+
+    cbar.set_label(COLORBAR_LABEL, color=COLORBAR_TEXT_COLOR, fontsize=9, labelpad=4)
+    cbar.ax.tick_params(labelsize=8, colors=COLORBAR_TEXT_COLOR)
+    cbar.outline.set_edgecolor(COLORBAR_TEXT_COLOR)
+    cbar.outline.set_linewidth(0.6)
 
 
 def _frame_plan(n_months: int):
@@ -190,7 +226,7 @@ def render_frame(fig, ds, spec: dict) -> None:
     ndvi = ds["NDVI"].isel(time=month_index).load()
     chl = ds["CHL"].isel(time=month_index).load()
 
-    ax.pcolormesh(
+    chl_mesh = ax.pcolormesh(
         ds["lon"], ds["lat"], chl,
         transform=ccrs.PlateCarree(),
         cmap=CHL_CMAP, norm=LogNorm(vmin=CHL_VMIN, vmax=CHL_VMAX),
@@ -212,6 +248,10 @@ def render_frame(fig, ds, spec: dict) -> None:
         date_label = _format_date(ds["time"].values[month_index])
         fig.text(0.98, 0.96, date_label, fontsize=14,
                   ha="right", va="top", color="white")
+
+    # chl_mesh already carries CHL_CMAP + the LogNorm(CHL_VMIN, CHL_VMAX) used
+    # above, so the colorbar is guaranteed to match the rendered ocean colors.
+    _add_chl_colorbar(fig, chl_mesh)
 
     fig.patch.set_facecolor("black")
 
