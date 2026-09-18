@@ -1144,6 +1144,126 @@
       </div>
     </div>
   </section>
+  <!-- ══════════════════════ Gross Primary Productivity ══════════════════════ -->
+  <section class="variable-section" id="gpp" data-section="gpp">
+    <div class="section-heading">
+      <h2>Gross Primary Productivity</h2>
+      <p class="section-note">The rate at which plants convert sunlight into chemical energy.</p>
+    </div>
+
+    <div class="data-source" style="margin: 1.75rem 0 2rem;">
+      <h2>Data Source</h2>
+      <p>
+        This animation is derived from
+        <strong>NASA Terra/MODIS <a href="https://lpdaac.usgs.gov/products/mod17a2hgfv061/" target="_blank" rel="noopener">MOD17A2HGF</a></strong>
+        (V061), the gap-filled 8-day Gross Primary Productivity composite, distributed as 500&thinsp;m
+        sinusoidal tiles via the
+        <a href="https://www.earthdata.nasa.gov/" target="_blank" rel="noopener">NASA Earthdata</a> LP DAAC.
+        Tiles were mosaicked, reprojected, coarsened, and QC-masked via
+        <strong>Google Earth Engine</strong>. The animation plays each native 8-day composite as its
+        own frame with no temporal smoothing &mdash; <strong>454 composites</strong> spanning
+        <strong>2000&ndash;2009</strong>
+      </p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="GPP Projection">
+      <button class="tab is-active" data-projection="platecarree" role="tab" aria-selected="true">
+        <span class="tab-icon proj-icon-platecarree" aria-hidden="true"></span>
+        Plate Carr&eacute;e
+      </button>
+      <button class="tab" data-projection="robinson" role="tab" aria-selected="false">
+        <span class="tab-icon proj-icon-robinson" aria-hidden="true"></span>
+        Robinson
+      </button>
+      <button class="tab" data-projection="foucaut" role="tab" aria-selected="false">
+        <span class="tab-icon proj-icon-mercator" aria-hidden="true"></span>
+        Foucaut
+      </button>
+      <button class="tab" data-projection="nicolosi" role="tab" aria-selected="false">
+        <span class="tab-icon proj-icon-doublehemisphere" aria-hidden="true"></span>
+        Nicolosi
+      </button>
+    </div>
+
+    <div class="panels">
+      <div class="panel is-active" data-projection="platecarree">
+        <video controls muted playsinline poster="">
+          <source src="videos/gpp_2000_2009_platecarree.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+      <div class="panel" data-projection="robinson">
+        <video controls muted playsinline poster="">
+          <source src="videos/gpp_2000_2009_robinson.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+      <div class="panel" data-projection="foucaut">
+        <video controls muted playsinline poster="">
+          <source src="videos/gpp_2000_2009_foucaut.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+      <div class="panel" data-projection="nicolosi">
+        <video controls muted playsinline poster="">
+          <source src="videos/gpp_2000_2009_nicolosi.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+    </div>
+    <div class="animation-meta">
+      <div class="meta-links">
+        <a href="https://github.com/WaverleyMoody/climate-animations/releases/download/climatology_v1.1_data/gpp_2000_2009_float32.nc">Data Download</a>
+        <a class="code-link"
+           href="https://github.com/WaverleyMoody/climate-animations/blob/main/global_primary_productivity/animate_gpp_platecarree.py"
+           data-platecarree="https://github.com/WaverleyMoody/climate-animations/blob/main/global_primary_productivity/animate_gpp_platecarree.py"
+           data-robinson="https://github.com/WaverleyMoody/climate-animations/blob/main/global_primary_productivity/animate_gpp_robinson.py"
+           data-foucaut="https://github.com/WaverleyMoody/climate-animations/blob/main/global_primary_productivity/animate_gpp_foucaut.py"
+           data-nicolosi="https://github.com/WaverleyMoody/climate-animations/blob/main/global_primary_productivity/animate_gpp_nicolosi.py"
+           target="_blank" rel="noopener">Python Code</a>
+        <a class="youtube-link"
+
+           href="https://youtu.be/uonrSds-hIA"
+
+           data-platecarree="https://youtu.be/uonrSds-hIA"
+
+           data-robinson="https://youtu.be/BVdMUo8tyYI"
+
+           data-foucaut="https://youtu.be/EEzBN90B8-o"
+
+           data-nicolosi="https://youtu.be/gy1Svuw1FyA"
+
+           target="_blank" rel="noopener">YouTube</a>
+      </div>
+      <div class="meta-about-wrap">
+        <p class="meta-about"><strong>About:</strong> MODIS/Terra Gross Primary Productivity (MOD17A2HGF, 2000&ndash;2009), the rate at which vegetation converts sunlight into chemical energy via photosynthesis, shown as native 8-day composites across four map projections.</p>        <button class="meta-about-toggle" type="button">Read more</button>
+      </div>
+    </div>
+  </section>
 
 </main>
 
