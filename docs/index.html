@@ -1273,6 +1273,49 @@
       </div>
     </div>
   </section>
+  <!-- ══════════════════════ SEA ICE MOTION ══════════════════════ -->
+  <section class="variable-section" id="sea_ice_motion" data-section="sea_ice_motion">
+    <div class="section-heading">
+      <h2>Sea Ice Motion</h2>
+      <p class="section-note">Daily Arctic sea ice drift traced by drifting buoys, over satellite sea ice concentration.</p>
+    </div>
+ 
+    <div class="data-source" style="margin: 1.75rem 0 2rem;">
+      <h2>Data Source</h2>
+      <p>
+        This animation combines two independent sources. Ice drift is traced by buoy tracks from the
+        <strong><a href="https://iabp.apl.uw.edu/" target="_blank" rel="noopener">International Arctic Buoy Programme (IABP)</a></strong>,
+        drawn over <strong>NOAA/NSIDC <a href="https://nsidc.org/data/g02202/versions/6" target="_blank" rel="noopener">G02202 V6</a></strong>
+        passive-microwave sea ice concentration. Both cover <strong>1979&ndash;2022</strong>. Like the
+        LST and SST animations, this is a <strong>real daily time series</strong>, not a
+        climatological composite.
+      </p>
+    </div>
+ 
+    <div class="panels">
+      <div class="panel is-active" data-projection="arctic">
+        <video controls muted playsinline poster="">
+          <source src="videos/sea_ice_motion_1979_2022.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+    </div>
+    <div class="animation-meta">
+      <div class="meta-links">
+        <!-- TODO: add Data Download, Python Code, R Code, and YouTube links -->
+      </div>
+      <div class="meta-about-wrap">
+        <p class="meta-about"><strong>About:</strong> IABP drifting buoy tracks over NOAA/NSIDC G02202 V6 sea ice concentration, 1979&ndash;2022, showing the daily motion of Arctic sea ice. Short gaps in the source ice data (e.g. the 1984 SMMR outages) are filled by linear interpolation, and interpolated frames are labeled in the video.</p>
+        <button class="meta-about-toggle" type="button">Read more</button>
+      </div>
+    </div>
+  </section>
 
 </main>
 
