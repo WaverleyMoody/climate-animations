@@ -35,7 +35,7 @@
   </a>
   <a href="#cat-cryosphere" class="toc-link">
     <span class="toc-link-label">The Cryosphere</span>
-    <span class="toc-link-count">1 animation</span>
+    <span class="toc-link-count">2 animations</span>
   </a>
 </nav>
 
@@ -1318,10 +1318,68 @@
     </div>
     <div class="animation-meta">
       <div class="meta-links">
-        <!-- TODO: add Data Download, Python Code, R Code, and YouTube links -->
+        <!-- TODO: add Data Download page link (cryosphere_v1.0_data release) -->
+        <a class="code-link"
+           href="https://github.com/WaverleyMoody/climate-animations/blob/main/arctic_buoy/render_sea_ice_motion.py"
+           target="_blank" rel="noopener">Python Code</a>
+        <a class="youtube-link"
+           href="https://youtu.be/X1pcY67UqSM"
+           target="_blank" rel="noopener">YouTube</a>
       </div>
       <div class="meta-about-wrap">
         <p class="meta-about"><strong>About:</strong> IABP drifting buoy tracks over NOAA/NSIDC G02202 V6 sea ice concentration, 1979&ndash;2022, showing the daily motion of Arctic sea ice. Short gaps in the source ice data (e.g. the 1984 SMMR outages) are filled by linear interpolation, and interpolated frames are labeled in the video.</p>
+        <button class="meta-about-toggle" type="button">Read more</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ SNOW COVER & SEA ICE ══════════════════════ -->
+  <section class="variable-section" id="snow_sea_ice" data-section="snow_sea_ice">
+    <div class="section-heading">
+      <h2>Snow Cover &amp; Sea Ice</h2>
+      <p class="section-note">Northern Hemisphere snow and sea ice alongside Antarctic sea ice, side-by-side polar globes.</p>
+    </div>
+
+    <div class="data-source" style="margin: 1.75rem 0 2rem;">
+      <h2>Data Source</h2>
+      <p>
+        This animation combines three independent sources. Northern Hemisphere snow cover and sea ice
+        come from the <strong>NOAA/NSIDC <a href="https://nsidc.org/data/g02156" target="_blank" rel="noopener">IMS 4&#8202;km</a></strong>
+        (G02156) daily snow and ice analysis. Southern Hemisphere sea ice comes from
+        <strong>NOAA/NSIDC <a href="https://nsidc.org/data/g02202/versions/6" target="_blank" rel="noopener">G02202 V6</a></strong>
+        passive-microwave sea ice concentration. Both cover <strong>2019&ndash;2021</strong>, drawn
+        over <strong>NASA <a href="https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/base-map/" target="_blank" rel="noopener">Blue Marble Next Generation</a></strong>
+        (2004) base imagery. Adapted from NASA SVS 4995, &ldquo;Global Snow Cover and Sea Ice Cycle at Both Poles.&rdquo;
+      </p>
+    </div>
+
+    <div class="panels">
+      <div class="panel is-active" data-projection="both_poles">
+        <video controls muted playsinline poster="">
+          <source src="videos/snow_sea_ice_2019_2021.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+    </div>
+    <div class="animation-meta">
+      <div class="meta-links">
+        <!-- TODO: add Data Download page link for IMS + G02202 south data -->
+        <a href="https://github.com/WaverleyMoody/climate-animations/releases/download/climatology_v1.1_data/blue_marble_2004_monthly.zip">Download Blue Marble Images (zip)</a>
+        <a class="code-link"
+           href="https://github.com/WaverleyMoody/climate-animations/blob/main/snow_and_sea_ice/animate_snow_sea_ice.py"
+           target="_blank" rel="noopener">Python Code</a>
+        <a class="youtube-link"
+           href="https://youtu.be/eREoHY2g3hA"
+           target="_blank" rel="noopener">YouTube</a>
+      </div>
+      <div class="meta-about-wrap">
+        <p class="meta-about"><strong>About:</strong> IMS 4&#8202;km Northern Hemisphere snow cover and sea ice with NOAA/NSIDC G02202 V6 Antarctic sea ice concentration, 2019&ndash;2021, shown at 5-day steps on side-by-side north and south polar orthographic globes. Base imagery is NASA Blue Marble (2004), using each hemisphere&rsquo;s snow-minimum month (August north, February south) so all snow and ice on screen comes from the 2019&ndash;2021 data.</p>
         <button class="meta-about-toggle" type="button">Read more</button>
       </div>
     </div>
