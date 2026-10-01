@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sea Ice Motion Data Downloads</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Sea Ice Motion — Data Downloads</h1>
+  <p>Daily NOAA/NSIDC G02202 V6 Arctic sea ice concentration (NetCDF) and IABP buoy positions (Parquet), 1979–2022.</p>
+
+  <h2>Sea Ice Concentration</h2>
+  <ul class="download-list">
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/cryosphere_v1.0_data/sea_ice_concentration_1979_1989.zip">1979–1989 (888 MB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/cryosphere_v1.0_data/sea_ice_concentration_1990_1999.zip">1990–1999 (1.0 GB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/cryosphere_v1.0_data/sea_ice_concentration_2000_2009.zip">2000–2009 (997 MB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/cryosphere_v1.0_data/sea_ice_concentration_2010_2022.zip">2010–2022 (1.2 GB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/cryosphere_v1.0_data/sea_ice_concentration_filled.zip">Gap-filled days (2.7 MB)</a></li>
+  </ul>
+
+  <h2>Buoy Positions</h2>
+  <ul class="download-list">
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/cryosphere_v1.0_data/iabp_daily_positions_1979_2022_projected.parquet">IABP daily positions, projected (22.9 MB)</a></li>
+  </ul>
+
+  <h2>Directions</h2>
+  <ol>
+    <li>Download all six files above into one folder.</li>
+    <li>Unzip the four concentration zips into the same folder. They merge into a single <code>sea_ice_concentration/</code> folder with one subfolder per year.</li>
+    <li>Unzip <code>sea_ice_concentration_filled.zip</code> in the same folder.</li>
+    <li>Create an <code>iabp_buoys/</code> folder and move the parquet file into it.</li>
+    <li>Open <a href="https://github.com/WaverleyMoody/climate-animations/blob/main/arctic_buoy/render_sea_ice_motion.py">render_sea_ice_motion.py</a>, set <code>DATA_ROOT</code> to that folder, and run it.</li>
+  </ol>
+  <pre>DATA_ROOT/
+    sea_ice_concentration/&lt;year&gt;/sic_psn25_YYYYMMDD_*.nc
+    sea_ice_concentration_filled/&lt;year&gt;/sic_psn25_YYYYMMDD_*.nc
+    iabp_buoys/iabp_daily_positions_1979_2022_projected.parquet</pre>
+
+  <h2>Sources</h2>
+  <ul>
+    <li><a href="https://nsidc.org/data/g02202/versions/6">NOAA/NSIDC Climate Data Record of Passive Microwave Sea Ice Concentration, Version 6 (G02202)</a></li>
+    <li><a href="https://iabp.apl.uw.edu/">International Arctic Buoy Programme (IABP)</a></li>
+  </ul>
+
+  <p><a href="index.html#sea_ice_motion">← Back to the animation library</a></p>
+</body>
+</html>
