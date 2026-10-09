@@ -41,6 +41,10 @@
     <span class="toc-link-label">Fires</span>
     <span class="toc-link-count">1 animation</span>
   </a>
+  <a href="#cat-aerosol" class="toc-link">
+    <span class="toc-link-label">Aerosol Transport</span>
+    <span class="toc-link-count">1 animation</span>
+  </a>
 </nav>
 
   <div class="category-heading" id="cat-climatologies">
@@ -1416,7 +1420,7 @@
         (<a href="https://doi.org/10.5281/zenodo.16794691" target="_blank" rel="noopener">doi:10.5281/zenodo.16794691</a>;
         van der Werf et al., 2025, <em>Scientific Data</em>), covering
         <strong>March 2003&ndash;January 2022</strong>. Daily emissions were converted from grams per grid cell
-        to grams per square meter and summed into consecutive <strong>7-day totals</strong> (987 weeks).Base map shaded relief and borders are from
+        to grams per square meter and summed into consecutive <strong>7-day totals</strong> (987 weeks). Base map shaded relief and borders are from
         <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>.
         Adapted from NASA SVS, &ldquo;Fires &mdash; a global perspective: March 2003 to January 2022.&rdquo;
       </p>
@@ -1524,6 +1528,73 @@
       </div>
       <div class="meta-about-wrap">
         <p class="meta-about"><strong>About:</strong> GFED5.1 weekly carbon emissions from landscape fires, March 2003&ndash;January 2022, in grams of carbon per square meter per week (colors saturate above 20). Shows both managed agricultural burning, such as post-harvest stubble fires in northern India in April&ndash;May and in the Punjab in October&ndash;November, and wildfires, including the savanna fire belts of Africa and South America and boreal fires in the Arctic summer. Each date marks the month of the week shown.</p>
+        <button class="meta-about-toggle" type="button">Read more</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ AEROSOL TRANSPORT ══════════════════════ -->
+  <div class="category-heading" id="cat-aerosol">
+    <h2>Aerosol Transport</h2>
+  </div>
+
+  <!-- ══════════════════════ SAHARAN DUST ══════════════════════ -->
+  <section class="variable-section" id="saharan_dust" data-section="saharan_dust">
+    <div class="section-heading">
+      <h2>Saharan Dust, June 2020</h2>
+      <p class="section-note">Hourly dust optical depth at 550&#8202;nm, tracking the June 2020 Saharan dust plume across the Atlantic.</p>
+    </div>
+
+    <div class="data-source" style="margin: 1.75rem 0 2rem;">
+      <h2>Data Source</h2>
+      <p>
+        This animation is based on <strong>NASA GMAO
+        <a href="https://disc.gsfc.nasa.gov/datasets/M2T1NXAER_5.12.4/summary" target="_blank" rel="noopener">MERRA-2 M2T1NXAER</a></strong>
+        (V5.12.4), the hourly time-averaged aerosol diagnostics from the GEOS-5 data assimilation system,
+        distributed via the
+        <a href="https://disc.gsfc.nasa.gov/" target="_blank" rel="noopener">NASA Goddard Earth Sciences Data and Information Services Center (GES DISC)</a>
+        (<a href="https://doi.org/10.5067/KLICLTZ8EM9D" target="_blank" rel="noopener">doi:10.5067/KLICLTZ8EM9D</a>).
+        The variable shown is <strong>dust extinction aerosol optical thickness at 550&#8202;nm
+        (<code>DUEXTTAU</code>)</strong> at native <strong>0.5&deg; &times; 0.625&deg;</strong> resolution, covering
+        <strong>June 1&ndash;30, 2020</strong> (720 hourly frames). Like the LST and SST animations, this is a
+        <strong>real hourly time series</strong>, not a climatological composite. Coastlines, borders, and US city
+        locations are from <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>.
+        Adapted from NASA SVS, &ldquo;Saharan Dust&rdquo; (GEOS-5).
+      </p>
+    </div>
+
+    <div class="panels">
+      <div class="panel is-active" data-projection="platecarree">
+        <video controls muted playsinline poster="">
+          <source src="videos/saharan_dust_june2020_platecarree.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+    </div>
+    <div class="animation-meta">
+      <div class="meta-links">
+        <!-- TODO: replace # with the GitHub Release asset URL -->
+        <a href="#">Data Download</a>
+        <a class="code-link"
+           href="https://github.com/WaverleyMoody/climate-animations/blob/main/saharan_dust/saharan_dust_platecarree.py"
+           target="_blank" rel="noopener">Python Code</a>
+        <!-- TODO: replace # with the R script URL -->
+        <a class="code-link"
+           href="#"
+           target="_blank" rel="noopener">R Code</a>
+        <!-- TODO: replace # with the YouTube URL -->
+        <a class="youtube-link"
+           href="#"
+           target="_blank" rel="noopener">YouTube</a>
+      </div>
+      <div class="meta-about-wrap">
+        <p class="meta-about"><strong>About:</strong> MERRA-2 hourly dust optical depth at 550&#8202;nm (DUEXTTAU), June 1&ndash;30, 2020, showing the record-breaking Saharan dust plume crossing the Atlantic to the Caribbean and the US Gulf Coast. Values below 0.10 are left blank. Each timestamp marks the center of the hour being averaged (e.g. 10:30z covers 10:00&ndash;11:00 UTC). Black dots mark US cities with populations above 50,000.</p>
         <button class="meta-about-toggle" type="button">Read more</button>
       </div>
     </div>
