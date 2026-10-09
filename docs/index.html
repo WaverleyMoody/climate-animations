@@ -37,6 +37,10 @@
     <span class="toc-link-label">The Cryosphere</span>
     <span class="toc-link-count">2 animations</span>
   </a>
+    <a href="#cat-fires" class="toc-link">
+    <span class="toc-link-label">Fires</span>
+    <span class="toc-link-count">1 animation</span>
+  </a>
 </nav>
 
   <div class="category-heading" id="cat-climatologies">
@@ -1380,6 +1384,136 @@
       </div>
       <div class="meta-about-wrap">
         <p class="meta-about"><strong>About:</strong> IMS 4&#8202;km Northern Hemisphere snow cover and sea ice with NOAA/NSIDC G02202 V6 Antarctic sea ice concentration, 2019&ndash;2021, shown at 5-day steps on side-by-side north and south polar orthographic globes. Base imagery is NASA Blue Marble (2004), using each hemisphere&rsquo;s snow-minimum month (August north, February south) so all snow and ice on screen comes from the 2019&ndash;2021 data.</p>
+        <button class="meta-about-toggle" type="button">Read more</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ FIRES ══════════════════════ -->
+  <div class="category-heading" id="cat-fires">
+    <h2>Fires</h2>
+  </div>
+ 
+  <!-- ══════════════════════ FIRE CARBON EMISSIONS ══════════════════════ -->
+  <section class="variable-section" id="fires" data-section="fires">
+    <div class="section-heading">
+      <h2>Fires Measured by Carbon Emission 2003&ndash;2022</h2>
+      <p class="section-note">Weekly carbon emitted by landscape fires, including both managed agricultural burns and wildfires.</p>
+    </div>
+ 
+    <div class="data-source" style="margin: 1.75rem 0 2rem;">
+      <h2>Data Source</h2>
+      <p>
+        This animation is based on the
+        <strong><a href="https://www.globalfiredata.org/" target="_blank" rel="noopener">Global Fire Emissions Database, version 5.1 (GFED5.1)</a></strong>
+        daily carbon emissions at <strong>0.25&deg;</strong> resolution
+        (<a href="https://doi.org/10.5281/zenodo.16794691" target="_blank" rel="noopener">doi:10.5281/zenodo.16794691</a>;
+        van der Werf et al., 2025, <em>Scientific Data</em>), covering
+        <strong>March 2003&ndash;January 2022</strong>. Daily emissions were converted from grams per grid cell
+        to grams per square meter and summed into consecutive <strong>7-day totals</strong> (987 weeks).
+        Like the LST and SST animations, this is a <strong>real weekly time series</strong>, not a
+        climatological composite. Base map shaded relief and borders are from
+        <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>.
+        Adapted from NASA SVS, &ldquo;Fires &mdash; a global perspective: March 2003 to January 2022.&rdquo;
+      </p>
+    </div>
+ 
+    <div class="tabs" role="tablist" aria-label="fire carbon emissions projection">
+      <button class="tab is-active" data-projection="platecarree" role="tab" aria-selected="true">
+        <span class="tab-icon proj-icon-platecarree" aria-hidden="true"></span>
+        Plate Carr&eacute;e
+      </button>
+      <button class="tab" data-projection="robinson" role="tab" aria-selected="false">
+        <span class="tab-icon proj-icon-robinson" aria-hidden="true"></span>
+        Robinson
+      </button>
+      <button class="tab" data-projection="foucaut" role="tab" aria-selected="false">
+        <span class="tab-icon proj-icon-mercator" aria-hidden="true"></span>
+        Foucaut
+      </button>
+      <button class="tab" data-projection="nicolosi" role="tab" aria-selected="false">
+        <span class="tab-icon proj-icon-doublehemisphere" aria-hidden="true"></span>
+        Nicolosi
+      </button>
+    </div>
+ 
+    <div class="panels">
+      <div class="panel is-active" data-projection="platecarree">
+        <video controls muted playsinline poster="">
+          <source src="videos/fires_2003_2022_platecarree.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+      <div class="panel" data-projection="robinson">
+        <video controls muted playsinline poster="">
+          <source src="videos/fires_2003_2022_robinson.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+      <div class="panel" data-projection="foucaut">
+        <video controls muted playsinline poster="">
+          <source src="videos/fires_2003_2022_foucaut.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+      <div class="panel" data-projection="nicolosi">
+        <video controls muted playsinline poster="">
+          <source src="videos/fires_2003_2022_nicolosi.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+    </div>
+    <div class="animation-meta">
+      <div class="meta-links">
+        <!-- TODO: Data Download link (add once the weekly NetCDF is published to a GitHub Release) -->
+        <a class="code-link"
+           href="https://github.com/WaverleyMoody/climate-animations/blob/main/fires/animate_fires_platecarree.py"
+           data-platecarree="https://github.com/WaverleyMoody/climate-animations/blob/main/fires/animate_fires_platecarree.py"
+           data-robinson="https://github.com/WaverleyMoody/climate-animations/blob/main/fires/animate_fires_robinson.py"
+           data-foucaut="https://github.com/WaverleyMoody/climate-animations/blob/main/fires/animate_fires_foucaut.py"
+           data-nicolosi="https://github.com/WaverleyMoody/climate-animations/blob/main/fires/animate_fires_nicolosi.py"
+           target="_blank" rel="noopener">Python Code</a>
+        <!-- TODO: R Code link (add once the R scripts are written) -->
+        <a class="youtube-link"
+ 
+           href="https://youtu.be/nj1Zkx1jRWk"
+ 
+           data-platecarree="https://youtu.be/nj1Zkx1jRWk"
+ 
+           data-robinson="https://youtu.be/XxZ7f8CNwlI"
+ 
+           data-foucaut="https://youtu.be/MRg3PnkPvE4"
+ 
+           data-nicolosi="https://youtu.be/1YEOgQsUtC8"
+ 
+           target="_blank" rel="noopener">YouTube</a>
+      </div>
+      <div class="meta-about-wrap">
+        <p class="meta-about"><strong>About:</strong> GFED5.1 weekly carbon emissions from landscape fires, March 2003&ndash;January 2022, in grams of carbon per square meter per week (colors saturate above 20). Shows both managed agricultural burning, such as post-harvest stubble fires in northern India in April&ndash;May and in the Punjab in October&ndash;November, and wildfires, including the savanna fire belts of Africa and South America and boreal fires in the Arctic summer. Each date marks the month of the week shown. The Nicolosi view uses two globular hemispheres (centered on 90&deg;W and 90&deg;E), since the projection is defined for one hemisphere at a time.</p>
         <button class="meta-about-toggle" type="button">Read more</button>
       </div>
     </div>
