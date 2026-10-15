@@ -78,9 +78,9 @@ LAT_TICKS = list(range(0, 51, 10))        # 0° ... 50°N
 SHOW_GRIDLINES = True                     # False: labels only, no lines
 
 FPS = 24                                  # 720 frames -> 30 s, same as original
-FIGSIZE = (14, 5.2)                       # 1400 x 520 px at DPI 100
-DPI = 100
-BITRATE = 6000
+FIGSIZE = (14, 5.2)                       # 1400 x 520 px at DPI 150
+DPI = 150
+BITRATE = 12000
 
 dask.config.set(scheduler="synchronous")
 plt.rcParams["animation.ffmpeg_path"] = imageio_ffmpeg.get_ffmpeg_exe()
@@ -159,8 +159,8 @@ def _build_figure(da):
     gl.ylines = SHOW_GRIDLINES
     gl.xlocator = mticker.FixedLocator(LON_TICKS)
     gl.ylocator = mticker.FixedLocator(LAT_TICKS)
-    gl.xlabel_style = {"size": 8, "color": "#333333"}
-    gl.ylabel_style = {"size": 8, "color": "#333333"}
+    gl.xlabel_style = {"size": 11, "color": "#333333"}
+    gl.ylabel_style = {"size": 11, "color": "#333333"}
 
     fig.text(0.46, 0.925, TITLE, ha="center", va="bottom",
              fontsize=15, fontweight="bold")
@@ -169,8 +169,8 @@ def _build_figure(da):
 
     cax = fig.add_axes([0.915, 0.12, 0.012, 0.64])
     cb = fig.colorbar(im, cax=cax, extend="both", ticks=LEVELS)
-    cb.ax.set_yticklabels([f"{v:.2f}" for v in LEVELS], fontsize=8)
-    cb.set_label(CBAR_LABEL, fontsize=9)
+    cb.ax.set_yticklabels([f"{v:.2f}" for v in LEVELS], fontsize=11)
+    cb.set_label(CBAR_LABEL, fontsize=12)
     cb.ax.yaxis.set_label_position("left")
 
     stamp = fig.text(0.985, 0.025, "", ha="right", va="bottom", fontsize=9)
