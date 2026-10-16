@@ -135,3 +135,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+// Video download links: point each section's link at the active panel's video
+document.querySelectorAll('.variable-section').forEach((section) => {
+  const link = section.querySelector('.video-download');
+  if (!link) return;
+
+  const update = () => {
+    const source = section.querySelector('.panel.is-active video source');
+    if (source) link.href = source.getAttribute('src');
+  };
+
+  update();                                  // set on page load
+  link.addEventListener('click', update);    // refresh at click time, after any tab change
+});
