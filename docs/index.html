@@ -43,7 +43,7 @@
   </a>
   <a href="#cat-aerosol" class="toc-link">
     <span class="toc-link-label">Aerosol Transport</span>
-    <span class="toc-link-count">1 animation</span>
+    <span class="toc-link-count">2 animations</span>
   </a>
 </nav>
 
@@ -1556,8 +1556,7 @@
         (<a href="https://doi.org/10.5067/KLICLTZ8EM9D" target="_blank" rel="noopener">doi:10.5067/KLICLTZ8EM9D</a>).
         The variable shown is <strong>dust extinction aerosol optical thickness at 550&#8202;nm
         (<code>DUEXTTAU</code>)</strong> at native <strong>0.5&deg; &times; 0.625&deg;</strong> resolution, covering
-        <strong>June 1&ndash;30, 2020</strong> (720 hourly frames). Like the LST and SST animations, this is a
-        <strong>real hourly time series</strong>, not a climatological composite. Coastlines, borders, and US city
+        <strong>June 1&ndash;30, 2020</strong> (720 hourly frames). Coastlines, borders, and US city
         locations are from <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>.
         Adapted from NASA SVS, &ldquo;Saharan Dust&rdquo; (GEOS-5).
       </p>
@@ -1596,6 +1595,61 @@
       </div>
     </div>
   </section>
+
+    <!-- ══════════════════════ ARCTIC BOREAL WILDFIRE SMOKE ══════════════════════ -->
+  <section class="variable-section" id="arctic_smoke" data-section="arctic_smoke">
+    <div class="section-heading">
+      <h2>Smoke from Arctic Boreal Forest Wildfires, June&ndash;August 2019</h2>
+      <p class="section-note">Hourly total aerosol optical depth at 550&#8202;nm, tracking smoke from the summer 2019 boreal wildfires across the Northern Hemisphere.</p>
+    </div>
+
+    <div class="data-source" style="margin: 1.75rem 0 2rem;">
+      <h2>Data Source</h2>
+      <p>
+        This animation is based on <strong>NASA GMAO
+        <a href="https://disc.gsfc.nasa.gov/datasets/M2T1NXAER_5.12.4/summary" target="_blank" rel="noopener">MERRA-2 M2T1NXAER</a></strong>
+        (V5.12.4), the hourly time-averaged aerosol diagnostics from the GEOS-5 data assimilation system,
+        distributed via the
+        <a href="https://disc.gsfc.nasa.gov/" target="_blank" rel="noopener">NASA Goddard Earth Sciences Data and Information Services Center (GES DISC)</a>
+        (<a href="https://doi.org/10.5067/KLICLTZ8EM9D" target="_blank" rel="noopener">doi:10.5067/KLICLTZ8EM9D</a>).
+        The variable shown is <strong>total aerosol extinction optical thickness at 550&#8202;nm
+        (<code>TOTEXTTAU</code>)</strong> at native <strong>0.5&deg; &times; 0.625&deg;</strong> resolution, covering
+        <strong>June 1&ndash;August 31, 2019</strong> (2,208 hourly frames). Coastlines, borders, and US city
+        locations are from <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>.
+        Adapted from the UW General Circulation Animations Library, &ldquo;Smoke from Arctic boreal forest wildfires, June&ndash;August 2019.&rdquo;
+      </p>
+    </div>
+
+    <div class="panels">
+      <div class="panel is-active" data-projection="orthographic">
+        <video controls muted playsinline poster="" style="max-width: 700px; width: 100%; display: block; margin: 0 auto;">
+          <source src="videos/arctic_smoke_jja2019_orthographic.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls" style="max-width: 700px; margin-left: auto; margin-right: auto;">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+    </div>
+    <div class="animation-meta">
+      <div class="meta-links">
+        <a href="https://github.com/WaverleyMoody/climate-animations/releases/download/aerosol_transport_v1.0/MERRA2_TOTEXTTAU_hourly_2019-06-08.nc">Download Data</a>
+        <a class="code-link"
+           href="https://github.com/WaverleyMoody/climate-animations/blob/main/arctic_smoke/arctic_smoke_orthographic.py"
+           target="_blank" rel="noopener">Python Code</a>
+        <!-- TODO: add R Code link once arctic_smoke_orthographic.R is pushed -->
+        <!-- TODO: add YouTube link -->
+      </div>
+      <div class="meta-about-wrap">
+        <p class="meta-about"><strong>About:</strong> MERRA-2 hourly total aerosol optical depth at 550&#8202;nm (TOTEXTTAU), June 1&ndash;August 31, 2019, rendered on an orthographic globe centered over the Arctic and North America. Shows smoke from the record 2019 boreal wildfires in Siberia, Alaska, and Canada spreading across the high latitudes. Each timestamp marks the center of the hour being averaged (e.g. 03:30z covers 03:00&ndash;04:00 UTC). Black dots mark US cities with populations above 50,000.</p>
+        <button class="meta-about-toggle" type="button">Read more</button>
+      </div>
+    </div>
+  </section>
+
 
 </main>
 
