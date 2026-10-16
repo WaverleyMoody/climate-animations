@@ -526,3 +526,16 @@ main {
   width: 75%;
   margin: 0;
 }
+
+/* Orthographic globes (near-square frames) -- capped width, left-aligned
+   with the section text. */
+#sst .panel video,
+#arctic_smoke .panel video {
+  max-width: 700px;
+  margin: 0;
+}
+
+#sst .speed-controls,
+#arctic_smoke .speed-controls {
+  max-width: 700px;
+}
