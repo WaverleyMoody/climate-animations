@@ -80,6 +80,7 @@ CITY_MIN_POP = 50_000
 
 TITLE = "Smoke from Arctic Boreal Forest Wildfires, June\u2013August 2019"
 SUBTITLE = "NASA MERRA-2 hourly aerosol optical depth (550 nm)"
+CBAR_LABEL = "Dust optical depth (550nm)"
 
 FPS = 35                                  # 2208 frames -> 63 s, same as original
 FIGSIZE = (12, 10.4)                      # 1800 x 1560 px at DPI 150
@@ -229,6 +230,8 @@ def _build_figure(resampler, proj):
     cax = fig.add_axes([0.895, 0.27, 0.018, 0.46])
     cb = fig.colorbar(im, cax=cax, extend="both", ticks=LEVELS)
     cb.ax.set_yticklabels([f"{v:.2f}" for v in LEVELS], fontsize=13)
+    cb.set_label(CBAR_LABEL, fontsize = 14, labelpad = 8)
+    cb.ax.yaxis.set_label_position("left")
 
     stamp = fig.text(0.93, 0.03, "", ha="right", va="bottom", fontsize=13)
     return fig, im, stamp
