@@ -1673,6 +1673,68 @@
       </div>
     </div>
   </section>
+  
+    <!-- ══════════════════════ GLOBAL AEROSOLS ══════════════════════ -->
+  <section class="variable-section" id="global_aerosols" data-section="global_aerosols">
+    <div class="section-heading">
+      <h2>Global Aerosols, August 2018&ndash;January 2020</h2>
+      <p class="section-note">Dust, smoke, sulfate, and sea salt aerosols carried by the global circulation, every three hours for eighteen months.</p>
+    </div>
+
+    <div class="data-source" style="margin: 1.75rem 0 2rem;">
+      <h2>Data Source</h2>
+      <p>
+        This animation is based on <strong>NASA GMAO
+        <a href="https://disc.gsfc.nasa.gov/datasets/M2T1NXAER_5.12.4/summary" target="_blank" rel="noopener">MERRA-2 M2T1NXAER</a></strong>
+        (<a href="https://doi.org/10.5067/KLICLTZ8EM9D" target="_blank" rel="noopener">doi:10.5067/KLICLTZ8EM9D</a>) and
+        <strong><a href="https://disc.gsfc.nasa.gov/datasets/M2T1NXSLV_5.12.4/summary" target="_blank" rel="noopener">M2T1NXSLV</a></strong>
+        (<a href="https://doi.org/10.5067/VJAFPLI1CSIV" target="_blank" rel="noopener">doi:10.5067/VJAFPLI1CSIV</a>), V5.12.4,
+        the hourly time-averaged products of the GEOS-5 data assimilation system, distributed via the
+        <a href="https://disc.gsfc.nasa.gov/" target="_blank" rel="noopener">NASA Goddard Earth Sciences Data and Information Services Center (GES DISC)</a>.
+        Five layers are blended over the map: extinction aerosol optical thickness at 550&#8202;nm for
+        <strong>dust</strong> (<code>DUEXTTAU</code>), <strong>smoke / carbon</strong> (<code>BCEXTTAU</code> + <code>OCEXTTAU</code>),
+        <strong>sulfate</strong> (<code>SUEXTTAU</code>), and <strong>sea salt</strong> (<code>SSEXTTAU</code>), plus
+        <strong>total precipitable water vapor</strong> (<code>TQV</code>), at native <strong>0.5&deg; &times; 0.625&deg;</strong> resolution.
+        The animation covers <strong>August 1, 2018&ndash;January 31, 2020</strong>, using every third hourly time-average
+        (4,392 frames). Like the Saharan dust and Arctic smoke animations, this is a <strong>real time series</strong>,
+        not a climatological composite. The base map is NASA&rsquo;s
+        <a href="https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/" target="_blank" rel="noopener">Blue Marble Next Generation</a>
+        (2004 monthly), and the land mask is from <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>.
+        Adapted from the UW General Circulation Animations Library, &ldquo;Aerosols, August 2018&ndash;January 2020,&rdquo;
+        originally produced by NASA GMAO from the higher-resolution GEOS-FP system.
+      </p>
+    </div>
+
+    <div class="panels">
+      <div class="panel is-active" data-projection="platecarree">
+        <video controls muted playsinline poster="">
+          <source src="videos/global_aerosols_2018_2020_platecarree.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+    </div>
+    <div class="animation-meta">
+      <div class="meta-links">
+        <!-- TODO: confirm release tag once the data release is published -->
+        <a href="https://github.com/WaverleyMoody/climate-animations/releases/tag/global_aerosols_v1.0"
+           target="_blank" rel="noopener">Download Data</a>
+        <a class="code-link"
+           href="https://github.com/WaverleyMoody/climate-animations/blob/main/global_aerosols/global_aerosols_platecarree.py"
+           target="_blank" rel="noopener">Python Code</a>
+        <a class="code-link"
+           href="https://github.com/WaverleyMoody/climate-animations/blob/main/global_aerosols/global_aerosols_platecarree.R"
+           target="_blank" rel="noopener">R Code</a>
+        <!-- TODO: add YouTube link -->
+        <a class="video-download" href="#" download>Download Video</a>
+      </div>
+      <div class="meta-about-wrap">
+        <p class="meta-about"><strong>About:</strong> MERRA-2 aerosol optical thickness at 550&#8202;nm by species, August 1, 2018&ndash;January 31, 2020, every three hours, in the Plate Carr&eacute;e projection. Dust (orange) streams off the Sahara and across the Atlantic; smoke (green to red to white with density) marks the 2019 Amazon and southern African burning seasons and the Australian bushfires of late 2019; sulfate appears in white over industrial regions; sea salt (blue to pale yellow) traces storm tracks over the oceans; a faint gray haze shows water vapor. Each timestamp marks the center of the hour being averaged (e.g. 03:30 UTC covers 03:00&ndash;04:00 UTC). MERRA-2 has no nitrate aerosol, so the original&rsquo;s
 
 
 </main>
