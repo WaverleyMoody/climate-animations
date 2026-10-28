@@ -13,8 +13,10 @@
 #     aerosol extinction AOT (dust, carbonaceous, sulfate, sea salt) and total
 #     precipitable water vapor (2018-08-01 to 2020-01-31), rendered in the
 #     PlateCarree projection.
-# Note: For the data download, see download_aerosols_merra2.py in the
-#     global_aerosols scripts folder.
+# Note: DATA_DIR can hold either the daily hourly files from
+#     download_aerosols_merra2.py (merra2_aerosols_YYYYMMDD.nc) or the monthly
+#     3-hourly release files (global_aerosols_merra2_3hourly_YYYY-MM.nc); the
+#     rendered frames are identical.
 #
 # Run:
 #     # 1) Set PREVIEW_ONLY <- TRUE, check the PNG
@@ -44,7 +46,7 @@ OUT_NAME  <- "global_aerosols_2018_2020_platecarree_R.mp4"
 PREVIEW_ONLY <- FALSE                      # TRUE: save one PNG and stop
 PREVIEW_TIME <- "2019-08-02 14:30"        # matches the reference frame (UTC)
 
-HOUR_STEP <- 3                            # every 3rd hour -> 4,392 frames
+HOUR_STEP <- 3                            # render 00:30, 03:30, ... UTC -> 4,392 frames
 FPS       <- 30                           # 4,392 frames -> ~2:26 (original 2:13)
 
 # Composited map raster (2:1 equirectangular) and full video frame, in pixels
@@ -311,10 +313,31 @@ draw_frame <- function(img, stamp, keys) {
 # -----------------------------------------------------------------------------
 # Files, time, verification
 # -----------------------------------------------------------------------------
-day_files <- function() {
-  f <- list.files(DATA_DIR, pattern = "^merra2_aerosols_[0-9]{8}\\.nc$", full.names = TRUE)
-  sort(f[!startsWith(basename(f), "._")])
+DAILY_PATTERN   <- "^merra2_aerosols_[0-9]{8}\\.nc$"                       # download script output
+MONTHLY_PATTERN <- "^global_aerosols_merra2_3hourly_[0-9]{4}-[0-9]{2}\\.nc$"  # GitHub Release files
+
+data_files <- function() {
+  # Daily hourly files if present, otherwise monthly 3-hourly release files
+  pick <- function(pattern) {
+    f <- list.files(DATA_DIR, pattern = pattern, full.names = TRUE)
+    sort(f[!startsWith(basename(f), "._")])
+  }
+  daily <- pick(DAILY_PATTERN)
+  if (length(daily)) return(list(files = daily, kind = "daily"))
+  monthly <- pick(MONTHLY_PATTERN)
+  if (length(monthly)) return(list(files = monthly, kind = "monthly"))
+  stop("No merra2_aerosols_YYYYMMDD.nc or global_aerosols_merra2_3hourly_YYYY-MM.nc files in ", DATA_DIR)
 }
+
+file_for <- function(t, kind) {
+  if (kind == "daily") {
+    file.path(DATA_DIR, sprintf("merra2_aerosols_%s.nc", format(t, "%Y%m%d", tz = "UTC")))
+  } else {
+    file.path(DATA_DIR, sprintf("global_aerosols_merra2_3hourly_%s.nc", format(t, "%Y-%m", tz = "UTC")))
+  }
+}
+
+render_this <- function(t) as.integer(format(t, "%H", tz = "UTC")) %% HOUR_STEP == 0
 
 read_times <- function(nc) {
   u      <- ncatt_get(nc, "time", "units")$value          # e.g. "minutes since 2019-08-02 00:30:00"
@@ -324,13 +347,27 @@ read_times <- function(nc) {
   origin + as.numeric(ncvar_get(nc, "time")) * mult
 }
 
-load_day <- function(path) {
-  nc <- nc_open(path)
-  on.exit(nc_close(nc))
-  list(times  = read_times(nc),
-       lat    = as.numeric(ncvar_get(nc, "lat")),
-       lon    = as.numeric(ncvar_get(nc, "lon")),
-       fields = setNames(lapply(ALL_VARS, function(v) ncvar_get(nc, v)), ALL_VARS))  # [lon, lat, time]
+open_data <- function(path) {
+  # Daily files (24 steps) are read whole; monthly files frame by frame to limit memory.
+  # get(i) returns a named list of [lon, lat] matrices for timestep i.
+  nc    <- nc_open(path)
+  times <- read_times(nc)
+  out   <- list(times = times,
+                lat   = as.numeric(ncvar_get(nc, "lat")),
+                lon   = as.numeric(ncvar_get(nc, "lon")))
+  if (length(times) <= 24) {
+    arrs <- setNames(lapply(ALL_VARS, function(v) ncvar_get(nc, v)), ALL_VARS)  # [lon, lat, time]
+    nc_close(nc)
+    out$get   <- function(i) lapply(arrs, function(a) a[, , i])
+    out$close <- function() invisible()
+  } else {
+    out$get <- function(i) {
+      setNames(lapply(ALL_VARS, function(v) ncvar_get(nc, v, start = c(1, 1, i), count = c(-1, -1, 1))),
+               ALL_VARS)
+    }
+    out$close <- function() nc_close(nc)
+  }
+  out
 }
 
 stamp_text <- function(t) format(t, "%Y-%m-%d %H:%M UTC", tz = "UTC")
@@ -373,10 +410,12 @@ main <- function() {
   if (!dir.exists(DATA_DIR)) stop(DATA_DIR, " not found. Is /Volumes/CLIMATEDATA mounted?")
   dir.create(LOCAL_DIR, recursive = TRUE, showWarnings = FALSE)
   
-  files <- day_files()
-  message(sprintf("Found %d daily files", length(files)))
+  found <- data_files()
+  files <- found$files; kind <- found$kind
+  message(sprintf("Found %d %s files", length(files), kind))
   
-  first <- load_day(files[1])
+  first <- open_data(files[1])
+  first$close()
   stopifnot(isTRUE(all.equal(first$lon[1], -180)), isTRUE(all.equal(first$lat[1], -90)))
   ip <- build_interp(first$lat, first$lon)
   rm(first); invisible(gc())
@@ -400,13 +439,14 @@ main <- function() {
   
   if (PREVIEW_ONLY) {
     t   <- as.POSIXct(PREVIEW_TIME, tz = "UTC")
-    day <- load_day(file.path(DATA_DIR, sprintf("merra2_aerosols_%s.nc", format(t, "%Y%m%d"))))
-    i   <- which.min(abs(as.numeric(day$times) - as.numeric(t)))
-    fields <- lapply(day$fields, function(a) a[, , i])
+    dat <- open_data(file_for(t, kind))
+    i   <- which.min(abs(as.numeric(dat$times) - as.numeric(t)))
+    fields <- dat$get(i)
+    dat$close()
     img <- composite(fields, get_base(as.integer(format(t, "%m"))), ocean, ip, luts)
     out <- file.path(LOCAL_DIR, "preview_frame_R.png")
     open_device(out, "png")
-    draw_frame(img, stamp_text(day$times[i]), keys)
+    draw_frame(img, stamp_text(dat$times[i]), keys)
     dev.off()
     message("Preview saved: ", out)
     return(invisible())
@@ -418,19 +458,21 @@ main <- function() {
   
   n_written <- 0L
   for (d in seq_along(files)) {
-    day <- load_day(files[d])
-    for (i in seq(1, length(day$times), by = HOUR_STEP)) {
-      fields <- lapply(day$fields, function(a) a[, , i])
-      month  <- as.integer(format(day$times[i], "%m", tz = "UTC"))
+    dat <- open_data(files[d])
+    for (i in seq_along(dat$times)) {
+      if (!render_this(dat$times[i])) next
+      fields <- dat$get(i)
+      month  <- as.integer(format(dat$times[i], "%m", tz = "UTC"))
       img    <- composite(fields, get_base(month), ocean, ip, luts)
       n_written <- n_written + 1L
       open_device(file.path(frame_dir, sprintf("frame_%05d.jpg", n_written)), "jpeg")
-      draw_frame(img, stamp_text(day$times[i]), keys)
+      draw_frame(img, stamp_text(dat$times[i]), keys)
       dev.off()
     }
-    rm(day); invisible(gc())
-    if (d %% 10 == 0 || d == length(files)) {
-      message(sprintf("  day %d/%d  %s  (%d frames)", d, length(files), basename(files[d]), n_written))
+    dat$close()
+    rm(dat); invisible(gc())
+    if (kind == "monthly" || d %% 10 == 0 || d == length(files)) {
+      message(sprintf("  file %d/%d  %s  (%d frames)", d, length(files), basename(files[d]), n_written))
     }
   }
   

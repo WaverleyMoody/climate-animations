@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Aerosols Data Downloads</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Global Aerosols — Data Downloads</h1>
+  <p>NASA MERRA-2 extinction aerosol optical thickness at 550&#8202;nm (dust, black carbon, organic carbon, sulfate, sea salt) and total precipitable water vapor, every 3 hours (HH:30 UTC), 0.5&deg; &times; 0.625&deg;, August 2018&ndash;January 2020. One NetCDF file per month.</p>
+
+  <h2>Monthly Files</h2>
+  <ul class="download-list">
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/aerosol_transport_v1.0/global_aerosols_merra2_3hourly_2018-08.nc">August 2018 (301 MB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/aerosol_transport_v1.0/global_aerosols_merra2_3hourly_2018-09.nc">September 2018 (292 MB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/aerosol_transport_v1.0/global_aerosols_merra2_3hourly_2018-10.nc">October 2018 (298 MB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/aerosol_transport_v1.0/global_aerosols_merra2_3hourly_2018-11.nc">November 2018 (286 MB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/aerosol_transport_v1.0/global_aerosols_merra2_3hourly_2018-12.nc">December 2018 (290 MB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/aerosol_transport_v1.0/global_aerosols_merra2_3hourly_2019-01.nc">January 2019 (290 MB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/aerosol_transport_v1.0/global_aerosols_merra2_3hourly_2019-02.nc">February 2019 (267 MB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/aerosol_transport_v1.0/global_aerosols_merra2_3hourly_2019-03.nc">March 2019 (298 MB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/aerosol_transport_v1.0/global_aerosols_merra2_3hourly_2019-04.nc">April 2019 (286 MB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/aerosol_transport_v1.0/global_aerosols_merra2_3hourly_2019-05.nc">May 2019 (292 MB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/aerosol_transport_v1.0/global_aerosols_merra2_3hourly_2019-06.nc">June 2019 (280 MB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/aerosol_transport_v1.0/global_aerosols_merra2_3hourly_2019-07.nc">July 2019 (297 MB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/aerosol_transport_v1.0/global_aerosols_merra2_3hourly_2019-08.nc">August 2019 (307 MB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/aerosol_transport_v1.0/global_aerosols_merra2_3hourly_2019-09.nc">September 2019 (296 MB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/aerosol_transport_v1.0/global_aerosols_merra2_3hourly_2019-10.nc">October 2019 (303 MB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/aerosol_transport_v1.0/global_aerosols_merra2_3hourly_2019-11.nc">November 2019 (291 MB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/aerosol_transport_v1.0/global_aerosols_merra2_3hourly_2019-12.nc">December 2019 (297 MB)</a></li>
+    <li><a href="https://github.com/WaverleyMoody/climate-animations/releases/download/aerosol_transport_v1.0/global_aerosols_merra2_3hourly_2020-01.nc">January 2020 (305 MB)</a></li>
+  </ul>
+
+  <h2>Variables</h2>
+  <ul>
+    <li><code>DUEXTTAU</code> — dust extinction AOT (dimensionless)</li>
+    <li><code>BCEXTTAU</code>, <code>OCEXTTAU</code> — black carbon and organic carbon extinction AOT (summed as smoke / carbon in the animation)</li>
+    <li><code>SUEXTTAU</code> — sulfate extinction AOT</li>
+    <li><code>SSEXTTAU</code> — sea salt extinction AOT</li>
+    <li><code>TQV</code> — total precipitable water vapor (kg m<sup>&minus;2</sup>)</li>
+  </ul>
+  <p>Each file holds the hourly time-averages centered at 00:30, 03:30, &hellip; 21:30 UTC, the same timesteps the animation renders. AOT values are rounded to 4 decimals and water vapor to 0.1&nbsp;kg&nbsp;m<sup>&minus;2</sup>.</p>
+
+  <h2>Directions</h2>
+  <ol>
+    <li>Download all 18 files above into one folder.</li>
+    <li>Download the 2004 monthly <a href="https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/base-map/">Blue Marble Next Generation</a> base maps (<code>world.2004MM.3x5400x2700.jpg</code>, all 12 months) into a second folder.</li>
+    <li>Open <a href="https://github.com/WaverleyMoody/climate-animations/blob/main/global_aerosols/global_aerosols_platecarree.py">global_aerosols_platecarree.py</a> (or the <a href="https://github.com/WaverleyMoody/climate-animations/blob/main/global_aerosols/global_aerosols_platecarree.R">R version</a>), set <code>DATA_DIR</code> to the first folder and <code>BLUE_MARBLE_DIR</code> to the second, and run it.</li>
+  </ol>
+  <pre>DATA_DIR/
+    global_aerosols_merra2_3hourly_YYYY-MM.nc   (18 files)
+BLUE_MARBLE_DIR/
+    world.2004MM.3x5400x2700.jpg               (12 files)</pre>
+
+  <h2>Sources</h2>
+  <ul>
+    <li><a href="https://disc.gsfc.nasa.gov/datasets/M2T1NXAER_5.12.4/summary">MERRA-2 tavg1_2d_aer_Nx (M2T1NXAER), V5.12.4, NASA GMAO / GES DISC</a></li>
+    <li><a href="https://disc.gsfc.nasa.gov/datasets/M2T1NXSLV_5.12.4/summary">MERRA-2 tavg1_2d_slv_Nx (M2T1NXSLV), V5.12.4, NASA GMAO / GES DISC</a></li>
+    <li><a href="https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/">NASA Blue Marble Next Generation</a></li>
+  </ul>
+
+  <p><a href="index.html#global_aerosols">← Back to the animation library</a></p>
+</body>
+</html>

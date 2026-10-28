@@ -13,8 +13,10 @@ Description: Generates the global aerosols animation from NASA MERRA-2 hourly
     aerosol extinction AOT (dust, carbonaceous, sulfate, sea salt) and total
     precipitable water vapor (2018-08-01 to 2020-01-31), rendered in the
     PlateCarree projection.
-Note: For the data download, see download_aerosols_merra2.py in the
-    global_aerosols scripts folder.
+Note: DATA_DIR can hold either the daily hourly files from
+    download_aerosols_merra2.py (merra2_aerosols_YYYYMMDD.nc) or the monthly
+    3-hourly release files (global_aerosols_merra2_3hourly_YYYY-MM.nc); the
+    rendered frames are identical.
 
 Run:
     conda activate climate
@@ -59,7 +61,7 @@ OUT_NAME = "global_aerosols_2018_2020_platecarree.mp4"
 PREVIEW_ONLY = False                       # True: save one PNG and stop
 PREVIEW_TIME = "2019-08-02T14:30"         # matches the reference frame
 
-HOUR_STEP = 3                             # every 3rd hour -> 4,392 frames
+HOUR_STEP = 3                             # render 00:30, 03:30, ... UTC -> 4,392 frames
 FPS = 30                                  # 4,392 frames -> ~2:26 (original 2:13)
 BITRATE = 14000
 
@@ -290,14 +292,30 @@ def _build_figure(ramps):
 # ---------------------------------------------------------------------------
 # Files, verification
 # ---------------------------------------------------------------------------
-def _day_files():
-    files = []
-    for f in sorted(DATA_DIR.iterdir()):
-        if f.name.startswith("._"):
-            continue
-        if re.fullmatch(r"merra2_aerosols_\d{8}\.nc", f.name):
-            files.append(f)
-    return files
+DAILY_RE = r"merra2_aerosols_(\d{8})\.nc"                       # download script output
+MONTHLY_RE = r"global_aerosols_merra2_3hourly_(\d{4}-\d{2})\.nc"  # GitHub Release files
+
+
+def _data_files():
+    """Daily hourly files if present, otherwise monthly 3-hourly release files."""
+    names = [f for f in sorted(DATA_DIR.iterdir()) if not f.name.startswith("._")]
+    daily = [f for f in names if re.fullmatch(DAILY_RE, f.name)]
+    monthly = [f for f in names if re.fullmatch(MONTHLY_RE, f.name)]
+    if daily:
+        return daily, "daily"
+    if monthly:
+        return monthly, "monthly"
+    sys.exit(f"No merra2_aerosols_YYYYMMDD.nc or global_aerosols_merra2_3hourly_YYYY-MM.nc files in {DATA_DIR}")
+
+
+def _file_for(t, kind):
+    if kind == "daily":
+        return DATA_DIR / f"merra2_aerosols_{t:%Y%m%d}.nc"
+    return DATA_DIR / f"global_aerosols_merra2_3hourly_{t:%Y-%m}.nc"
+
+
+def _render_this(t):
+    return pd.Timestamp(t).hour % HOUR_STEP == 0
 
 
 def _stamp(t):
@@ -313,9 +331,11 @@ def _verify_mp4(path, expected_frames):
     print(f"Verified {path.name}: {n_frames} frames, {secs:.1f} s")
 
 
-def _load_day(path):
-    with xr.open_dataset(path) as ds:
-        ds = ds[ALL_VARS].load()
+def _open(path):
+    """Daily files (24 steps) are read whole; monthly files frame by frame to limit memory."""
+    ds = xr.open_dataset(path)[ALL_VARS]
+    if ds.sizes["time"] <= 24:
+        ds = ds.load()
     return ds
 
 
@@ -327,11 +347,11 @@ def main():
         sys.exit(f"{DATA_DIR} not found. Is /Volumes/CLIMATEDATA mounted?")
     LOCAL_DIR.mkdir(parents=True, exist_ok=True)
 
-    files = _day_files()
-    print(f"Found {len(files)} daily files")
+    files, kind = _data_files()
+    print(f"Found {len(files)} {kind} files")
 
-    first = _load_day(files[0])
-    src_lat, src_lon = first.lat.values, first.lon.values
+    with xr.open_dataset(files[0]) as first:
+        src_lat, src_lon = first.lat.values, first.lon.values
     assert np.isclose(src_lon[0], -180.0) and np.isclose(src_lat[0], -90.0), "Unexpected MERRA-2 grid"
     coords = _interp_coords(src_lat, src_lon)
 
@@ -343,8 +363,7 @@ def main():
 
     if PREVIEW_ONLY:
         t = pd.Timestamp(PREVIEW_TIME)
-        day = DATA_DIR / f"merra2_aerosols_{t:%Y%m%d}.nc"
-        ds = _load_day(day).sel(time=t, method="nearest")
+        ds = _open(_file_for(t, kind)).sel(time=t, method="nearest").load()
         fields = {v: ds[v].values for v in ALL_VARS}
         im.set_data(_composite(fields, bases[t.month], ocean, coords, ramps))
         stamp.set_text(_stamp(ds.time.values))
@@ -359,9 +378,11 @@ def main():
     n_written = 0
     with writer.saving(fig, str(local_mp4), dpi=DPI):
         for d, path in enumerate(files, 1):
-            ds = _load_day(path)
-            for i in range(0, ds.sizes["time"], HOUR_STEP):
-                frame = ds.isel(time=i)
+            ds = _open(path)
+            for i in range(ds.sizes["time"]):
+                if not _render_this(ds.time.values[i]):
+                    continue
+                frame = ds.isel(time=i).load()
                 fields = {v: frame[v].values for v in ALL_VARS}
                 month = pd.Timestamp(frame.time.values).month
                 im.set_data(_composite(fields, bases[month], ocean, coords, ramps))
@@ -369,8 +390,8 @@ def main():
                 writer.grab_frame()
                 n_written += 1
             ds.close()
-            if d % 10 == 0 or d == len(files):
-                print(f"  day {d}/{len(files)}  {path.name}  ({n_written} frames)")
+            if kind == "monthly" or d % 10 == 0 or d == len(files):
+                print(f"  file {d}/{len(files)}  {path.name}  ({n_written} frames)")
     plt.close(fig)
 
     _verify_mp4(local_mp4, n_written)
