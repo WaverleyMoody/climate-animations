@@ -49,6 +49,10 @@
     <span class="toc-link-label">Aerosol Transport</span>
     <span class="toc-link-count">2 animations</span>
   </a>
+  <a href="#cat-carbon" class="toc-link">
+    <span class="toc-link-label">Transport of Trace Gases: Carbon Species</span>
+    <span class="toc-link-count">2 animations</span>
+  </a>
 </nav>
 
   <div class="category-heading" id="cat-climatologies">
@@ -1730,6 +1734,134 @@
      </div>
       <div class="meta-about-wrap">
         <p class="meta-about"><strong>About:</strong> MERRA-2 aerosol optical thickness at 550&#8202;nm by species, August 1, 2018&ndash;January 31, 2020, every three hours, in the Plate Carr&eacute;e projection. Dust (orange) streams off the Sahara and across the Atlantic; smoke (green to red to white with density) marks the 2019 Amazon and southern African burning seasons and the Australian bushfires of late 2019; sulfate appears in white over industrial regions; sea salt (blue to pale yellow) traces storm tracks over the oceans; a faint gray haze shows water vapor. Each timestamp marks the center of the hour being averaged (e.g. 03:30 UTC covers 03:00&ndash;04:00 UTC). MERRA-2 has no nitrate aerosol, so the original&rsquo;s nitrate layer is not reproduced.</p>
+        <button class="meta-about-toggle" type="button">Read more</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ TRANSPORT OF TRACE GASES: CARBON SPECIES ══════════════════════ -->
+  <div class="category-heading" id="cat-carbon">
+    <h2>Transport of Trace Gases: Carbon Species</h2>
+  </div>
+
+  <!-- ══════════════════════ CO FROM ARCTIC WILDFIRES ══════════════════════ -->
+  <section class="variable-section" id="arctic_co" data-section="arctic_co">
+    <div class="section-heading">
+      <h2>CO from Arctic Wildfires, June&ndash;August 2019</h2>
+      <p class="section-note">Hourly carbon monoxide column, tracking CO from the summer 2019 boreal wildfires across the Northern Hemisphere.</p>
+    </div>
+
+    <div class="data-source" style="margin: 1.75rem 0 2rem;">
+      <h2>Data Source</h2>
+      <p>
+        This animation is based on <strong>NASA GMAO
+        <a href="https://disc.gsfc.nasa.gov/datasets/M2T1NXCHM_5.12.4/summary" target="_blank" rel="noopener">MERRA-2 M2T1NXCHM</a></strong>
+        (V5.12.4), the hourly time-averaged carbon monoxide and ozone diagnostics from the GEOS-5 data assimilation system,
+        distributed via the
+        <a href="https://disc.gsfc.nasa.gov/" target="_blank" rel="noopener">NASA Goddard Earth Sciences Data and Information Services Center (GES DISC)</a>
+        (<a href="https://doi.org/10.5067/3RQ5YS674DGQ" target="_blank" rel="noopener">doi:10.5067/3RQ5YS674DGQ</a>).
+        The variable shown is the <strong>carbon monoxide column burden (<code>COCL</code>)</strong>, converted to
+        Dobson units, at native <strong>0.5&deg; &times; 0.625&deg;</strong> resolution, covering
+        <strong>June 1&ndash;August 31, 2019</strong> (2,208 hourly frames). Coastlines, borders, and US city
+        locations are from <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>.
+      </p>
+    </div>
+
+    <div class="panels">
+      <div class="panel is-active" data-projection="orthographic">
+        <video controls muted playsinline poster="">
+          <source src="videos/arctic_co_jja2019_orthographic.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+    </div>
+    <div class="animation-meta">
+      <div class="meta-links">
+        <!-- TODO: link the GitHub Release data file -->
+        <a href="#">Download Data</a>
+        <a class="code-link"
+           href="https://github.com/WaverleyMoody/climate-animations/blob/main/C02_arctic/arctic_co_orthographic.py"
+           target="_blank" rel="noopener">Python Code</a>
+        <!-- TODO: link the R script once written -->
+        <a class="code-link"
+           href="#"
+           target="_blank" rel="noopener">R Code</a>
+        <!-- TODO: add the YouTube link once uploaded -->
+        <a class="youtube-link"
+           href="#"
+           target="_blank" rel="noopener">YouTube</a>
+        <a class="video-download" href="#" download>Download Video</a>
+      </div>
+      <div class="meta-about-wrap">
+        <p class="meta-about"><strong>About:</strong> MERRA-2 hourly carbon monoxide column (COCL), June 1&ndash;August 31, 2019, rendered on an orthographic globe centered over the Arctic and North America. Shows CO from the record 2019 boreal wildfires in Siberia, Alaska, and Canada spreading across the high latitudes. The original plots CO tagged as biomass burning; MERRA-2 provides only total CO, so a local background (the 10th percentile of daily means in a 31-day window) is subtracted from each pixel to isolate the fire signal. Each timestamp marks the center of the hour being averaged (e.g. 21:30z covers 21:00&ndash;22:00 UTC). Black dots mark US cities with populations above 50,000.</p>
+        <button class="meta-about-toggle" type="button">Read more</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ SURFACE CO, DECEMBER 2006 ══════════════════════ -->
+  <section class="variable-section" id="co_surface" data-section="co_surface">
+    <div class="section-heading">
+      <h2>CO, December 2006</h2>
+      <p class="section-note">Hourly carbon monoxide concentration at the surface, in parts per billion.</p>
+    </div>
+
+    <div class="data-source" style="margin: 1.75rem 0 2rem;">
+      <h2>Data Source</h2>
+      <p>
+        This animation is based on <strong>NASA GMAO
+        <a href="https://disc.gsfc.nasa.gov/datasets/M2T1NXCHM_5.12.4/summary" target="_blank" rel="noopener">MERRA-2 M2T1NXCHM</a></strong>
+        (V5.12.4), the hourly time-averaged carbon monoxide and ozone diagnostics from the GEOS-5 data assimilation system,
+        distributed via the
+        <a href="https://disc.gsfc.nasa.gov/" target="_blank" rel="noopener">NASA Goddard Earth Sciences Data and Information Services Center (GES DISC)</a>
+        (<a href="https://doi.org/10.5067/3RQ5YS674DGQ" target="_blank" rel="noopener">doi:10.5067/3RQ5YS674DGQ</a>).
+        The variable shown is <strong>carbon monoxide surface concentration (<code>COSC</code>)</strong> in ppbv at native
+        <strong>0.5&deg; &times; 0.625&deg;</strong> resolution, covering <strong>December 1&ndash;31, 2006</strong>
+        (744 hourly frames), over the December
+        <a href="https://visibleearth.nasa.gov/collection/1484/blue-marble" target="_blank" rel="noopener">NASA Blue Marble: Next Generation</a> imagery.
+        Adapted from NASA SVS, &ldquo;Simulated Surface Carbon Monoxide&rdquo; (GEOS-5).
+      </p>
+    </div>
+
+    <div class="panels">
+      <div class="panel is-active" data-projection="platecarree">
+        <video controls muted playsinline poster="">
+          <source src="videos/co_surface_dec2006_platecarree.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. You can download the file directly instead.
+        </video>
+        <div class="speed-controls">
+          <button class="speed-btn" data-speed="0.25">Slow</button>
+          <button class="speed-btn is-active" data-speed="1">Normal</button>
+          <button class="speed-btn" data-speed="2">Fast</button>
+          <button class="loop-btn" data-loop-toggle type="button" aria-pressed="false">Loop</button>
+        </div>
+      </div>
+    </div>
+    <div class="animation-meta">
+      <div class="meta-links">
+        <!-- TODO: link the GitHub Release data file -->
+        <a href="#">Download Data</a>
+        <a class="code-link"
+           href="https://github.com/WaverleyMoody/climate-animations/blob/main/co_surface/co_surface_platecarree.py"
+           target="_blank" rel="noopener">Python Code</a>
+        <!-- TODO: link the R script once written -->
+        <a class="code-link"
+           href="#"
+           target="_blank" rel="noopener">R Code</a>
+        <!-- TODO: add the YouTube link once uploaded -->
+        <a class="youtube-link"
+           href="#"
+           target="_blank" rel="noopener">YouTube</a>
+        <a class="video-download" href="#" download>Download Video</a>
+      </div>
+      <div class="meta-about-wrap">
+        <p class="meta-about"><strong>About:</strong> MERRA-2 hourly carbon monoxide surface concentration (COSC), December 1&ndash;31, 2006, in a Pacific-centered Plate Carr&eacute;e projection. Clean air below about 70&#8202;ppb is left transparent so the Blue Marble shows through. Each timestamp marks the center of the hour being averaged (e.g. 0330 covers 03:00&ndash;04:00 UTC).</p>
         <button class="meta-about-toggle" type="button">Read more</button>
       </div>
     </div>
