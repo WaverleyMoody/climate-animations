@@ -13,7 +13,7 @@
 #     MERRA-2 hourly CO total column COCL (2019-06-01 to 2019-08-31), rendered in
 #     the Orthographic projection.
 # Note: For the data download, see download_merra2_co_2019_jja.py in the
-#     C02_arctic scripts folder.
+#     co_arctic scripts folder.
 #
 # Background removal:
 #     The original (GEOS-5 FP) plots CO tagged as biomass burning, so clean air
