@@ -23,6 +23,9 @@
 #     One frame per 3-hourly CO2 time step (2,920 frames). The hourly CO fields
 #     centered within 45 minutes of that time (MERRA-2 hours are centered at
 #     HH:30, so normally the two hours either side) are averaged to match it.
+#     The CO input can be either the full hourly file or the GitHub Release
+#     file (MERRA2_COCL_3hourly_2006.nc, already averaged to these times, so
+#     each frame then matches a single step); both give the same frames.
 #
 # Compositing (back to front):
 #     1) Base map: flat blue ocean; land from the January 2004 Blue Marble,
@@ -56,7 +59,8 @@ LOCAL_DIR <- file.path(WORK_DIR, "_render")
 NE_CACHE  <- file.path(path.expand("~"), "CLIMATE ANIMATIONS", "_naturalearth")
 MASK_CACHE <- file.path(WORK_DIR, "_landmask_R.rds")
 
-CO_FILE   <- sprintf("MERRA2_COCL_hourly_%d.nc", YEAR)
+CO_FILES  <- c(sprintf("MERRA2_COCL_hourly_%d.nc", YEAR),   # full hourly download
+               sprintf("MERRA2_COCL_3hourly_%d.nc", YEAR))  # GitHub Release version
 CO_VAR    <- "CO_column"                   # 1e18 molecules cm-2
 CO2_FILE  <- sprintf("CAMS_EGG4_XCO2_3hourly_%d.nc", YEAR)
 CO2_VAR   <- "CO2_column"                  # ppmv
@@ -307,12 +311,15 @@ open_series <- function(path, var) {
   list(nc = nc, lon = lon, lat = lat, times = times, per_day = per_day, get = get)
 }
 
-locate <- function(name) {
-  for (d in c(DATA_DIR, WORK_DIR)) {
-    p <- file.path(d, name)
-    if (file.exists(p)) return(p)
+# First existing file among `names` (in order), in DATA_DIR then WORK_DIR
+locate <- function(names) {
+  for (name in names) {
+    for (d in c(DATA_DIR, WORK_DIR)) {
+      p <- file.path(d, name)
+      if (file.exists(p)) return(p)
+    }
   }
-  stop("Cannot find ", name, " in ", DATA_DIR, " or ", WORK_DIR)
+  stop("Cannot find ", paste(names, collapse = " or "), " in ", DATA_DIR, " or ", WORK_DIR)
 }
 
 # Horizontal colorbar in figure coordinates, label above, ticks below
@@ -406,13 +413,13 @@ verify_mp4 <- function(path, expected_frames) {
 # -----------------------------------------------------------------------------
 main <- function() {
   dir.create(LOCAL_DIR, recursive = TRUE, showWarnings = FALSE)
-  co <- open_series(locate(CO_FILE), CO_VAR)
+  co <- open_series(locate(CO_FILES), CO_VAR)
   co2 <- open_series(locate(CO2_FILE), CO2_VAR)
   on.exit({ nc_close(co$nc); nc_close(co2$nc) }, add = TRUE)
 
   fmt <- function(t) format(t, "%Y-%m-%d %H:%M", tz = "UTC")
-  message(sprintf("CO : %d hourly steps, %s to %s", length(co$times),
-                  fmt(co$times[1]), fmt(co$times[length(co$times)])))
+  message(sprintf("CO : %d steps every %g h, %s to %s", length(co$times),
+                  24 / co$per_day, fmt(co$times[1]), fmt(co$times[length(co$times)])))
   message(sprintf("CO2: %d 3-hourly steps, %s to %s", length(co2$times),
                   fmt(co2$times[1]), fmt(co2$times[length(co2$times)])))
 

@@ -24,6 +24,9 @@ Frames:
     whose centers fall within 45 minutes of that time (MERRA-2 hours centered
     at HH:30, so normally the two hours either side) are averaged to match it.
     Both fields are bilinearly interpolated to a 0.25 deg display grid.
+    The CO input can be either the full hourly file or the GitHub Release
+    file (MERRA2_COCL_3hourly_2006.nc, already averaged to these times, so
+    each frame then matches a single step); both give the same frames.
 
 Compositing (back to front):
     1) Base map: flat blue ocean; land from the January 2004 Blue Marble,
@@ -70,7 +73,8 @@ WORK_DIR = Path.home() / "CLIMATE ANIMATIONS" / "co_co2_2006"     # local APFS
 DRIVE_ROOT = Path("/Volumes/CLIMATEDATA")
 DATA_DIR = DRIVE_ROOT / "co_co2" / str(YEAR)                      # exFAT
 
-CO_FILE = f"MERRA2_COCL_hourly_{YEAR}.nc"
+CO_FILES = [f"MERRA2_COCL_hourly_{YEAR}.nc",    # full hourly download
+            f"MERRA2_COCL_3hourly_{YEAR}.nc"]   # GitHub Release version
 CO_VAR = "CO_column"                     # 1e18 molecules cm-2
 CO2_GLOB = f"CAMS_EGG4_XCO2*{YEAR}*.nc"
 CO2_VAR = "CO2_column"                   # ppmv
@@ -126,13 +130,15 @@ CO_TOLERANCE = pd.Timedelta(minutes=45)
 # ---------------------------------------------------------------------------
 # Input helpers
 # ---------------------------------------------------------------------------
-def _locate(name_or_glob):
-    for d in (DATA_DIR, WORK_DIR):
-        hits = sorted(p for p in d.glob(name_or_glob)
-                      if not p.name.startswith("._")) if d.exists() else []
-        if hits:
-            return hits[0]
-    sys.exit(f"Cannot find {name_or_glob} in {DATA_DIR} or {WORK_DIR}")
+def _locate(patterns):
+    """First file matching any pattern (in order) in DATA_DIR, then WORK_DIR."""
+    for pat in patterns:
+        for d in (DATA_DIR, WORK_DIR):
+            hits = sorted(p for p in d.glob(pat)
+                          if not p.name.startswith("._")) if d.exists() else []
+            if hits:
+                return hits[0]
+    sys.exit(f"Cannot find {' or '.join(patterns)} in {DATA_DIR} or {WORK_DIR}")
 
 
 def _axis_weights(src, dst, periodic):
@@ -258,7 +264,7 @@ def build_base():
 
 # ---------------------------------------------------------------------------
 def main():
-    co_path, co2_path = _locate(CO_FILE), _locate(CO2_GLOB)
+    co_path, co2_path = _locate(CO_FILES), _locate([CO2_GLOB])
     print(f"CO : {co_path}\nCO2: {co2_path}")
     co_ds = xr.open_dataset(co_path, chunks={"time": 24})
     co2_ds = xr.open_dataset(co2_path, chunks={"time": 8})
@@ -266,7 +272,8 @@ def main():
 
     co_t = pd.to_datetime(co_da["time"].values)
     co2_t = pd.to_datetime(co2_da["time"].values)
-    print(f"CO : {len(co_t)} hourly steps, {co_t[0]} to {co_t[-1]}")
+    co_step_h = (co_t[1] - co_t[0]) / pd.Timedelta(hours=1)
+    print(f"CO : {len(co_t)} steps every {co_step_h:g} h, {co_t[0]} to {co_t[-1]}")
     print(f"CO2: {len(co2_t)} 3-hourly steps, {co2_t[0]} to {co2_t[-1]}")
     co_per_day = int(round(pd.Timedelta(days=1) / (co_t[1] - co_t[0])))
     co2_per_day = int(round(pd.Timedelta(days=1) / (co2_t[1] - co2_t[0])))
