@@ -148,3 +148,154 @@ document.querySelectorAll('.variable-section').forEach((section) => {
   update();                                  // set on page load
   link.addEventListener('click', update);    // refresh at click time, after any tab change
 });
+
+// Sticky sidebar: built from the page's category headings and sections,
+// with scroll-spy highlighting. New animations appear automatically as long
+// as they use .category-heading and .variable-section (with .section-heading h2).
+(function () {
+  const nav = document.getElementById('side-nav');
+  const toggle = document.getElementById('side-nav-toggle');
+  if (!nav) return;
+
+  const categories = [];
+  const spyItems = []; // flat, document order: { el, group, link }
+  const seen = new Set();
+  let current = null;
+
+  function startCategory(heading) {
+    if (seen.has(heading)) return;
+    seen.add(heading);
+    const h2 = heading.querySelector('h2');
+    current = {
+      id: heading.id,
+      title: h2 ? h2.textContent.trim() : heading.id,
+      el: heading,
+      sections: []
+    };
+    categories.push(current);
+    spyItems.push({ el: heading, cat: current, sec: null });
+  }
+
+  document.querySelectorAll('.category-heading, .variable-section').forEach(function (el) {
+    if (el.classList.contains('category-heading')) {
+      startCategory(el);
+      return;
+    }
+    // A section may carry its own category heading as a child (e.g. #lst).
+    const inner = el.querySelector(':scope > .category-heading');
+    if (inner) startCategory(inner);
+    if (!current) return;
+    const h2 = el.querySelector('.section-heading h2');
+    if (!h2 || !el.id) return;
+    const sec = { id: el.id, title: h2.textContent.replace(/\s+/g, ' ').trim(), el: el };
+    current.sections.push(sec);
+    spyItems.push({ el: el, cat: current, sec: sec });
+  });
+
+  // Build the markup.
+  const title = document.createElement('a');
+  title.className = 'side-nav-title';
+  title.href = '#';
+  title.textContent = 'Animation Library';
+  nav.appendChild(title);
+
+  const list = document.createElement('ul');
+  categories.forEach(function (cat) {
+    const li = document.createElement('li');
+    li.className = 'side-nav-group';
+
+    const a = document.createElement('a');
+    a.className = 'side-nav-cat';
+    a.href = '#' + cat.id;
+    const label = document.createElement('span');
+    label.textContent = cat.title;
+    const count = document.createElement('span');
+    count.className = 'side-nav-count';
+    count.textContent = cat.sections.length;
+    a.append(label, count);
+    li.appendChild(a);
+
+    const sub = document.createElement('ul');
+    sub.className = 'side-nav-items';
+    cat.sections.forEach(function (sec) {
+      const sli = document.createElement('li');
+      const sa = document.createElement('a');
+      sa.className = 'side-nav-link';
+      sa.href = '#' + sec.id;
+      sa.textContent = sec.title;
+      sec.link = sa;
+      sli.appendChild(sa);
+      sub.appendChild(sli);
+    });
+    li.appendChild(sub);
+    cat.group = li;
+    list.appendChild(li);
+  });
+  nav.appendChild(list);
+
+  // Mobile / narrow: toggle drawer.
+  function setOpen(open) {
+    nav.classList.toggle('is-open', open);
+    if (toggle) toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  if (toggle) {
+    toggle.addEventListener('click', function () {
+      setOpen(!nav.classList.contains('is-open'));
+    });
+  }
+  nav.addEventListener('click', function (e) {
+    if (e.target.closest('a')) setOpen(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') setOpen(false);
+  });
+
+  // Scroll-spy.
+  const OFFSET = 160;
+  let activeCat = null;
+  let activeSec = null;
+  let ticking = false;
+
+  function update() {
+    ticking = false;
+    let hit = null;
+    for (let i = 0; i < spyItems.length; i++) {
+      if (spyItems[i].el.getBoundingClientRect().top <= OFFSET) hit = spyItems[i];
+      else break;
+    }
+    const cat = hit ? hit.cat : null;
+    const sec = hit ? hit.sec : null;
+    if (cat === activeCat && sec === activeSec) return;
+
+    if (activeSec && activeSec.link) {
+      activeSec.link.classList.remove('is-active');
+      activeSec.link.removeAttribute('aria-current');
+    }
+    if (activeCat && cat !== activeCat) {
+      activeCat.group.classList.remove('is-active', 'is-open');
+    }
+    activeCat = cat;
+    activeSec = sec;
+
+    if (cat) cat.group.classList.add('is-active', 'is-open');
+    if (sec && sec.link) {
+      sec.link.classList.add('is-active');
+      sec.link.setAttribute('aria-current', 'true');
+    }
+
+    // Keep the active entry visible inside the sidebar without moving the page.
+    const target = (sec && sec.link) || (cat && cat.group.firstElementChild);
+    if (target) {
+      const n = nav.getBoundingClientRect();
+      const t = target.getBoundingClientRect();
+      if (t.top < n.top + 40) nav.scrollTop -= (n.top + 40 - t.top);
+      else if (t.bottom > n.bottom - 40) nav.scrollTop += (t.bottom - n.bottom + 40);
+    }
+  }
+
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
